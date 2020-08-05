@@ -35,3 +35,5 @@ FORMS += \
 
 RESOURCES += \
     lib.qrc
+
+QT += multimedia
