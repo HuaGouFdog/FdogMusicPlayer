@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>lib/shangyiqu.png</file>
+        <file>lib/shezhi.png</file>
+        <file>lib/stop.png</file>
+        <file>lib/xuanxiang.png</file>
+        <file>lib/zanting.png</file>
+        <file>lib/zuidahua.png</file>
+        <file>lib/zuixiao.png</file>
+        <file>lib/关  闭.png</file>
+    </qresource>
+</RCC>
