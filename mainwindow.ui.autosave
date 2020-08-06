@@ -66,8 +66,20 @@
           <height>0</height>
          </size>
         </property>
+        <property name="singleStep">
+         <number>0</number>
+        </property>
+        <property name="pageStep">
+         <number>16</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="tickInterval">
+         <number>0</number>
         </property>
        </widget>
       </item>
@@ -440,6 +452,28 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>220</y>
+      <width>221</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:20px;
+background: url(:/C:/Users/fdog/Desktop/image-20200806113923681.png) no-repeat -10px -10px;
+border-radius:5px;
+border: 1px solid #999999;</string>
+    </property>
+    <property name="text">
+     <string>2506897252</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
    <zorder>label_3</zorder>
    <zorder>frame_3</zorder>
    <zorder>frame_4</zorder>
@@ -448,6 +482,7 @@
    <zorder>listWidget</zorder>
    <zorder>label_4</zorder>
    <zorder>label_5</zorder>
+   <zorder>lineEdit</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

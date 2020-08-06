@@ -66,7 +66,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(405, 435);
+        MainWindow->resize(406, 441);
         QIcon icon;
         icon.addFile(QStringLiteral(":/lib/timg2.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
@@ -249,7 +249,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\346\227\255\345\220\254\351\237\263\344\271\220", nullptr));
-        label->setText(QApplication::translate("MainWindow", "4:32", nullptr));
+        label->setText(QString());
         pushButton_1->setText(QString());
         pushButton_2->setText(QString());
         pushButton_3->setText(QString());

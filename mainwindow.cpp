@@ -120,7 +120,6 @@ void MainWindow::onPositionChanged(qint64 position)
     positionTime = QString::asprintf("%d:%d",mins,secs);
     ui->label->setText(positionTime+"/"+durationTime);
 }
-
 void MainWindow::on_horizontalSlider_valueChanged(int value)
 {
     player->setPosition(value);
