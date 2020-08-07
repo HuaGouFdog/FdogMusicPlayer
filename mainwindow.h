@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include<QtMultimedia/QMediaPlayer>
 #include<QtMultimedia/QMediaPlaylist>
+#include"thread.h"
 namespace Ui {
 class MainWindow;
 }
@@ -11,6 +12,7 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 private:
+    Thread * p;
     QMediaPlayer * player;
     QMediaPlaylist * playlist;
     QString durationTime;
@@ -29,8 +31,11 @@ private slots:
     void onPlaylistChanged(int position);
     void onDurationChanged(qint64 duration);
     void onPositionChanged(qint64 position);
+    void on_horizontalSlider_sliderReleased();
 
-    void on_horizontalSlider_valueChanged(int value);
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_1_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -147,13 +147,17 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_lib.cpp
 release\qrc_lib.cpp: lib.qrc \
 		..\..\QT\5.10.0\msvc2015_64\bin\rcc.exe \
+		C:\Users\fdog\Desktop\image-20200806113923681.png \
 		lib\stop.png \
 		lib\zanting.png \
 		lib\shangyiqu.png \
+		lib\timg2.png \
 		lib\shengyin.png \
 		lib\xunhuan.png \
 		lib\shezhi.png \
 		lib\zuidahua.png \
+		lib\guanbi.png \
+		lib\timg.jpg \
 		lib\xuanxiang.png \
 		lib\zuixiao.png
 	D:\QT\5.10.0\msvc2015_64\bin\rcc.exe -name lib lib.qrc -o release\qrc_lib.cpp
@@ -295,6 +299,9 @@ release\moc_mainwindow.cpp: ..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QMainW
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\QMediaPlaylist \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\qmediaplaylist.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\qmediabindableinterface.h \
+		thread.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QThread \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qthread.h \
 		mainwindow.h \
 		release\moc_predefs.h \
 		..\..\QT\5.10.0\msvc2015_64\bin\moc.exe
@@ -452,6 +459,9 @@ release\main.obj: main.cpp mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\QMediaPlaylist \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\qmediaplaylist.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\qmediabindableinterface.h \
+		thread.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QThread \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qthread.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
@@ -589,6 +599,9 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\QMediaPlaylist \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\qmediaplaylist.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\qmediabindableinterface.h \
+		thread.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QThread \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qthread.h \
 		ui_mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QAction \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
@@ -627,6 +640,12 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qrubberband.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QLabel \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qlabel.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QLineEdit \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qlineedit.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qpen.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QListWidget \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qlistwidget.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qlistview.h \
@@ -634,10 +653,6 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qplaintextedit.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qtextedit.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qtextdocument.h \
-		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qtextoption.h \
-		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qtextcursor.h \
-		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qtextformat.h \
-		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qpen.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qabstracttextdocumentlayout.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qtextlayout.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\qglyphrun.h \
@@ -656,7 +671,8 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qdir.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qfileinfo.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qdialog.h \
-		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QDir
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QDir \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QPoint
 
 release\qrc_lib.obj: release\qrc_lib.cpp 
 

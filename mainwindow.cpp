@@ -10,6 +10,8 @@
 #endif
 bool m_bIsWindowMoveable = false;
 QPoint m_point;
+int sum=0;
+int sum_=0;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -18,9 +20,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setWindowFlags(Qt::FramelessWindowHint);//去掉标题栏
     player = new QMediaPlayer(this);
     playlist = new QMediaPlaylist(this);
-    playlist->setPlaybackMode(QMediaPlaylist::Loop);
+    playlist->setPlaybackMode(QMediaPlaylist::Sequential);
     player->setPlaylist(playlist);
-
     connect(player,SIGNAL(stateChanged(QMediaPlayer::State)),
             this,SLOT(onStateChanged(QMediaPlayer::State)));
     connect(player,SIGNAL(positionChanged(qint64)),
@@ -48,12 +49,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
     if (m_bIsWindowMoveable)
     {
-
         move(event->pos() - m_point + pos());
-//        int dx = event->globalX()-m_point.x();
-//        int dy = event->globalY()-m_point.y();
-//        m_point = event->globalPos();
-//        move(x()+dx,y()+dy);
     }
 }
 
@@ -84,7 +80,7 @@ void MainWindow::on_pushButton_clicked()
    }
    if(player->state()!=QMediaPlayer::PlayingState)
    {
-       playlist->setCurrentIndex(0);
+       playlist->setCurrentIndex(sum_);
    }
    player->play();
 }
@@ -120,7 +116,35 @@ void MainWindow::onPositionChanged(qint64 position)
     positionTime = QString::asprintf("%d:%d",mins,secs);
     ui->label->setText(positionTime+"/"+durationTime);
 }
-void MainWindow::on_horizontalSlider_valueChanged(int value)
+void MainWindow::on_horizontalSlider_sliderReleased()
 {
-    player->setPosition(value);
+     player->setPosition(ui->horizontalSlider->value());
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    sum = playlist->mediaCount();//总数
+    if(sum_ == sum)
+    {
+        sum_ =0;
+        playlist->setCurrentIndex(sum_);
+        player->play();
+        return;
+    }
+    playlist->setCurrentIndex(++sum_);
+    player->play();
+}
+
+void MainWindow::on_pushButton_1_clicked()
+{
+    sum = playlist->mediaCount();
+    if(sum_ == 0)
+    {
+        sum_=sum;
+        playlist->setCurrentIndex(sum_);
+        player->play();
+        return;
+    }
+    playlist->setCurrentIndex(--sum_);
+    player->play();
 }

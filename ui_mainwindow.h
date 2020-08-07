@@ -17,6 +17,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPlainTextEdit>
@@ -61,6 +62,7 @@ public:
     QListWidget *listWidget;
     QLabel *label_4;
     QLabel *label_5;
+    QLineEdit *lineEdit;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -91,7 +93,11 @@ public:
         horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
         horizontalSlider->setEnabled(true);
         horizontalSlider->setMinimumSize(QSize(153, 0));
+        horizontalSlider->setSingleStep(0);
+        horizontalSlider->setPageStep(16);
+        horizontalSlider->setValue(0);
         horizontalSlider->setOrientation(Qt::Horizontal);
+        horizontalSlider->setTickInterval(0);
 
         horizontalLayout->addWidget(horizontalSlider);
 
@@ -230,6 +236,14 @@ public:
         label_5->setObjectName(QStringLiteral("label_5"));
         label_5->setGeometry(QRect(39, 4, 61, 21));
         label_5->setAlignment(Qt::AlignCenter);
+        lineEdit = new QLineEdit(centralWidget);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setGeometry(QRect(690, 220, 221, 36));
+        lineEdit->setStyleSheet(QLatin1String("font:20px;\n"
+"background: url(:/C:/Users/fdog/Desktop/image-20200806113923681.png) no-repeat -10px -10px;\n"
+"border-radius:5px;\n"
+"border: 1px solid #999999;"));
+        lineEdit->setAlignment(Qt::AlignCenter);
         MainWindow->setCentralWidget(centralWidget);
         label_3->raise();
         frame_3->raise();
@@ -239,6 +253,7 @@ public:
         listWidget->raise();
         label_4->raise();
         label_5->raise();
+        lineEdit->raise();
 
         retranslateUi(MainWindow);
         QObject::connect(toolButton_4, SIGNAL(clicked()), MainWindow, SLOT(close()));
@@ -263,6 +278,7 @@ public:
         label_3->setText(QString());
         label_4->setText(QString());
         label_5->setText(QApplication::translate("MainWindow", "\346\227\255\345\220\254\351\237\263\344\271\220", nullptr));
+        lineEdit->setText(QApplication::translate("MainWindow", "2506897252", nullptr));
     } // retranslateUi
 
 };
