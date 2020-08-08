@@ -3,7 +3,6 @@
 #include <QMainWindow>
 #include<QtMultimedia/QMediaPlayer>
 #include<QtMultimedia/QMediaPlaylist>
-#include"thread.h"
 namespace Ui {
 class MainWindow;
 }
@@ -12,11 +11,15 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 private:
-    Thread * p;
     QMediaPlayer * player;
     QMediaPlaylist * playlist;
     QString durationTime;
     QString positionTime;
+
+    bool m_bIsWindowMoveable = false;
+    QPoint m_point;
+    int sum=0;
+    int sum_=0;
 
 public:
     explicit MainWindow(QWidget *parent = 0);

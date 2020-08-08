@@ -8,10 +8,6 @@
 #if _MSC_VER >= 1600
 #pragma execution_character_set("utf-8")
 #endif
-bool m_bIsWindowMoveable = false;
-QPoint m_point;
-int sum=0;
-int sum_=0;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -76,7 +72,17 @@ void MainWindow::on_pushButton_clicked()
        playlist->addMedia(QUrl::fromLocalFile(aFile));
        QFileInfo fileInfo(aFile);
        ui->listWidget->addItem(fileInfo.fileName());
+
+
+       QList<QLabel*> labelList = ui->toolBox->findChildren<QLabel*>();
+           for(int i = 0; i < labelList.size(); i++)
+           {
+               ui->label_12 = labelList.at(i);
+               ui->label_12->setText(QString::number(i));
+           }
        ui->plainTextEdit->appendPlainText(fileList.at(i));
+
+
    }
    if(player->state()!=QMediaPlayer::PlayingState)
    {
@@ -92,7 +98,12 @@ void MainWindow::onStateChanged(QMediaPlayer::State state)
 
 void MainWindow::onPlaylistChanged(int position)
 {
-
+    ui->listWidget->setCurrentRow(position);
+    QListWidgetItem * item = ui->listWidget->currentItem();
+    if(item)
+    {
+        ui->label_2->setText(item->text());
+    }
 }
 
 void MainWindow::onDurationChanged(qint64 duration)
