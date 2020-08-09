@@ -148,28 +148,39 @@ compiler_rcc_clean:
 release\qrc_lib.cpp: lib.qrc \
 		..\..\QT\5.10.0\msvc2015_64\bin\rcc.exe \
 		C:\Users\fdog\Desktop\image-20200806113923681.png \
-		lib\xuanxiang.png \
-		lib\b.png \
-		lib\shipin.png \
-		lib\shangyiqu.png \
-		lib\xunhuan.png \
-		lib\zuixiao.png \
-		lib\zuidahua.png \
-		lib\guanbi.png \
-		lib\love.png \
-		lib\shengyin.png \
-		lib\zanting.png \
-		lib\sousuo.png \
-		lib\bendi.png \
-		lib\pifu.png \
-		lib\timg.jpg \
-		lib\touxiang.png \
-		lib\xuanxiang1.png \
-		lib\timg2.png \
-		lib\shezhi.png \
 		lib\lishijilu.png \
+		lib\b.png \
+		lib\guanbi.png \
+		lib\sousuo.png \
+		lib\shipin.png \
+		lib\xunhuan.png \
+		lib\timg.jpg \
+		lib\13.jpg \
 		lib\ci-copy.png \
+		lib\1zantingtingzhi.png \
+		lib\9.jpg \
+		lib\zuidahua.png \
+		lib\shengyin.png \
+		lib\pifu.png \
+		lib\timg2.png \
+		lib\8.jpg \
+		lib\shangyiqu.png \
+		lib\11.jpg \
+		lib\xuanxiang.png \
+		lib\touxiang.png \
+		lib\10.jpg \
+		lib\love.png \
+		lib\6.jpg \
+		lib\zuixiao.png \
+		lib\1bofang.png \
+		lib\shezhi.png \
 		lib\su.png \
+		lib\xuanxiang1.png \
+		lib\5.jpg \
+		lib\4.jpg \
+		lib\jingyin.png \
+		lib\bendi.png \
+		lib\zanting.png \
 		lib\stop.png
 	D:\QT\5.10.0\msvc2015_64\bin\rcc.exe -name lib lib.qrc -o release\qrc_lib.cpp
 
@@ -664,6 +675,7 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QSlider \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QToolBox \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qtoolbox.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \

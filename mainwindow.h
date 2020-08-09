@@ -17,9 +17,11 @@ private:
     QString positionTime;
 
     bool m_bIsWindowMoveable = false;
+    bool m_IsPause = false;
+    bool m_Volume = false;
     QPoint m_point;
-    int sum=0;
-    int sum_=0;
+    int M_Amount=0;   //总数
+    int M_Value=0;  //当前
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -39,6 +41,14 @@ private slots:
     void on_pushButton_3_clicked();
 
     void on_pushButton_1_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_horizontalSlider_2_valueChanged(int value);
+
+    void on_pushButton_5_clicked();
+
+    void on_verticalSlider_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;

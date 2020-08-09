@@ -225,9 +225,14 @@ border-image: url(:/lib/5.jpg);
      <rect>
       <x>-1</x>
       <y>61</y>
-      <width>1101</width>
+      <width>1181</width>
       <height>641</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgba(0, 255, 255,70);</string>
@@ -368,7 +373,7 @@ border-image: url(:/lib/5.jpg);
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-image: url(:/lib/stop.png);</string>
+      <string notr="true">border-image: url(:/lib/1zantingtingzhi.png);</string>
      </property>
      <property name="text">
       <string/>
@@ -450,9 +455,9 @@ color: rgb(255, 255, 255);</string>
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>209</x>
+      <x>219</x>
       <y>61</y>
-      <width>881</width>
+      <width>871</width>
       <height>561</height>
      </rect>
     </property>
@@ -468,41 +473,6 @@ border-image: url(:/lib/timg (6).jpg);
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLineEdit" name="lineEdit">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>60</y>
-       <width>151</width>
-       <height>36</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font:20px;
-background: url(:/C:/Users/fdog/Desktop/image-20200806113923681.png) no-repeat -10px -10px;
-border-radius:5px;
-border: 1px solid #999999;</string>
-     </property>
-     <property name="text">
-      <string>2506897252</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_12">
-     <property name="geometry">
-      <rect>
-       <x>340</x>
-       <y>50</y>
-       <width>141</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
@@ -526,7 +496,7 @@ border: 1px solid #999999;</string>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>40</x>
       <y>640</y>
       <width>181</width>
       <height>41</height>
@@ -614,10 +584,10 @@ border-color:rgb(163, 163, 163);</string>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>750</x>
-      <y>13</y>
-      <width>35</width>
-      <height>35</height>
+      <x>752</x>
+      <y>15</y>
+      <width>32</width>
+      <height>32</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -637,7 +607,7 @@ border-color:rgb(163, 163, 163);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 12pt &quot;Adobe Gothic Std B&quot;;
+     <string notr="true">font: 75 11pt &quot;Adobe Gothic Std B&quot;;
 
 color: rgb(255, 255, 255);</string>
     </property>
@@ -651,7 +621,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>240</x>
       <y>650</y>
       <width>20</width>
       <height>20</height>
@@ -659,7 +629,6 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="styleSheet">
      <string notr="true">
-border-image: url(:/lib/su.png);
 border-image: url(:/lib/love.png);</string>
     </property>
     <property name="text">
@@ -670,14 +639,14 @@ border-image: url(:/lib/love.png);</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>60</y>
+      <y>90</y>
       <width>209</width>
-      <height>561</height>
+      <height>431</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>15</pointsize>
+      <pointsize>11</pointsize>
       <weight>75</weight>
       <bold>true</bold>
       <underline>false</underline>
@@ -698,7 +667,7 @@ color: rgb(85, 170, 255);
 background-color: rgba(0, 255, 255,00);
 }
 
-*
+QWidget
 {
 background-color: rgba(255, 255, 255, 0);
 }</string>
@@ -713,7 +682,7 @@ background-color: rgba(255, 255, 255, 0);
      <number>0</number>
     </property>
     <property name="tabSpacing">
-     <number>11</number>
+     <number>21</number>
     </property>
     <widget class="QWidget" name="page_3">
      <attribute name="label">
@@ -745,6 +714,28 @@ background-color: rgba(255, 255, 255, 0);
        <string>添加音频</string>
       </property>
      </widget>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>70</y>
+        <width>151</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font:20px;
+background: url(:/C:/Users/fdog/Desktop/image-20200806113923681.png) no-repeat -10px -10px;
+border-radius:5px;
+border: 1px solid #999999;</string>
+      </property>
+      <property name="text">
+       <string>2506897252</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="page">
      <property name="geometry">
@@ -752,7 +743,7 @@ background-color: rgba(255, 255, 255, 0);
        <x>0</x>
        <y>0</y>
        <width>209</width>
-       <height>444</height>
+       <height>299</height>
       </rect>
      </property>
      <attribute name="label">
@@ -767,8 +758,53 @@ background-color: rgba(255, 255, 255, 0);
         <height>481</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>宋体</family>
+        <pointsize>9</pointsize>
+        <weight>50</weight>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">font: 9pt &quot;宋体&quot;;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="lineWidth">
+       <number>3</number>
+      </property>
+      <property name="midLineWidth">
+       <number>0</number>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAsNeeded</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
+      <property name="autoScrollMargin">
+       <number>15</number>
+      </property>
+      <property name="tabKeyNavigation">
+       <bool>false</bool>
+      </property>
+      <property name="showDropIndicator" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="modelColumn">
+       <number>0</number>
+      </property>
+      <property name="batchSize">
+       <number>100</number>
       </property>
      </widget>
     </widget>
@@ -778,7 +814,7 @@ background-color: rgba(255, 255, 255, 0);
        <x>0</x>
        <y>0</y>
        <width>209</width>
-       <height>444</height>
+       <height>299</height>
       </rect>
      </property>
      <attribute name="label">
@@ -797,10 +833,29 @@ background-color: rgba(255, 255, 255, 0);
        <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
       </property>
       <property name="plainText">
-       <string>你号试试</string>
+       <string/>
       </property>
      </widget>
     </widget>
+   </widget>
+   <widget class="QSlider" name="verticalSlider">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>630</y>
+      <width>16</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>3</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
    </widget>
    <zorder>label_3</zorder>
    <zorder>label_6</zorder>
@@ -819,6 +874,7 @@ background-color: rgba(255, 255, 255, 0);
    <zorder>label_9</zorder>
    <zorder>label_11</zorder>
    <zorder>toolBox</zorder>
+   <zorder>verticalSlider</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

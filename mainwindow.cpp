@@ -72,21 +72,12 @@ void MainWindow::on_pushButton_clicked()
        playlist->addMedia(QUrl::fromLocalFile(aFile));
        QFileInfo fileInfo(aFile);
        ui->listWidget->addItem(fileInfo.fileName());
-
-
-       QList<QLabel*> labelList = ui->toolBox->findChildren<QLabel*>();
-           for(int i = 0; i < labelList.size(); i++)
-           {
-               ui->label_12 = labelList.at(i);
-               ui->label_12->setText(QString::number(i));
-           }
        ui->plainTextEdit->appendPlainText(fileList.at(i));
-
 
    }
    if(player->state()!=QMediaPlayer::PlayingState)
    {
-       playlist->setCurrentIndex(sum_);
+       playlist->setCurrentIndex(M_Value);
    }
    player->play();
 }
@@ -134,28 +125,78 @@ void MainWindow::on_horizontalSlider_sliderReleased()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    sum = playlist->mediaCount();//总数
-    if(sum_ == sum)
+    M_Amount = playlist->mediaCount();//总数
+    if(M_Value == M_Amount)
     {
-        sum_ =0;
-        playlist->setCurrentIndex(sum_);
-        player->play();
+        M_Value =0;
+        playlist->setCurrentIndex(M_Value);
+        if(m_IsPause==true)
+        {
+            player->play();
+        }
         return;
     }
-    playlist->setCurrentIndex(++sum_);
-    player->play();
+    playlist->setCurrentIndex(++M_Value);
+    if(m_IsPause==true)
+    {
+        player->play();
+    }
 }
 
 void MainWindow::on_pushButton_1_clicked()
 {
-    sum = playlist->mediaCount();
-    if(sum_ == 0)
+    M_Amount = playlist->mediaCount();
+    if(M_Value == 0)
     {
-        sum_=sum;
-        playlist->setCurrentIndex(sum_);
-        player->play();
+        M_Value=M_Amount;
+        playlist->setCurrentIndex(M_Value);
+        if(m_IsPause==true)
+        {
+            player->play();
+        }
         return;
     }
-    playlist->setCurrentIndex(--sum_);
+    playlist->setCurrentIndex(--M_Value);
+    if(m_IsPause==true)
+    {
+        player->play();
+    }
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    if(m_IsPause==true)//false 为播放
+    {
+        ui->pushButton_2->setStyleSheet("border-image: url(:/lib/1bofang.png);");
+        m_IsPause = false;
+        player->pause();
+        return;
+    }
+    m_IsPause = true;
+    ui->pushButton_2->setStyleSheet("border-image: url(:/lib/1zantingtingzhi.png);");
     player->play();
+}
+
+void MainWindow::on_horizontalSlider_2_valueChanged(int value)
+{
+    player->setVolume(value);
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    if(m_Volume ==true)
+    {
+        m_Volume = false;
+        ui->pushButton_5->setStyleSheet("border-image: url(:/lib/shengyin.png);");
+        player->setVolume(ui->horizontalSlider_2->value());
+        return;
+    }
+    m_Volume = true;
+    ui->pushButton_5->setStyleSheet("border-image: url(:/lib/jingyin.png);");
+    player->setVolume(0);
+}
+
+void MainWindow::on_verticalSlider_valueChanged(int value)
+{
+    player->setPlaybackRate(value);
 }

@@ -57,8 +57,6 @@ public:
     QSlider *horizontalSlider;
     QLabel *label;
     QFrame *frame;
-    QLineEdit *lineEdit;
-    QLabel *label_12;
     QLabel *label_4;
     QLabel *label_2;
     QLabel *label_5;
@@ -72,10 +70,12 @@ public:
     QWidget *page_3;
     QPushButton *pushButton_6;
     QPushButton *pushButton;
+    QLineEdit *lineEdit;
     QWidget *page;
     QListWidget *listWidget;
     QWidget *page_2;
     QPlainTextEdit *plainTextEdit;
+    QSlider *verticalSlider;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -162,7 +162,10 @@ public:
         label_3->setStyleSheet(QStringLiteral("background-color: rgba(0, 255, 255,50);"));
         label_6 = new QLabel(centralWidget);
         label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(-1, 61, 1101, 641));
+        label_6->setGeometry(QRect(-1, 61, 1181, 641));
+        QFont font;
+        font.setPointSize(9);
+        label_6->setFont(font);
         label_6->setStyleSheet(QStringLiteral("background-color: rgba(0, 255, 255,70);"));
         frame_2 = new QFrame(centralWidget);
         frame_2->setObjectName(QStringLiteral("frame_2"));
@@ -197,7 +200,7 @@ public:
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
         pushButton_2->setGeometry(QRect(210, 6, 50, 50));
         pushButton_2->setMinimumSize(QSize(50, 50));
-        pushButton_2->setStyleSheet(QStringLiteral("border-image: url(:/lib/stop.png);"));
+        pushButton_2->setStyleSheet(QStringLiteral("border-image: url(:/lib/1zantingtingzhi.png);"));
         horizontalSlider = new QSlider(centralWidget);
         horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
         horizontalSlider->setEnabled(true);
@@ -220,24 +223,13 @@ public:
         label->setIndent(-1);
         frame = new QFrame(centralWidget);
         frame->setObjectName(QStringLiteral("frame"));
-        frame->setGeometry(QRect(209, 61, 881, 561));
+        frame->setGeometry(QRect(219, 61, 871, 561));
         frame->setStyleSheet(QLatin1String("#frame\n"
 "{\n"
 "border-image: url(:/lib/timg (6).jpg);\n"
 "}"));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
-        lineEdit = new QLineEdit(frame);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(110, 60, 151, 36));
-        lineEdit->setStyleSheet(QLatin1String("font:20px;\n"
-"background: url(:/C:/Users/fdog/Desktop/image-20200806113923681.png) no-repeat -10px -10px;\n"
-"border-radius:5px;\n"
-"border: 1px solid #999999;"));
-        lineEdit->setAlignment(Qt::AlignCenter);
-        label_12 = new QLabel(frame);
-        label_12->setObjectName(QStringLiteral("label_12"));
-        label_12->setGeometry(QRect(340, 50, 141, 31));
         label_4 = new QLabel(centralWidget);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setGeometry(QRect(14, 3, 181, 53));
@@ -245,7 +237,7 @@ public:
         label_4->setAlignment(Qt::AlignCenter);
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(20, 640, 181, 41));
+        label_2->setGeometry(QRect(40, 640, 181, 41));
         label_2->setStyleSheet(QLatin1String("font: 75 12pt \"Adobe Gothic Std B\";\n"
 "\n"
 "color: rgb(255, 255, 255);"));
@@ -273,31 +265,30 @@ public:
         pushButton_7->setStyleSheet(QStringLiteral("border-image: url(:/lib/sousuo.png);"));
         label_8 = new QLabel(centralWidget);
         label_8->setObjectName(QStringLiteral("label_8"));
-        label_8->setGeometry(QRect(750, 13, 35, 35));
+        label_8->setGeometry(QRect(752, 15, 32, 32));
         label_8->setStyleSheet(QStringLiteral("border-image: url(:/lib/touxiang.png);"));
         label_9 = new QLabel(centralWidget);
         label_9->setObjectName(QStringLiteral("label_9"));
         label_9->setGeometry(QRect(790, 20, 81, 21));
-        label_9->setStyleSheet(QLatin1String("font: 75 12pt \"Adobe Gothic Std B\";\n"
+        label_9->setStyleSheet(QLatin1String("font: 75 11pt \"Adobe Gothic Std B\";\n"
 "\n"
 "color: rgb(255, 255, 255);"));
         label_9->setAlignment(Qt::AlignCenter);
         label_11 = new QLabel(centralWidget);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setGeometry(QRect(190, 650, 20, 20));
+        label_11->setGeometry(QRect(240, 650, 20, 20));
         label_11->setStyleSheet(QLatin1String("\n"
-"border-image: url(:/lib/su.png);\n"
 "border-image: url(:/lib/love.png);"));
         toolBox = new QToolBox(centralWidget);
         toolBox->setObjectName(QStringLiteral("toolBox"));
-        toolBox->setGeometry(QRect(0, 60, 209, 561));
-        QFont font;
-        font.setPointSize(15);
-        font.setBold(true);
-        font.setUnderline(false);
-        font.setWeight(75);
-        font.setKerning(true);
-        toolBox->setFont(font);
+        toolBox->setGeometry(QRect(0, 90, 209, 431));
+        QFont font1;
+        font1.setPointSize(11);
+        font1.setBold(true);
+        font1.setUnderline(false);
+        font1.setWeight(75);
+        font1.setKerning(true);
+        toolBox->setFont(font1);
         toolBox->setStyleSheet(QLatin1String("\n"
 "#toolBox::tab\n"
 "{\n"
@@ -311,7 +302,7 @@ public:
 "background-color: rgba(0, 255, 255,00);\n"
 "}\n"
 "\n"
-"*\n"
+"QWidget\n"
 "{\n"
 "background-color: rgba(255, 255, 255, 0);\n"
 "}"));
@@ -325,23 +316,56 @@ public:
         pushButton = new QPushButton(page_3);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(20, 0, 161, 31));
+        lineEdit = new QLineEdit(page_3);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setGeometry(QRect(20, 70, 151, 36));
+        lineEdit->setStyleSheet(QLatin1String("font:20px;\n"
+"background: url(:/C:/Users/fdog/Desktop/image-20200806113923681.png) no-repeat -10px -10px;\n"
+"border-radius:5px;\n"
+"border: 1px solid #999999;"));
+        lineEdit->setAlignment(Qt::AlignCenter);
         toolBox->addItem(page_3, QString::fromUtf8("    \346\267\273\345\212\240\346\226\207\344\273\266"));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 209, 444));
+        page->setGeometry(QRect(0, 0, 209, 299));
         listWidget = new QListWidget(page);
         listWidget->setObjectName(QStringLiteral("listWidget"));
         listWidget->setGeometry(QRect(0, 0, 209, 481));
-        listWidget->setStyleSheet(QStringLiteral(""));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
+        font2.setPointSize(9);
+        font2.setBold(false);
+        font2.setItalic(false);
+        font2.setWeight(50);
+        listWidget->setFont(font2);
+        listWidget->setStyleSheet(QString::fromUtf8("font: 9pt \"\345\256\213\344\275\223\";"));
+        listWidget->setFrameShape(QFrame::NoFrame);
+        listWidget->setFrameShadow(QFrame::Plain);
+        listWidget->setLineWidth(3);
+        listWidget->setMidLineWidth(0);
+        listWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        listWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        listWidget->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+        listWidget->setAutoScrollMargin(15);
+        listWidget->setTabKeyNavigation(false);
+        listWidget->setProperty("showDropIndicator", QVariant(true));
+        listWidget->setModelColumn(0);
+        listWidget->setBatchSize(100);
         toolBox->addItem(page, QString::fromUtf8("    \346\234\254\345\234\260\346\226\207\344\273\266"));
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setGeometry(QRect(0, 0, 209, 444));
+        page_2->setGeometry(QRect(0, 0, 209, 299));
         plainTextEdit = new QPlainTextEdit(page_2);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
         plainTextEdit->setGeometry(QRect(0, 0, 211, 221));
         plainTextEdit->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
         toolBox->addItem(page_2, QString::fromUtf8("    \346\234\200\350\277\221\346\222\255\346\224\276"));
+        verticalSlider = new QSlider(centralWidget);
+        verticalSlider->setObjectName(QStringLiteral("verticalSlider"));
+        verticalSlider->setGeometry(QRect(1060, 630, 16, 61));
+        verticalSlider->setMinimum(1);
+        verticalSlider->setMaximum(3);
+        verticalSlider->setOrientation(Qt::Vertical);
         MainWindow->setCentralWidget(centralWidget);
         label_3->raise();
         label_6->raise();
@@ -360,6 +384,7 @@ public:
         label_9->raise();
         label_11->raise();
         toolBox->raise();
+        verticalSlider->raise();
 
         retranslateUi(MainWindow);
         QObject::connect(toolButton_4, SIGNAL(clicked()), MainWindow, SLOT(close()));
@@ -367,7 +392,7 @@ public:
         QObject::connect(toolButton_3, SIGNAL(clicked()), MainWindow, SLOT(showMaximized()));
 
         toolBox->setCurrentIndex(0);
-        toolBox->layout()->setSpacing(11);
+        toolBox->layout()->setSpacing(21);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -389,8 +414,6 @@ public:
         pushButton_3->setText(QString());
         pushButton_2->setText(QString());
         label->setText(QApplication::translate("MainWindow", "6:25/7:52", nullptr));
-        lineEdit->setText(QApplication::translate("MainWindow", "2506897252", nullptr));
-        label_12->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
         label_4->setText(QString());
         label_2->setText(QApplication::translate("MainWindow", "\351\230\277\346\202\240\346\202\240 - \346\227\247\346\242\246\344\270\200\345\234\272.mp3", nullptr));
         label_5->setText(QString());
@@ -402,9 +425,10 @@ public:
         label_11->setText(QString());
         pushButton_6->setText(QApplication::translate("MainWindow", "\346\267\273\345\212\240\350\247\206\351\242\221", nullptr));
         pushButton->setText(QApplication::translate("MainWindow", "\346\267\273\345\212\240\351\237\263\351\242\221", nullptr));
+        lineEdit->setText(QApplication::translate("MainWindow", "2506897252", nullptr));
         toolBox->setItemText(toolBox->indexOf(page_3), QApplication::translate("MainWindow", "    \346\267\273\345\212\240\346\226\207\344\273\266", nullptr));
         toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("MainWindow", "    \346\234\254\345\234\260\346\226\207\344\273\266", nullptr));
-        plainTextEdit->setPlainText(QApplication::translate("MainWindow", "\344\275\240\345\217\267\350\257\225\350\257\225", nullptr));
+        plainTextEdit->setPlainText(QString());
         toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("MainWindow", "    \346\234\200\350\277\221\346\222\255\346\224\276", nullptr));
     } // retranslateUi
 

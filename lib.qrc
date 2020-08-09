@@ -36,5 +36,8 @@
         <file>lib/10.jpg</file>
         <file>lib/11.jpg</file>
         <file>lib/13.jpg</file>
+        <file>lib/1bofang.png</file>
+        <file>lib/1zantingtingzhi.png</file>
+        <file>lib/jingyin.png</file>
     </qresource>
 </RCC>
