@@ -24,7 +24,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QToolBox>
+#include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QWidget>
 
@@ -36,7 +36,7 @@ public:
     QWidget *centralWidget;
     QFrame *frame_4;
     QHBoxLayout *horizontalLayout_4;
-    QLabel *label_10;
+    QToolButton *toolButton_5;
     QSpacerItem *horizontalSpacer_2;
     QToolButton *toolButton_1;
     QSpacerItem *horizontalSpacer;
@@ -56,7 +56,6 @@ public:
     QPushButton *pushButton_2;
     QSlider *horizontalSlider;
     QLabel *label;
-    QFrame *frame;
     QLabel *label_4;
     QLabel *label_2;
     QLabel *label_5;
@@ -66,24 +65,37 @@ public:
     QLabel *label_8;
     QLabel *label_9;
     QLabel *label_11;
-    QToolBox *toolBox;
-    QWidget *page_3;
-    QPushButton *pushButton_6;
+    QSlider *verticalSlider;
+    QLabel *label_12;
+    QLabel *label_13;
+    QLabel *label_14;
+    QPushButton *pushButton_8;
+    QPushButton *pushButton_9;
+    QPushButton *pushButton_10;
+    QPushButton *pushButton_11;
+    QPushButton *pushButton_12;
+    QPushButton *pushButton_13;
+    QPushButton *pushButton_14;
+    QPushButton *pushButton_15;
     QPushButton *pushButton;
-    QLineEdit *lineEdit;
+    QPushButton *pushButton_16;
+    QLabel *label_10;
+    QLabel *label_15;
+    QStackedWidget *stackedWidget;
     QWidget *page;
-    QListWidget *listWidget;
+    QFrame *frame;
     QWidget *page_2;
     QPlainTextEdit *plainTextEdit;
-    QSlider *verticalSlider;
+    QLineEdit *lineEdit;
+    QListWidget *listWidget;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1100, 700);
+        MainWindow->resize(1101, 700);
         QIcon icon;
-        icon.addFile(QStringLiteral(":/lib/timg2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/lib/yinyue.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
         MainWindow->setStyleSheet(QLatin1String("#centralWidget\n"
 "{\n"
@@ -93,20 +105,32 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         frame_4 = new QFrame(centralWidget);
         frame_4->setObjectName(QStringLiteral("frame_4"));
-        frame_4->setGeometry(QRect(887, 4, 201, 53));
+        frame_4->setGeometry(QRect(893, 5, 201, 41));
         frame_4->setFrameShape(QFrame::StyledPanel);
         frame_4->setFrameShadow(QFrame::Raised);
         horizontalLayout_4 = new QHBoxLayout(frame_4);
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        label_10 = new QLabel(frame_4);
-        label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setMinimumSize(QSize(23, 20));
-        label_10->setMaximumSize(QSize(23, 23));
-        label_10->setStyleSheet(QStringLiteral("border-image: url(:/lib/pifu.png);"));
+        toolButton_5 = new QToolButton(frame_4);
+        toolButton_5->setObjectName(QStringLiteral("toolButton_5"));
+        toolButton_5->setMinimumSize(QSize(23, 23));
+        toolButton_5->setStyleSheet(QLatin1String("\n"
+"#toolButton_5\n"
+"{\n"
+"border-image: url(:/lib/pifu.png);\n"
+"}\n"
+"\n"
+"#toolButton_5::hover\n"
+"{\n"
+"background-color: rgba(245, 245, 245, 80);\n"
+"}"));
+        toolButton_5->setPopupMode(QToolButton::DelayedPopup);
+        toolButton_5->setToolButtonStyle(Qt::ToolButtonIconOnly);
+        toolButton_5->setAutoRaise(false);
+        toolButton_5->setArrowType(Qt::NoArrow);
 
-        horizontalLayout_4->addWidget(label_10);
+        horizontalLayout_4->addWidget(toolButton_5);
 
         horizontalSpacer_2 = new QSpacerItem(10, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
 
@@ -115,7 +139,16 @@ public:
         toolButton_1 = new QToolButton(frame_4);
         toolButton_1->setObjectName(QStringLiteral("toolButton_1"));
         toolButton_1->setMinimumSize(QSize(20, 20));
-        toolButton_1->setStyleSheet(QStringLiteral("border-image: url(:/lib/xuanxiang.png);"));
+        toolButton_1->setStyleSheet(QLatin1String("\n"
+"#toolButton_1\n"
+"{\n"
+"border-image: url(:/lib/xuanxiang.png);\n"
+"}\n"
+"\n"
+"#toolButton_1::hover\n"
+"{\n"
+"background-color: rgba(245, 245, 245, 80);\n"
+"}"));
         toolButton_1->setPopupMode(QToolButton::DelayedPopup);
         toolButton_1->setToolButtonStyle(Qt::ToolButtonIconOnly);
         toolButton_1->setAutoRaise(false);
@@ -130,7 +163,15 @@ public:
         toolButton_2 = new QToolButton(frame_4);
         toolButton_2->setObjectName(QStringLiteral("toolButton_2"));
         toolButton_2->setMinimumSize(QSize(20, 20));
-        toolButton_2->setStyleSheet(QStringLiteral("border-image: url(:/lib/zuixiao.png);"));
+        toolButton_2->setStyleSheet(QLatin1String("#toolButton_2\n"
+"{\n"
+"border-image: url(:/lib/zuixiao.png);\n"
+"}\n"
+"\n"
+"#toolButton_2::hover\n"
+"{\n"
+"background-color: rgba(245, 245, 245, 80);\n"
+"}"));
 
         horizontalLayout_4->addWidget(toolButton_2);
 
@@ -141,7 +182,15 @@ public:
         toolButton_3 = new QToolButton(frame_4);
         toolButton_3->setObjectName(QStringLiteral("toolButton_3"));
         toolButton_3->setMinimumSize(QSize(20, 20));
-        toolButton_3->setStyleSheet(QStringLiteral("border-image: url(:/lib/zuidahua.png);"));
+        toolButton_3->setStyleSheet(QLatin1String("\n"
+"#toolButton_3\n"
+"{\n"
+"border-image: url(:/lib/zuidahua.png);\n"
+"}\n"
+"#toolButton_3::hover\n"
+"{\n"
+"background-color: rgba(245, 245, 245, 80);\n"
+"}"));
 
         horizontalLayout_4->addWidget(toolButton_3);
 
@@ -152,24 +201,31 @@ public:
         toolButton_4 = new QToolButton(frame_4);
         toolButton_4->setObjectName(QStringLiteral("toolButton_4"));
         toolButton_4->setMinimumSize(QSize(20, 20));
-        toolButton_4->setStyleSheet(QStringLiteral("border-image: url(:/lib/guanbi.png);"));
+        toolButton_4->setStyleSheet(QLatin1String("#toolButton_4\n"
+"{\n"
+"border-image: url(:/lib/guanbi.png);\n"
+"}\n"
+"#toolButton_4::hover\n"
+"{\n"
+"background-color: rgba(245, 245, 245, 80);\n"
+"}"));
 
         horizontalLayout_4->addWidget(toolButton_4);
 
         label_3 = new QLabel(centralWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(0, 0, 1101, 61));
-        label_3->setStyleSheet(QStringLiteral("background-color: rgba(0, 255, 255,50);"));
+        label_3->setGeometry(QRect(0, 0, 1101, 51));
+        label_3->setStyleSheet(QStringLiteral("background-color: rgba(0, 255, 255,70);"));
         label_6 = new QLabel(centralWidget);
         label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(-1, 61, 1181, 641));
+        label_6->setGeometry(QRect(-1, 51, 1102, 651));
         QFont font;
         font.setPointSize(9);
         label_6->setFont(font);
         label_6->setStyleSheet(QStringLiteral("background-color: rgba(0, 255, 255,70);"));
         frame_2 = new QFrame(centralWidget);
         frame_2->setObjectName(QStringLiteral("frame_2"));
-        frame_2->setGeometry(QRect(370, 643, 521, 61));
+        frame_2->setGeometry(QRect(339, 639, 521, 55));
         frame_2->setFrameShape(QFrame::StyledPanel);
         frame_2->setFrameShadow(QFrame::Raised);
         pushButton_4 = new QPushButton(frame_2);
@@ -204,7 +260,7 @@ public:
         horizontalSlider = new QSlider(centralWidget);
         horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
         horizontalSlider->setEnabled(true);
-        horizontalSlider->setGeometry(QRect(310, 632, 651, 20));
+        horizontalSlider->setGeometry(QRect(300, 627, 621, 16));
         horizontalSlider->setMinimumSize(QSize(153, 0));
         horizontalSlider->setSingleStep(0);
         horizontalSlider->setPageStep(16);
@@ -213,7 +269,7 @@ public:
         horizontalSlider->setTickInterval(0);
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(970, 630, 91, 21));
+        label->setGeometry(QRect(920, 630, 91, 21));
         label->setMinimumSize(QSize(0, 0));
         label->setMaximumSize(QSize(11111111, 16777215));
         label->setStyleSheet(QLatin1String("font: 75 11pt \"Adobe Gothic Std B\";\n"
@@ -221,123 +277,352 @@ public:
         label->setAlignment(Qt::AlignCenter);
         label->setMargin(0);
         label->setIndent(-1);
-        frame = new QFrame(centralWidget);
-        frame->setObjectName(QStringLiteral("frame"));
-        frame->setGeometry(QRect(219, 61, 871, 561));
-        frame->setStyleSheet(QLatin1String("#frame\n"
-"{\n"
-"border-image: url(:/lib/timg (6).jpg);\n"
-"}"));
-        frame->setFrameShape(QFrame::StyledPanel);
-        frame->setFrameShadow(QFrame::Raised);
         label_4 = new QLabel(centralWidget);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(14, 3, 181, 53));
+        label_4->setGeometry(QRect(22, 12, 123, 38));
         label_4->setStyleSheet(QStringLiteral("border-image: url(:/lib/b.png);"));
         label_4->setAlignment(Qt::AlignCenter);
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(40, 640, 181, 41));
-        label_2->setStyleSheet(QLatin1String("font: 75 12pt \"Adobe Gothic Std B\";\n"
+        label_2->setGeometry(QRect(100, 638, 181, 20));
+        label_2->setStyleSheet(QLatin1String("font:16px;\n"
 "\n"
 "color: rgb(255, 255, 255);"));
         label_5 = new QLabel(centralWidget);
         label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(980, 660, 30, 30));
+        label_5->setGeometry(QRect(922, 660, 31, 30));
         label_5->setStyleSheet(QStringLiteral("border-image: url(:/lib/ci-copy.png);"));
         label_7 = new QLabel(centralWidget);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(1020, 660, 31, 31));
+        label_7->setGeometry(QRect(969, 660, 31, 31));
         label_7->setStyleSheet(QLatin1String("font: 75 12pt \"Adobe Gothic Std B\";\n"
 "border-image: url(:/lib/su.png);\n"
 "\n"
 "color: rgb(255, 255, 255);"));
         lineEdit_2 = new QLineEdit(centralWidget);
         lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(231, 17, 211, 31));
+        lineEdit_2->setGeometry(QRect(180, 10, 311, 31));
         lineEdit_2->setStyleSheet(QLatin1String("border-radius:8px;\n"
 "border-width:2px;\n"
 "border-style:solid ;\n"
 "border-color:rgb(163, 163, 163);"));
         pushButton_7 = new QPushButton(centralWidget);
         pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
-        pushButton_7->setGeometry(QRect(410, 20, 25, 25));
+        pushButton_7->setGeometry(QRect(462, 15, 23, 23));
         pushButton_7->setStyleSheet(QStringLiteral("border-image: url(:/lib/sousuo.png);"));
         label_8 = new QLabel(centralWidget);
         label_8->setObjectName(QStringLiteral("label_8"));
-        label_8->setGeometry(QRect(752, 15, 32, 32));
+        label_8->setGeometry(QRect(767, 14, 27, 27));
         label_8->setStyleSheet(QStringLiteral("border-image: url(:/lib/touxiang.png);"));
         label_9 = new QLabel(centralWidget);
         label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setGeometry(QRect(790, 20, 81, 21));
-        label_9->setStyleSheet(QLatin1String("font: 75 11pt \"Adobe Gothic Std B\";\n"
+        label_9->setGeometry(QRect(800, 18, 71, 17));
+        label_9->setStyleSheet(QLatin1String("font: 14px;\n"
 "\n"
 "color: rgb(255, 255, 255);"));
         label_9->setAlignment(Qt::AlignCenter);
         label_11 = new QLabel(centralWidget);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setGeometry(QRect(240, 650, 20, 20));
+        label_11->setGeometry(QRect(108, 665, 20, 20));
         label_11->setStyleSheet(QLatin1String("\n"
 "border-image: url(:/lib/love.png);"));
-        toolBox = new QToolBox(centralWidget);
-        toolBox->setObjectName(QStringLiteral("toolBox"));
-        toolBox->setGeometry(QRect(0, 90, 209, 431));
+        verticalSlider = new QSlider(centralWidget);
+        verticalSlider->setObjectName(QStringLiteral("verticalSlider"));
+        verticalSlider->setGeometry(QRect(1012, 630, 16, 61));
+        verticalSlider->setMinimum(1);
+        verticalSlider->setMaximum(3);
+        verticalSlider->setOrientation(Qt::Vertical);
+        label_12 = new QLabel(centralWidget);
+        label_12->setObjectName(QStringLiteral("label_12"));
+        label_12->setGeometry(QRect(10, 80, 81, 21));
+        label_12->setStyleSheet(QLatin1String("\n"
+"font: 11pt;\n"
+"color: rgb(255, 255, 255);"));
+        label_13 = new QLabel(centralWidget);
+        label_13->setObjectName(QStringLiteral("label_13"));
+        label_13->setGeometry(QRect(10, 240, 81, 21));
+        label_13->setLayoutDirection(Qt::LeftToRight);
+        label_13->setStyleSheet(QLatin1String("\n"
+"font: 11pt;\n"
+"color: rgb(255, 255, 255);"));
+        label_14 = new QLabel(centralWidget);
+        label_14->setObjectName(QStringLiteral("label_14"));
+        label_14->setGeometry(QRect(10, 440, 81, 21));
         QFont font1;
         font1.setPointSize(11);
-        font1.setBold(true);
-        font1.setUnderline(false);
-        font1.setWeight(75);
-        font1.setKerning(true);
-        toolBox->setFont(font1);
-        toolBox->setStyleSheet(QLatin1String("\n"
-"#toolBox::tab\n"
+        font1.setBold(false);
+        font1.setItalic(false);
+        font1.setWeight(50);
+        label_14->setFont(font1);
+        label_14->setStyleSheet(QLatin1String("\n"
+"font: 11pt;\n"
+"color: rgb(255, 255, 255);"));
+        pushButton_8 = new QPushButton(centralWidget);
+        pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
+        pushButton_8->setGeometry(QRect(10, 110, 151, 31));
+        QFont font2;
+        font2.setPointSize(12);
+        pushButton_8->setFont(font2);
+        pushButton_8->setLayoutDirection(Qt::LeftToRight);
+        pushButton_8->setStyleSheet(QLatin1String("#pushButton_8\n"
 "{\n"
-"color: rgb(85, 170, 255);\n"
-"background-color: rgba(0, 255, 255,00);\n"
+"text-align:left;\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:5px;\n"
 "}\n"
-"\n"
-"#toolBox::tab:selected\n"
+"#pushButton_8::hover:pressed\n"
 "{\n"
-"color: rgb(85, 170, 255);\n"
-"background-color: rgba(0, 255, 255,00);\n"
-"}\n"
-"\n"
-"QWidget\n"
-"{\n"
-"background-color: rgba(255, 255, 255, 0);\n"
+"border-width:1px;\n"
+"border-style:solid ;\n"
+"border-color: rgba(232, 232, 232, 10);\n"
+"background-color: rgba(232, 232, 232, 100);\n"
 "}"));
-        toolBox->setFrameShape(QFrame::NoFrame);
-        toolBox->setFrameShadow(QFrame::Plain);
-        page_3 = new QWidget();
-        page_3->setObjectName(QStringLiteral("page_3"));
-        pushButton_6 = new QPushButton(page_3);
-        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-        pushButton_6->setGeometry(QRect(20, 30, 161, 31));
-        pushButton = new QPushButton(page_3);
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/lib/sousuo.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_8->setIcon(icon1);
+        pushButton_8->setAutoRepeatDelay(300);
+        pushButton_8->setAutoRepeatInterval(100);
+        pushButton_9 = new QPushButton(centralWidget);
+        pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
+        pushButton_9->setGeometry(QRect(10, 150, 151, 31));
+        QFont font3;
+        font3.setPointSize(11);
+        pushButton_9->setFont(font3);
+        pushButton_9->setStyleSheet(QLatin1String("#pushButton_9\n"
+"{\n"
+"text-align:left;\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:6px;\n"
+"}\n"
+"\n"
+"#pushButton_9::hover:pressed\n"
+"{\n"
+"border-width:1px;\n"
+"border-style:solid ;\n"
+"border-color: rgba(232, 232, 232, 10);\n"
+"background-color: rgba(232, 232, 232, 100);\n"
+"}"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/lib/gedan_1.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_9->setIcon(icon2);
+        pushButton_10 = new QPushButton(centralWidget);
+        pushButton_10->setObjectName(QStringLiteral("pushButton_10"));
+        pushButton_10->setGeometry(QRect(10, 190, 151, 31));
+        pushButton_10->setFont(font2);
+        pushButton_10->setStyleSheet(QLatin1String("#pushButton_10\n"
+"{\n"
+"text-align:left;\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:6px;\n"
+"}\n"
+"\n"
+"#pushButton_10::hover:pressed\n"
+"{\n"
+"border-width:1px;\n"
+"border-style:solid ;\n"
+"border-color: rgba(232, 232, 232, 10);\n"
+"background-color: rgba(232, 232, 232, 100);\n"
+"}"));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/lib/paihangbang.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_10->setIcon(icon3);
+        pushButton_11 = new QPushButton(centralWidget);
+        pushButton_11->setObjectName(QStringLiteral("pushButton_11"));
+        pushButton_11->setGeometry(QRect(10, 270, 151, 31));
+        pushButton_11->setFont(font2);
+        pushButton_11->setStyleSheet(QLatin1String("#pushButton_11\n"
+"{\n"
+"text-align:left;\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:6px;\n"
+"}\n"
+"\n"
+"#pushButton_11::hover:pressed\n"
+"{\n"
+"border-width:1px;\n"
+"border-style:solid ;\n"
+"border-color: rgba(232, 232, 232, 10);\n"
+"background-color: rgba(232, 232, 232, 100);\n"
+"}"));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/lib/gedan.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_11->setIcon(icon4);
+        pushButton_12 = new QPushButton(centralWidget);
+        pushButton_12->setObjectName(QStringLiteral("pushButton_12"));
+        pushButton_12->setGeometry(QRect(10, 350, 151, 31));
+        pushButton_12->setFont(font2);
+        pushButton_12->setStyleSheet(QLatin1String("#pushButton_12\n"
+"{\n"
+"text-align:left;\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:6px;\n"
+"}\n"
+"\n"
+"#pushButton_12::hover:pressed\n"
+"{\n"
+"border-width:1px;\n"
+"border-style:solid ;\n"
+"border-color: rgba(232, 232, 232, 10);\n"
+"background-color: rgba(232, 232, 232, 100);\n"
+"}"));
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/lib/love.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_12->setIcon(icon5);
+        pushButton_13 = new QPushButton(centralWidget);
+        pushButton_13->setObjectName(QStringLiteral("pushButton_13"));
+        pushButton_13->setGeometry(QRect(10, 390, 151, 31));
+        pushButton_13->setFont(font2);
+        pushButton_13->setStyleSheet(QLatin1String("#pushButton_13\n"
+"{\n"
+"text-align:left;\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:6px;\n"
+"}\n"
+"\n"
+"#pushButton_13::hover:pressed\n"
+"{\n"
+"border-width:1px;\n"
+"border-style:solid ;\n"
+"border-color: rgba(232, 232, 232, 10);\n"
+"background-color: rgba(232, 232, 232, 100);\n"
+"}"));
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/lib/bendi.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_13->setIcon(icon6);
+        pushButton_13->setIconSize(QSize(16, 16));
+        pushButton_14 = new QPushButton(centralWidget);
+        pushButton_14->setObjectName(QStringLiteral("pushButton_14"));
+        pushButton_14->setGeometry(QRect(10, 470, 151, 31));
+        pushButton_14->setFont(font2);
+        pushButton_14->setStyleSheet(QLatin1String("#pushButton_14\n"
+"{\n"
+"text-align:left;\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:6px;\n"
+"}\n"
+"\n"
+"#pushButton_14::hover:pressed\n"
+"{\n"
+"border-width:1px;\n"
+"border-style:solid ;\n"
+"border-color: rgba(232, 232, 232, 10);\n"
+"background-color: rgba(232, 232, 232, 100);\n"
+"}"));
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/lib/xiazai.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_14->setIcon(icon7);
+        pushButton_15 = new QPushButton(centralWidget);
+        pushButton_15->setObjectName(QStringLiteral("pushButton_15"));
+        pushButton_15->setGeometry(QRect(10, 510, 151, 31));
+        pushButton_15->setFont(font2);
+        pushButton_15->setStyleSheet(QLatin1String("#pushButton_15\n"
+"{\n"
+"text-align:left;\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:6px;\n"
+"}\n"
+"\n"
+"#pushButton_15::hover:pressed\n"
+"{\n"
+"border-width:1px;\n"
+"border-style:solid ;\n"
+"border-color: rgba(232, 232, 232, 10);\n"
+"background-color: rgba(232, 232, 232, 100);\n"
+"}"));
+        QIcon icon8;
+        icon8.addFile(QStringLiteral(":/lib/shezhi.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_15->setIcon(icon8);
+        pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(20, 0, 161, 31));
-        lineEdit = new QLineEdit(page_3);
+        pushButton->setGeometry(QRect(10, 550, 151, 31));
+        pushButton->setFont(font2);
+        pushButton->setStyleSheet(QLatin1String("#pushButton\n"
+"{\n"
+"text-align:left;\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:6px;\n"
+"}\n"
+"\n"
+"#pushButton::hover:pressed\n"
+"{\n"
+"border-width:1px;\n"
+"border-style:solid ;\n"
+"border-color: rgba(232, 232, 232, 10);\n"
+"background-color: rgba(232, 232, 232, 100);\n"
+"}"));
+        QIcon icon9;
+        icon9.addFile(QStringLiteral(":/lib/add.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon9);
+        pushButton_16 = new QPushButton(centralWidget);
+        pushButton_16->setObjectName(QStringLiteral("pushButton_16"));
+        pushButton_16->setGeometry(QRect(10, 310, 151, 31));
+        pushButton_16->setFont(font2);
+        pushButton_16->setStyleSheet(QLatin1String("#pushButton_16\n"
+"{\n"
+"text-align:left;\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:6px;\n"
+"}\n"
+"\n"
+"#pushButton_16::hover:pressed\n"
+"{\n"
+"border-width:1px;\n"
+"border-style:solid ;\n"
+"border-color: rgba(232, 232, 232, 10);\n"
+"background-color: rgba(232, 232, 232, 100);\n"
+"}"));
+        QIcon icon10;
+        icon10.addFile(QStringLiteral(":/lib/lishijilu.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_16->setIcon(icon10);
+        pushButton_16->setIconSize(QSize(16, 16));
+        label_10 = new QLabel(centralWidget);
+        label_10->setObjectName(QStringLiteral("label_10"));
+        label_10->setGeometry(QRect(44, 640, 45, 45));
+        label_10->setStyleSheet(QString::fromUtf8("border-image: url(:/lib/QQ\345\233\276\347\211\20720200810205923.png);\n"
+"border-radius:4px;"));
+        label_15 = new QLabel(centralWidget);
+        label_15->setObjectName(QStringLiteral("label_15"));
+        label_15->setGeometry(QRect(142, 665, 20, 20));
+        label_15->setStyleSheet(QStringLiteral("border-image: url(:/lib/xiazai.png);"));
+        stackedWidget = new QStackedWidget(centralWidget);
+        stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
+        stackedWidget->setGeometry(QRect(170, 49, 921, 571));
+        page = new QWidget();
+        page->setObjectName(QStringLiteral("page"));
+        frame = new QFrame(page);
+        frame->setObjectName(QStringLiteral("frame"));
+        frame->setGeometry(QRect(0, 0, 921, 571));
+        frame->setStyleSheet(QLatin1String("#frame\n"
+"{\n"
+"border-image: url(:/lib/timg (6).jpg);\n"
+"}"));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        stackedWidget->addWidget(page);
+        page_2 = new QWidget();
+        page_2->setObjectName(QStringLiteral("page_2"));
+        plainTextEdit = new QPlainTextEdit(page_2);
+        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
+        plainTextEdit->setGeometry(QRect(570, 20, 151, 20));
+        plainTextEdit->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
+        lineEdit = new QLineEdit(page_2);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(20, 70, 151, 36));
+        lineEdit->setGeometry(QRect(770, 20, 131, 36));
         lineEdit->setStyleSheet(QLatin1String("font:20px;\n"
 "background: url(:/C:/Users/fdog/Desktop/image-20200806113923681.png) no-repeat -10px -10px;\n"
 "border-radius:5px;\n"
 "border: 1px solid #999999;"));
         lineEdit->setAlignment(Qt::AlignCenter);
-        toolBox->addItem(page_3, QString::fromUtf8("    \346\267\273\345\212\240\346\226\207\344\273\266"));
-        page = new QWidget();
-        page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 209, 299));
-        listWidget = new QListWidget(page);
+        listWidget = new QListWidget(page_2);
         listWidget->setObjectName(QStringLiteral("listWidget"));
-        listWidget->setGeometry(QRect(0, 0, 209, 481));
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
-        font2.setPointSize(9);
-        font2.setBold(false);
-        font2.setItalic(false);
-        font2.setWeight(50);
-        listWidget->setFont(font2);
+        listWidget->setGeometry(QRect(10, 50, 581, 341));
+        QFont font4;
+        font4.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
+        font4.setPointSize(9);
+        font4.setBold(false);
+        font4.setItalic(false);
+        font4.setWeight(50);
+        listWidget->setFont(font4);
         listWidget->setStyleSheet(QString::fromUtf8("font: 9pt \"\345\256\213\344\275\223\";"));
         listWidget->setFrameShape(QFrame::NoFrame);
         listWidget->setFrameShadow(QFrame::Plain);
@@ -351,21 +636,7 @@ public:
         listWidget->setProperty("showDropIndicator", QVariant(true));
         listWidget->setModelColumn(0);
         listWidget->setBatchSize(100);
-        toolBox->addItem(page, QString::fromUtf8("    \346\234\254\345\234\260\346\226\207\344\273\266"));
-        page_2 = new QWidget();
-        page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setGeometry(QRect(0, 0, 209, 299));
-        plainTextEdit = new QPlainTextEdit(page_2);
-        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
-        plainTextEdit->setGeometry(QRect(0, 0, 211, 221));
-        plainTextEdit->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
-        toolBox->addItem(page_2, QString::fromUtf8("    \346\234\200\350\277\221\346\222\255\346\224\276"));
-        verticalSlider = new QSlider(centralWidget);
-        verticalSlider->setObjectName(QStringLiteral("verticalSlider"));
-        verticalSlider->setGeometry(QRect(1060, 630, 16, 61));
-        verticalSlider->setMinimum(1);
-        verticalSlider->setMaximum(3);
-        verticalSlider->setOrientation(Qt::Vertical);
+        stackedWidget->addWidget(page_2);
         MainWindow->setCentralWidget(centralWidget);
         label_3->raise();
         label_6->raise();
@@ -373,7 +644,6 @@ public:
         frame_2->raise();
         horizontalSlider->raise();
         label->raise();
-        frame->raise();
         label_4->raise();
         label_2->raise();
         label_5->raise();
@@ -383,16 +653,30 @@ public:
         label_8->raise();
         label_9->raise();
         label_11->raise();
-        toolBox->raise();
         verticalSlider->raise();
+        label_12->raise();
+        label_13->raise();
+        label_14->raise();
+        pushButton_8->raise();
+        pushButton_9->raise();
+        pushButton_10->raise();
+        pushButton_11->raise();
+        pushButton_12->raise();
+        pushButton_13->raise();
+        pushButton_14->raise();
+        pushButton_15->raise();
+        pushButton->raise();
+        pushButton_16->raise();
+        label_10->raise();
+        label_15->raise();
+        stackedWidget->raise();
 
         retranslateUi(MainWindow);
         QObject::connect(toolButton_4, SIGNAL(clicked()), MainWindow, SLOT(close()));
         QObject::connect(toolButton_2, SIGNAL(clicked()), MainWindow, SLOT(showMinimized()));
         QObject::connect(toolButton_3, SIGNAL(clicked()), MainWindow, SLOT(showMaximized()));
 
-        toolBox->setCurrentIndex(0);
-        toolBox->layout()->setSpacing(21);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -401,7 +685,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\346\227\255\345\220\254\351\237\263\344\271\220", nullptr));
-        label_10->setText(QString());
+        toolButton_5->setText(QString());
         toolButton_1->setText(QString());
         toolButton_2->setText(QString());
         toolButton_3->setText(QString());
@@ -418,18 +702,28 @@ public:
         label_2->setText(QApplication::translate("MainWindow", "\351\230\277\346\202\240\346\202\240 - \346\227\247\346\242\246\344\270\200\345\234\272.mp3", nullptr));
         label_5->setText(QString());
         label_7->setText(QString());
-        lineEdit_2->setPlaceholderText(QApplication::translate("MainWindow", "\346\220\234\342\200\234\346\227\247\346\242\246\344\270\200\345\234\272\342\200\235", nullptr));
+        lineEdit_2->setPlaceholderText(QApplication::translate("MainWindow", "\346\220\234\342\200\234\351\230\277\346\202\240\346\202\240-\346\227\247\346\242\246\344\270\200\345\234\272\342\200\235", nullptr));
         pushButton_7->setText(QString());
         label_8->setText(QString());
         label_9->setText(QApplication::translate("MainWindow", "\347\231\273\345\275\225\350\264\246\345\217\267", nullptr));
         label_11->setText(QString());
-        pushButton_6->setText(QApplication::translate("MainWindow", "\346\267\273\345\212\240\350\247\206\351\242\221", nullptr));
+        label_12->setText(QApplication::translate("MainWindow", "\345\234\250\347\272\277\351\237\263\344\271\220", nullptr));
+        label_13->setText(QApplication::translate("MainWindow", "\346\210\221\347\232\204\351\237\263\344\271\220", nullptr));
+        label_14->setText(QApplication::translate("MainWindow", "\345\205\266\344\273\226", nullptr));
+        pushButton_8->setText(QApplication::translate("MainWindow", "\346\220\234\347\264\242", nullptr));
+        pushButton_9->setText(QApplication::translate("MainWindow", "\346\255\214\345\215\225", nullptr));
+        pushButton_10->setText(QApplication::translate("MainWindow", "\346\216\222\350\241\214\346\246\234", nullptr));
+        pushButton_11->setText(QApplication::translate("MainWindow", "\350\257\225\345\220\254\345\210\227\350\241\250", nullptr));
+        pushButton_12->setText(QApplication::translate("MainWindow", "\346\210\221\347\232\204\346\224\266\350\227\217", nullptr));
+        pushButton_13->setText(QApplication::translate("MainWindow", "\346\234\254\345\234\260\351\237\263\344\271\220", nullptr));
+        pushButton_14->setText(QApplication::translate("MainWindow", "\344\270\213\350\275\275\347\256\241\347\220\206", nullptr));
+        pushButton_15->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256", nullptr));
         pushButton->setText(QApplication::translate("MainWindow", "\346\267\273\345\212\240\351\237\263\351\242\221", nullptr));
-        lineEdit->setText(QApplication::translate("MainWindow", "2506897252", nullptr));
-        toolBox->setItemText(toolBox->indexOf(page_3), QApplication::translate("MainWindow", "    \346\267\273\345\212\240\346\226\207\344\273\266", nullptr));
-        toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("MainWindow", "    \346\234\254\345\234\260\346\226\207\344\273\266", nullptr));
+        pushButton_16->setText(QApplication::translate("MainWindow", "\345\216\206\345\217\262\346\222\255\346\224\276", nullptr));
+        label_10->setText(QString());
+        label_15->setText(QString());
         plainTextEdit->setPlainText(QString());
-        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("MainWindow", "    \346\234\200\350\277\221\346\222\255\346\224\276", nullptr));
+        lineEdit->setText(QApplication::translate("MainWindow", "2506897252", nullptr));
     } // retranslateUi
 
 };

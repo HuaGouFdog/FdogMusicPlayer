@@ -37,3 +37,6 @@ RESOURCES += \
     lib.qrc
 
 QT += multimedia
+
+DISTFILES += \
+    lib/add.png

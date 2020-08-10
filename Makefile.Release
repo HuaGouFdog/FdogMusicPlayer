@@ -53,7 +53,7 @@ OBJECTS       = release\main.obj \
 		release\qrc_lib.obj \
 		release\moc_mainwindow.obj
 
-DIST          =  mainwindow.h main.cpp \
+DIST          = lib/add.png mainwindow.h main.cpp \
 		mainwindow.cpp
 QMAKE_TARGET  = FdogMusicPlayer
 DESTDIR        = release\ #avoid trailing-slash linebreak
@@ -149,9 +149,12 @@ release\qrc_lib.cpp: lib.qrc \
 		..\..\QT\5.10.0\msvc2015_64\bin\rcc.exe \
 		C:\Users\fdog\Desktop\image-20200806113923681.png \
 		lib\lishijilu.png \
+		lib\add.png \
+		lib\gedan.png \
 		lib\b.png \
 		lib\guanbi.png \
 		lib\sousuo.png \
+		lib\yinyue_1.png \
 		lib\shipin.png \
 		lib\xunhuan.png \
 		lib\timg.jpg \
@@ -162,6 +165,7 @@ release\qrc_lib.cpp: lib.qrc \
 		lib\zuidahua.png \
 		lib\shengyin.png \
 		lib\pifu.png \
+		lib\paihangbang.png \
 		lib\timg2.png \
 		lib\8.jpg \
 		lib\shangyiqu.png \
@@ -177,11 +181,14 @@ release\qrc_lib.cpp: lib.qrc \
 		lib\su.png \
 		lib\xuanxiang1.png \
 		lib\5.jpg \
+		lib\gedan_1.png \
 		lib\4.jpg \
 		lib\jingyin.png \
 		lib\bendi.png \
+		lib\xiazai.png \
 		lib\zanting.png \
-		lib\stop.png
+		lib\stop.png \
+		lib\shiting.png
 	D:\QT\5.10.0\msvc2015_64\bin\rcc.exe -name lib lib.qrc -o release\qrc_lib.cpp
 
 compiler_moc_predefs_make_all: release\moc_predefs.h
@@ -676,8 +683,6 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QSlider \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
-		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QToolBox \
-		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qtoolbox.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QWidget \

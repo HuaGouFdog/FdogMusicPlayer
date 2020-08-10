@@ -39,5 +39,14 @@
         <file>lib/1bofang.png</file>
         <file>lib/1zantingtingzhi.png</file>
         <file>lib/jingyin.png</file>
+        <file>lib/gedan.png</file>
+        <file>lib/gedan_1.png</file>
+        <file>lib/paihangbang.png</file>
+        <file>lib/shiting.png</file>
+        <file>lib/xiazai.png</file>
+        <file>lib/yinyue_1.png</file>
+        <file>lib/add.png</file>
+        <file>lib/QQ图片20200810205923.png</file>
+        <file>lib/yinyue.png</file>
     </qresource>
 </RCC>

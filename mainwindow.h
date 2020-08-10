@@ -17,7 +17,7 @@ private:
     QString positionTime;
 
     bool m_bIsWindowMoveable = false;
-    bool m_IsPause = false;
+    bool m_IsPause = true;
     bool m_Volume = false;
     QPoint m_point;
     int M_Amount=0;   //总数

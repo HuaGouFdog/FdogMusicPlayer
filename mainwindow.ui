@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1100</width>
+    <width>1101</width>
     <height>700</height>
    </rect>
   </property>
@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="lib.qrc">
-    <normaloff>:/lib/timg2.png</normaloff>:/lib/timg2.png</iconset>
+    <normaloff>:/lib/yinyue.png</normaloff>:/lib/yinyue.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">#centralWidget
@@ -27,10 +27,10 @@ border-image: url(:/lib/5.jpg);
    <widget class="QFrame" name="frame_4">
     <property name="geometry">
      <rect>
-      <x>887</x>
-      <y>4</y>
+      <x>893</x>
+      <y>5</y>
       <width>201</width>
-      <height>53</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -41,24 +41,39 @@ border-image: url(:/lib/5.jpg);
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QLabel" name="label_10">
+      <widget class="QToolButton" name="toolButton_5">
        <property name="minimumSize">
-        <size>
-         <width>23</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="maximumSize">
         <size>
          <width>23</width>
          <height>23</height>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-image: url(:/lib/pifu.png);</string>
+        <string notr="true">
+#toolButton_5
+{
+border-image: url(:/lib/pifu.png);
+}
+
+#toolButton_5::hover
+{
+background-color: rgba(245, 245, 245, 80);
+}</string>
        </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="popupMode">
+        <enum>QToolButton::DelayedPopup</enum>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonIconOnly</enum>
+       </property>
+       <property name="autoRaise">
+        <bool>false</bool>
+       </property>
+       <property name="arrowType">
+        <enum>Qt::NoArrow</enum>
        </property>
       </widget>
      </item>
@@ -87,7 +102,16 @@ border-image: url(:/lib/5.jpg);
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-image: url(:/lib/xuanxiang.png);</string>
+        <string notr="true">
+#toolButton_1
+{
+border-image: url(:/lib/xuanxiang.png);
+}
+
+#toolButton_1::hover
+{
+background-color: rgba(245, 245, 245, 80);
+}</string>
        </property>
        <property name="text">
         <string/>
@@ -131,7 +155,15 @@ border-image: url(:/lib/5.jpg);
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-image: url(:/lib/zuixiao.png);</string>
+        <string notr="true">#toolButton_2
+{
+border-image: url(:/lib/zuixiao.png);
+}
+
+#toolButton_2::hover
+{
+background-color: rgba(245, 245, 245, 80);
+}</string>
        </property>
        <property name="text">
         <string/>
@@ -163,7 +195,15 @@ border-image: url(:/lib/5.jpg);
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-image: url(:/lib/zuidahua.png);</string>
+        <string notr="true">
+#toolButton_3
+{
+border-image: url(:/lib/zuidahua.png);
+}
+#toolButton_3::hover
+{
+background-color: rgba(245, 245, 245, 80);
+}</string>
        </property>
        <property name="text">
         <string/>
@@ -195,7 +235,14 @@ border-image: url(:/lib/5.jpg);
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-image: url(:/lib/guanbi.png);</string>
+        <string notr="true">#toolButton_4
+{
+border-image: url(:/lib/guanbi.png);
+}
+#toolButton_4::hover
+{
+background-color: rgba(245, 245, 245, 80);
+}</string>
        </property>
        <property name="text">
         <string/>
@@ -210,11 +257,11 @@ border-image: url(:/lib/5.jpg);
       <x>0</x>
       <y>0</y>
       <width>1101</width>
-      <height>61</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgba(0, 255, 255,50);</string>
+     <string notr="true">background-color: rgba(0, 255, 255,70);</string>
     </property>
     <property name="text">
      <string/>
@@ -224,9 +271,9 @@ border-image: url(:/lib/5.jpg);
     <property name="geometry">
      <rect>
       <x>-1</x>
-      <y>61</y>
-      <width>1181</width>
-      <height>641</height>
+      <y>51</y>
+      <width>1102</width>
+      <height>651</height>
      </rect>
     </property>
     <property name="font">
@@ -244,10 +291,10 @@ border-image: url(:/lib/5.jpg);
    <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>643</y>
+      <x>339</x>
+      <y>639</y>
       <width>521</width>
-      <height>61</height>
+      <height>55</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -386,10 +433,10 @@ border-image: url(:/lib/5.jpg);
     </property>
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>632</y>
-      <width>651</width>
-      <height>20</height>
+      <x>300</x>
+      <y>627</y>
+      <width>621</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -417,7 +464,7 @@ border-image: url(:/lib/5.jpg);
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>970</x>
+      <x>920</x>
       <y>630</y>
       <width>91</width>
       <height>21</height>
@@ -452,35 +499,13 @@ color: rgb(255, 255, 255);</string>
      <number>-1</number>
     </property>
    </widget>
-   <widget class="QFrame" name="frame">
-    <property name="geometry">
-     <rect>
-      <x>219</x>
-      <y>61</y>
-      <width>871</width>
-      <height>561</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#frame
-{
-border-image: url(:/lib/timg (6).jpg);
-}</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>14</x>
-      <y>3</y>
-      <width>181</width>
-      <height>53</height>
+      <x>22</x>
+      <y>12</y>
+      <width>123</width>
+      <height>38</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -496,14 +521,14 @@ border-image: url(:/lib/timg (6).jpg);
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>640</y>
+      <x>100</x>
+      <y>638</y>
       <width>181</width>
-      <height>41</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 12pt &quot;Adobe Gothic Std B&quot;;
+     <string notr="true">font:16px;
 
 color: rgb(255, 255, 255);</string>
     </property>
@@ -514,9 +539,9 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>980</x>
+      <x>922</x>
       <y>660</y>
-      <width>30</width>
+      <width>31</width>
       <height>30</height>
      </rect>
     </property>
@@ -530,7 +555,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>1020</x>
+      <x>969</x>
       <y>660</y>
       <width>31</width>
       <height>31</height>
@@ -549,9 +574,9 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLineEdit" name="lineEdit_2">
     <property name="geometry">
      <rect>
-      <x>231</x>
-      <y>17</y>
-      <width>211</width>
+      <x>180</x>
+      <y>10</y>
+      <width>311</width>
       <height>31</height>
      </rect>
     </property>
@@ -562,16 +587,16 @@ border-style:solid ;
 border-color:rgb(163, 163, 163);</string>
     </property>
     <property name="placeholderText">
-     <string>搜“旧梦一场”</string>
+     <string>搜“阿悠悠-旧梦一场”</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_7">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>20</y>
-      <width>25</width>
-      <height>25</height>
+      <x>462</x>
+      <y>15</y>
+      <width>23</width>
+      <height>23</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -584,10 +609,10 @@ border-color:rgb(163, 163, 163);</string>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>752</x>
-      <y>15</y>
-      <width>32</width>
-      <height>32</height>
+      <x>767</x>
+      <y>14</y>
+      <width>27</width>
+      <height>27</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -600,14 +625,14 @@ border-color:rgb(163, 163, 163);</string>
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>790</x>
-      <y>20</y>
-      <width>81</width>
-      <height>21</height>
+      <x>800</x>
+      <y>18</y>
+      <width>71</width>
+      <height>17</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 11pt &quot;Adobe Gothic Std B&quot;;
+     <string notr="true">font: 14px;
 
 color: rgb(255, 255, 255);</string>
     </property>
@@ -621,8 +646,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>650</y>
+      <x>108</x>
+      <y>665</y>
       <width>20</width>
       <height>20</height>
      </rect>
@@ -635,91 +660,582 @@ border-image: url(:/lib/love.png);</string>
      <string/>
     </property>
    </widget>
-   <widget class="QToolBox" name="toolBox">
+   <widget class="QSlider" name="verticalSlider">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>90</y>
-      <width>209</width>
-      <height>431</height>
+      <x>1012</x>
+      <y>630</y>
+      <width>16</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>3</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+font: 11pt;
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>在线音乐</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+font: 11pt;
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>我的音乐</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_14">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>440</y>
+      <width>81</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>11</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-      <underline>false</underline>
-      <kerning>true</kerning>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
      <string notr="true">
-#toolBox::tab
+font: 11pt;
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>其他</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_8">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#pushButton_8
 {
-color: rgb(85, 170, 255);
-background-color: rgba(0, 255, 255,00);
+text-align:left;
+color: rgb(255, 255, 255);
+border-radius:5px;
 }
-
-#toolBox::tab:selected
+#pushButton_8::hover:pressed
 {
-color: rgb(85, 170, 255);
-background-color: rgba(0, 255, 255,00);
-}
-
-QWidget
-{
-background-color: rgba(255, 255, 255, 0);
+border-width:1px;
+border-style:solid ;
+border-color: rgba(232, 232, 232, 10);
+background-color: rgba(232, 232, 232, 100);
 }</string>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
+    <property name="text">
+     <string>搜索</string>
     </property>
-    <property name="frameShadow">
-     <enum>QFrame::Plain</enum>
+    <property name="icon">
+     <iconset resource="lib.qrc">
+      <normaloff>:/lib/sousuo.png</normaloff>:/lib/sousuo.png</iconset>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>300</number>
+    </property>
+    <property name="autoRepeatInterval">
+     <number>100</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_9">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>150</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#pushButton_9
+{
+text-align:left;
+color: rgb(255, 255, 255);
+border-radius:6px;
+}
+
+#pushButton_9::hover:pressed
+{
+border-width:1px;
+border-style:solid ;
+border-color: rgba(232, 232, 232, 10);
+background-color: rgba(232, 232, 232, 100);
+}</string>
+    </property>
+    <property name="text">
+     <string>歌单</string>
+    </property>
+    <property name="icon">
+     <iconset resource="lib.qrc">
+      <normaloff>:/lib/gedan_1.png</normaloff>:/lib/gedan_1.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_10">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>190</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#pushButton_10
+{
+text-align:left;
+color: rgb(255, 255, 255);
+border-radius:6px;
+}
+
+#pushButton_10::hover:pressed
+{
+border-width:1px;
+border-style:solid ;
+border-color: rgba(232, 232, 232, 10);
+background-color: rgba(232, 232, 232, 100);
+}</string>
+    </property>
+    <property name="text">
+     <string>排行榜</string>
+    </property>
+    <property name="icon">
+     <iconset resource="lib.qrc">
+      <normaloff>:/lib/paihangbang.png</normaloff>:/lib/paihangbang.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_11">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>270</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#pushButton_11
+{
+text-align:left;
+color: rgb(255, 255, 255);
+border-radius:6px;
+}
+
+#pushButton_11::hover:pressed
+{
+border-width:1px;
+border-style:solid ;
+border-color: rgba(232, 232, 232, 10);
+background-color: rgba(232, 232, 232, 100);
+}</string>
+    </property>
+    <property name="text">
+     <string>试听列表</string>
+    </property>
+    <property name="icon">
+     <iconset resource="lib.qrc">
+      <normaloff>:/lib/gedan.png</normaloff>:/lib/gedan.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_12">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>350</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#pushButton_12
+{
+text-align:left;
+color: rgb(255, 255, 255);
+border-radius:6px;
+}
+
+#pushButton_12::hover:pressed
+{
+border-width:1px;
+border-style:solid ;
+border-color: rgba(232, 232, 232, 10);
+background-color: rgba(232, 232, 232, 100);
+}</string>
+    </property>
+    <property name="text">
+     <string>我的收藏</string>
+    </property>
+    <property name="icon">
+     <iconset resource="lib.qrc">
+      <normaloff>:/lib/love.png</normaloff>:/lib/love.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_13">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>390</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#pushButton_13
+{
+text-align:left;
+color: rgb(255, 255, 255);
+border-radius:6px;
+}
+
+#pushButton_13::hover:pressed
+{
+border-width:1px;
+border-style:solid ;
+border-color: rgba(232, 232, 232, 10);
+background-color: rgba(232, 232, 232, 100);
+}</string>
+    </property>
+    <property name="text">
+     <string>本地音乐</string>
+    </property>
+    <property name="icon">
+     <iconset resource="lib.qrc">
+      <normaloff>:/lib/bendi.png</normaloff>:/lib/bendi.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>16</width>
+      <height>16</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_14">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>470</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#pushButton_14
+{
+text-align:left;
+color: rgb(255, 255, 255);
+border-radius:6px;
+}
+
+#pushButton_14::hover:pressed
+{
+border-width:1px;
+border-style:solid ;
+border-color: rgba(232, 232, 232, 10);
+background-color: rgba(232, 232, 232, 100);
+}</string>
+    </property>
+    <property name="text">
+     <string>下载管理</string>
+    </property>
+    <property name="icon">
+     <iconset resource="lib.qrc">
+      <normaloff>:/lib/xiazai.png</normaloff>:/lib/xiazai.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_15">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>510</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#pushButton_15
+{
+text-align:left;
+color: rgb(255, 255, 255);
+border-radius:6px;
+}
+
+#pushButton_15::hover:pressed
+{
+border-width:1px;
+border-style:solid ;
+border-color: rgba(232, 232, 232, 10);
+background-color: rgba(232, 232, 232, 100);
+}</string>
+    </property>
+    <property name="text">
+     <string>设置</string>
+    </property>
+    <property name="icon">
+     <iconset resource="lib.qrc">
+      <normaloff>:/lib/shezhi.png</normaloff>:/lib/shezhi.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>550</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#pushButton
+{
+text-align:left;
+color: rgb(255, 255, 255);
+border-radius:6px;
+}
+
+#pushButton::hover:pressed
+{
+border-width:1px;
+border-style:solid ;
+border-color: rgba(232, 232, 232, 10);
+background-color: rgba(232, 232, 232, 100);
+}</string>
+    </property>
+    <property name="text">
+     <string>添加音频</string>
+    </property>
+    <property name="icon">
+     <iconset resource="lib.qrc">
+      <normaloff>:/lib/add.png</normaloff>:/lib/add.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_16">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>310</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#pushButton_16
+{
+text-align:left;
+color: rgb(255, 255, 255);
+border-radius:6px;
+}
+
+#pushButton_16::hover:pressed
+{
+border-width:1px;
+border-style:solid ;
+border-color: rgba(232, 232, 232, 10);
+background-color: rgba(232, 232, 232, 100);
+}</string>
+    </property>
+    <property name="text">
+     <string>历史播放</string>
+    </property>
+    <property name="icon">
+     <iconset resource="lib.qrc">
+      <normaloff>:/lib/lishijilu.png</normaloff>:/lib/lishijilu.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>16</width>
+      <height>16</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>44</x>
+      <y>640</y>
+      <width>45</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/lib/QQ图片20200810205923.png);
+border-radius:4px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_15">
+    <property name="geometry">
+     <rect>
+      <x>142</x>
+      <y>665</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/lib/xiazai.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>49</y>
+      <width>921</width>
+      <height>571</height>
+     </rect>
     </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <property name="tabSpacing">
-     <number>21</number>
-    </property>
-    <widget class="QWidget" name="page_3">
-     <attribute name="label">
-      <string>    添加文件</string>
-     </attribute>
-     <widget class="QPushButton" name="pushButton_6">
+    <widget class="QWidget" name="page">
+     <widget class="QFrame" name="frame">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>30</y>
-        <width>161</width>
-        <height>31</height>
+        <x>0</x>
+        <y>0</y>
+        <width>921</width>
+        <height>571</height>
        </rect>
       </property>
-      <property name="text">
-       <string>添加视频</string>
+      <property name="styleSheet">
+       <string notr="true">#frame
+{
+border-image: url(:/lib/timg (6).jpg);
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+    </widget>
+    <widget class="QWidget" name="page_2">
+     <widget class="QPlainTextEdit" name="plainTextEdit">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>0</y>
-        <width>161</width>
-        <height>31</height>
+        <x>570</x>
+        <y>20</y>
+        <width>151</width>
+        <height>20</height>
        </rect>
       </property>
-      <property name="text">
-       <string>添加音频</string>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+      </property>
+      <property name="plainText">
+       <string/>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>70</y>
-        <width>151</width>
+        <x>770</x>
+        <y>20</y>
+        <width>131</width>
         <height>36</height>
        </rect>
       </property>
@@ -736,26 +1252,13 @@ border: 1px solid #999999;</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-    </widget>
-    <widget class="QWidget" name="page">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>209</width>
-       <height>299</height>
-      </rect>
-     </property>
-     <attribute name="label">
-      <string>    本地文件</string>
-     </attribute>
      <widget class="QListWidget" name="listWidget">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>209</width>
-        <height>481</height>
+        <x>10</x>
+        <y>50</y>
+        <width>581</width>
+        <height>341</height>
        </rect>
       </property>
       <property name="font">
@@ -808,54 +1311,6 @@ border: 1px solid #999999;</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_2">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>209</width>
-       <height>299</height>
-      </rect>
-     </property>
-     <attribute name="label">
-      <string>    最近播放</string>
-     </attribute>
-     <widget class="QPlainTextEdit" name="plainTextEdit">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>211</width>
-        <height>221</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
-      </property>
-      <property name="plainText">
-       <string/>
-      </property>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="QSlider" name="verticalSlider">
-    <property name="geometry">
-     <rect>
-      <x>1060</x>
-      <y>630</y>
-      <width>16</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <number>1</number>
-    </property>
-    <property name="maximum">
-     <number>3</number>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
-    </property>
    </widget>
    <zorder>label_3</zorder>
    <zorder>label_6</zorder>
@@ -863,7 +1318,6 @@ border: 1px solid #999999;</string>
    <zorder>frame_2</zorder>
    <zorder>horizontalSlider</zorder>
    <zorder>label</zorder>
-   <zorder>frame</zorder>
    <zorder>label_4</zorder>
    <zorder>label_2</zorder>
    <zorder>label_5</zorder>
@@ -873,8 +1327,23 @@ border: 1px solid #999999;</string>
    <zorder>label_8</zorder>
    <zorder>label_9</zorder>
    <zorder>label_11</zorder>
-   <zorder>toolBox</zorder>
    <zorder>verticalSlider</zorder>
+   <zorder>label_12</zorder>
+   <zorder>label_13</zorder>
+   <zorder>label_14</zorder>
+   <zorder>pushButton_8</zorder>
+   <zorder>pushButton_9</zorder>
+   <zorder>pushButton_10</zorder>
+   <zorder>pushButton_11</zorder>
+   <zorder>pushButton_12</zorder>
+   <zorder>pushButton_13</zorder>
+   <zorder>pushButton_14</zorder>
+   <zorder>pushButton_15</zorder>
+   <zorder>pushButton</zorder>
+   <zorder>pushButton_16</zorder>
+   <zorder>label_10</zorder>
+   <zorder>label_15</zorder>
+   <zorder>stackedWidget</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
