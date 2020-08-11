@@ -53,7 +53,7 @@ OBJECTS       = release\main.obj \
 		release\qrc_lib.obj \
 		release\moc_mainwindow.obj
 
-DIST          = lib/add.png mainwindow.h main.cpp \
+DIST          =  mainwindow.h main.cpp \
 		mainwindow.cpp
 QMAKE_TARGET  = FdogMusicPlayer
 DESTDIR        = release\ #avoid trailing-slash linebreak
@@ -162,6 +162,7 @@ release\qrc_lib.cpp: lib.qrc \
 		lib\ci-copy.png \
 		lib\1zantingtingzhi.png \
 		lib\9.jpg \
+		lib\yinyue.png \
 		lib\zuidahua.png \
 		lib\shengyin.png \
 		lib\pifu.png \
@@ -328,6 +329,24 @@ release\moc_mainwindow.cpp: ..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QMainW
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\QMediaPlaylist \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\qmediaplaylist.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\qmediabindableinterface.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QNetworkAccessManager \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qnetworkaccessmanager.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QVector \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QObject \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QSslConfiguration \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslconfiguration.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslsocket.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qtcpsocket.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qabstractsocket.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslerror.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslcertificate.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qcryptographichash.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qdatetime.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qssl.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QFlags \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslpresharedkeyauthenticator.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QMetaType \
 		mainwindow.h \
 		release\moc_predefs.h \
 		..\..\QT\5.10.0\msvc2015_64\bin\moc.exe
@@ -485,6 +504,24 @@ release\main.obj: main.cpp mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\QMediaPlaylist \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\qmediaplaylist.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\qmediabindableinterface.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QNetworkAccessManager \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qnetworkaccessmanager.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QVector \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QObject \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QSslConfiguration \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslconfiguration.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslsocket.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qtcpsocket.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qabstractsocket.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslerror.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslcertificate.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qcryptographichash.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qdatetime.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qssl.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QFlags \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslpresharedkeyauthenticator.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QMetaType \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
@@ -622,6 +659,24 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\QMediaPlaylist \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\qmediaplaylist.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtMultimedia\qmediabindableinterface.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QNetworkAccessManager \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qnetworkaccessmanager.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QVector \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QObject \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QSslConfiguration \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslconfiguration.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslsocket.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qtcpsocket.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qabstractsocket.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslerror.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslcertificate.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qcryptographichash.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qdatetime.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qssl.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QFlags \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslpresharedkeyauthenticator.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QMetaType \
 		ui_mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QAction \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
@@ -683,6 +738,11 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qabstractbutton.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QSlider \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QSpacerItem \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QStackedWidget \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qstackedwidget.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QTableWidget \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qtablewidget.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qtableview.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QToolButton \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qtoolbutton.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QWidget \

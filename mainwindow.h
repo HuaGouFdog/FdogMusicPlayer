@@ -3,6 +3,8 @@
 #include <QMainWindow>
 #include<QtMultimedia/QMediaPlayer>
 #include<QtMultimedia/QMediaPlaylist>
+#include<QNetworkAccessManager>
+#include<QNetworkReply>
 namespace Ui {
 class MainWindow;
 }
@@ -15,6 +17,11 @@ private:
     QMediaPlaylist * playlist;
     QString durationTime;
     QString positionTime;
+
+    QNetworkAccessManager * network_manager;
+    QNetworkRequest * network_request;
+    QNetworkAccessManager * network_manager2;
+    QNetworkRequest * network_request2;
 
     bool m_bIsWindowMoveable = false;
     bool m_IsPause = true;
@@ -30,6 +37,9 @@ public:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
+
+    void search(QString str);
+
 private slots:
     void on_pushButton_clicked();
     void onStateChanged(QMediaPlayer::State state);
@@ -49,6 +59,12 @@ private slots:
     void on_pushButton_5_clicked();
 
     void on_verticalSlider_valueChanged(int value);
+
+    void replyFinished(QNetworkReply *reply);
+
+    void replyFinished2(QNetworkReply *reply);
+
+    void on_pushButton_6_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -38,5 +38,4 @@ RESOURCES += \
 
 QT += multimedia
 
-DISTFILES += \
-    lib/add.png
+QT += network

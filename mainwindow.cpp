@@ -5,6 +5,8 @@
 #include<QFileDialog>
 #include<QDir>
 #include<QPoint>
+#include<QNetworkAccessManager>
+#include<QVariant>
 #if _MSC_VER >= 1600
 #pragma execution_character_set("utf-8")
 #endif
@@ -26,6 +28,16 @@ MainWindow::MainWindow(QWidget *parent) :
             this,SLOT(onDurationChanged(qint64)));
     connect(playlist,SIGNAL(currentIndexChanged(int)),
             this,SLOT(onPlaylistChanged(int)));
+
+    network_manager = new QNetworkAccessManager();
+    network_request = new QNetworkRequest();
+    network_manager2 = new QNetworkAccessManager();
+    network_request2 = new QNetworkRequest();
+
+    connect(network_manager2, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished2);
+
+    connect(network_manager, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished);
+
 }
 
 MainWindow::~MainWindow()
@@ -54,6 +66,19 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
     Q_UNUSED(event);
 
     m_bIsWindowMoveable = false;
+}
+
+void MainWindow::search(QString str)
+{
+//    QString KGAPISTR1 = QString("https://complexsearch.kugou.com/v2/search/song?callback=callback123&keyword=%1"
+//         "&page=1&pagesize=30&bitrate=0&isfuzzy=0&tag=em&inputtype=0&platform=WebFilter&userid=-1"
+//         "&clientver=2000&iscorrection=1&privilege_filter=0&srcappid=2919&clienttime=1597134090150"
+//         "&mid=1597134090150&uuid=1597134090150&dfid=-&signature=F3F2D045B6F17C6D606353AD42E8C1FF").arg(ui->lineEdit_3->text());
+   QString KGAPISTR1 = QString("http://mobilecdn.kugou.com/api/v3/search/song?format=json"
+                               "&keyword=%1&page=1&pagesize=30").arg(str);
+    qDebug()<<KGAPISTR1;
+    network_request->setUrl(QUrl(KGAPISTR1));
+    network_manager->get(*network_request);
 }
 
 
@@ -199,4 +224,50 @@ void MainWindow::on_pushButton_5_clicked()
 void MainWindow::on_verticalSlider_valueChanged(int value)
 {
     player->setPlaybackRate(value);
+}
+
+void MainWindow::replyFinished(QNetworkReply *reply)
+{
+    //获取响应的信息，状态码为200表示正常
+    QVariant status_code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+
+    //无错误返回
+    if(reply->error() == QNetworkReply::NoError)
+    {
+        QByteArray bytes = reply->readAll();  //获取字节
+        QString result(bytes);  //转化为字符串
+        //parseJson_getAlbumID(result);  //自定义方法，解析歌曲数据
+        ui->lineEdit_3->setText(result);
+    }
+    else
+    {
+        //处理错误
+        qDebug()<<"处理错误1";
+    }
+}
+
+void MainWindow::replyFinished2(QNetworkReply *reply)
+{
+    //获取响应的信息，状态码为200表示正常
+        QVariant status_code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+
+        //无错误返回
+        if(reply->error() == QNetworkReply::NoError)
+        {
+            QByteArray bytes = reply->readAll();  //获取字节
+            QString result(bytes);  //转化为字符串
+
+            //parseJson_getplay_url(result);  //自定义方法，解析歌曲数据
+            ui->lineEdit_3->setText(result);
+        }
+        else
+        {
+            //处理错误
+            qDebug()<<"处理错误2";
+        }
+}
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    search(ui->lineEdit_3->text());
 }
