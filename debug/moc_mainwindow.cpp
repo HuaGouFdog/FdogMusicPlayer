@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[24];
-    char stringdata0[424];
+    QByteArrayData data[28];
+    char stringdata0[492];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -54,7 +54,11 @@ QT_MOC_LITERAL(19, 350, 13), // "replyFinished"
 QT_MOC_LITERAL(20, 364, 14), // "QNetworkReply*"
 QT_MOC_LITERAL(21, 379, 5), // "reply"
 QT_MOC_LITERAL(22, 385, 14), // "replyFinished2"
-QT_MOC_LITERAL(23, 400, 23) // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(23, 400, 23), // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(24, 424, 23), // "on_pushButton_7_clicked"
+QT_MOC_LITERAL(25, 448, 32), // "on_tableWidget_cellDoubleClicked"
+QT_MOC_LITERAL(26, 481, 3), // "row"
+QT_MOC_LITERAL(27, 485, 6) // "column"
 
     },
     "MainWindow\0on_pushButton_clicked\0\0"
@@ -68,7 +72,10 @@ QT_MOC_LITERAL(23, 400, 23) // "on_pushButton_6_clicked"
     "value\0on_pushButton_5_clicked\0"
     "on_verticalSlider_valueChanged\0"
     "replyFinished\0QNetworkReply*\0reply\0"
-    "replyFinished2\0on_pushButton_6_clicked"
+    "replyFinished2\0on_pushButton_6_clicked\0"
+    "on_pushButton_7_clicked\0"
+    "on_tableWidget_cellDoubleClicked\0row\0"
+    "column"
 };
 #undef QT_MOC_LITERAL
 
@@ -78,7 +85,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -86,21 +93,23 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   89,    2, 0x08 /* Private */,
-       3,    1,   90,    2, 0x08 /* Private */,
-       6,    1,   93,    2, 0x08 /* Private */,
-       8,    1,   96,    2, 0x08 /* Private */,
-      10,    1,   99,    2, 0x08 /* Private */,
-      11,    0,  102,    2, 0x08 /* Private */,
-      12,    0,  103,    2, 0x08 /* Private */,
-      13,    0,  104,    2, 0x08 /* Private */,
-      14,    0,  105,    2, 0x08 /* Private */,
-      15,    1,  106,    2, 0x08 /* Private */,
-      17,    0,  109,    2, 0x08 /* Private */,
-      18,    1,  110,    2, 0x08 /* Private */,
-      19,    1,  113,    2, 0x08 /* Private */,
-      22,    1,  116,    2, 0x08 /* Private */,
-      23,    0,  119,    2, 0x08 /* Private */,
+       1,    0,   99,    2, 0x08 /* Private */,
+       3,    1,  100,    2, 0x08 /* Private */,
+       6,    1,  103,    2, 0x08 /* Private */,
+       8,    1,  106,    2, 0x08 /* Private */,
+      10,    1,  109,    2, 0x08 /* Private */,
+      11,    0,  112,    2, 0x08 /* Private */,
+      12,    0,  113,    2, 0x08 /* Private */,
+      13,    0,  114,    2, 0x08 /* Private */,
+      14,    0,  115,    2, 0x08 /* Private */,
+      15,    1,  116,    2, 0x08 /* Private */,
+      17,    0,  119,    2, 0x08 /* Private */,
+      18,    1,  120,    2, 0x08 /* Private */,
+      19,    1,  123,    2, 0x08 /* Private */,
+      22,    1,  126,    2, 0x08 /* Private */,
+      23,    0,  129,    2, 0x08 /* Private */,
+      24,    0,  130,    2, 0x08 /* Private */,
+      25,    2,  131,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -118,6 +127,8 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, 0x80000000 | 20,   21,
     QMetaType::Void, 0x80000000 | 20,   21,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   26,   27,
 
        0        // eod
 };
@@ -143,6 +154,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 12: _t->replyFinished((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
         case 13: _t->replyFinished2((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
         case 14: _t->on_pushButton_6_clicked(); break;
+        case 15: _t->on_pushButton_7_clicked(); break;
+        case 16: _t->on_tableWidget_cellDoubleClicked((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -198,13 +211,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 17;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 15)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 17;
     }
     return _id;
 }

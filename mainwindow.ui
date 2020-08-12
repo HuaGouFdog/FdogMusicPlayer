@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1101</width>
+    <width>1107</width>
     <height>700</height>
    </rect>
   </property>
@@ -27,7 +27,7 @@ border-image: url(:/lib/5.jpg);
    <widget class="QFrame" name="frame_4">
     <property name="geometry">
      <rect>
-      <x>893</x>
+      <x>905</x>
       <y>5</y>
       <width>201</width>
       <height>41</height>
@@ -256,7 +256,7 @@ background-color: rgba(245, 245, 245, 80);
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1101</width>
+      <width>1111</width>
       <height>51</height>
      </rect>
     </property>
@@ -272,7 +272,7 @@ background-color: rgba(245, 245, 245, 80);
      <rect>
       <x>-1</x>
       <y>51</y>
-      <width>1102</width>
+      <width>1111</width>
       <height>651</height>
      </rect>
     </property>
@@ -586,8 +586,14 @@ border-width:2px;
 border-style:solid ;
 border-color:rgb(163, 163, 163);</string>
     </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
     <property name="placeholderText">
-     <string>搜“阿悠悠-旧梦一场”</string>
+     <string>搜“阿悠悠-旧梦一场”试一试</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_7">
@@ -1183,11 +1189,14 @@ border-radius:4px;</string>
       <x>170</x>
       <y>49</y>
       <width>921</width>
-      <height>571</height>
+      <height>567</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+    </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QFrame" name="frame">
@@ -1315,14 +1324,50 @@ border: 1px solid #999999;</string>
      <widget class="QTableWidget" name="tableWidget">
       <property name="geometry">
        <rect>
-        <x>1</x>
-        <y>3</y>
-        <width>918</width>
-        <height>567</height>
+        <x>0</x>
+        <y>0</y>
+        <width>921</width>
+        <height>581</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="contextMenuPolicy">
        <enum>Qt::DefaultContextMenu</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTableWidget{
+background-color: rgb(116, 116, 116);
+background:rgba(255, 255, 255, 255);
+border:1px solid rgb(53, 86, 195);
+
+}
+
+/*底面*/
+QTableWidget::item:selected{
+background-color: rgb(116, 116, 116);
+background: rgba(229, 229, 229,200);
+
+}
+/*选中*/
+
+
+
+QHeaderView::section{
+text-align:center;
+background-color: rgb(25, 134, 189);
+padding:3px;
+margin:0px;
+color: rgb(255, 255, 255);
+border:1px solid rgba(229, 229, 229,50);
+border-left-width:0;
+}
+/*表头*/
+</string>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Plain</enum>
@@ -1330,11 +1375,14 @@ border: 1px solid #999999;</string>
       <property name="lineWidth">
        <number>1</number>
       </property>
+      <property name="rowCount">
+       <number>18</number>
+      </property>
       <attribute name="horizontalHeaderVisible">
-       <bool>false</bool>
+       <bool>true</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>177</number>
+       <number>109</number>
       </attribute>
       <attribute name="horizontalHeaderHighlightSections">
        <bool>false</bool>
@@ -1426,26 +1474,9 @@ border: 1px solid #999999;</string>
         <string>新建行</string>
        </property>
       </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
+      <row/>
+      <row/>
+      <row/>
       <column>
        <property name="text">
         <string>歌曲</string>
@@ -1474,30 +1505,40 @@ border: 1px solid #999999;</string>
      </widget>
     </widget>
     <widget class="QWidget" name="page_4">
-     <widget class="QLineEdit" name="lineEdit_3">
+     <widget class="QLineEdit" name="lineEdit_4">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
+        <y>240</y>
         <width>781</width>
-        <height>551</height>
+        <height>171</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_6">
-      <property name="geometry">
-       <rect>
-        <x>830</x>
-        <y>260</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
       </property>
      </widget>
     </widget>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_3">
+    <property name="geometry">
+     <rect>
+      <x>1110</x>
+      <y>50</y>
+      <width>81</width>
+      <height>41</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_6">
+    <property name="geometry">
+     <rect>
+      <x>1110</x>
+      <y>100</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
    </widget>
    <zorder>label_3</zorder>
    <zorder>label_6</zorder>
@@ -1531,6 +1572,8 @@ border: 1px solid #999999;</string>
    <zorder>label_10</zorder>
    <zorder>label_15</zorder>
    <zorder>stackedWidget</zorder>
+   <zorder>lineEdit_3</zorder>
+   <zorder>pushButton_6</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

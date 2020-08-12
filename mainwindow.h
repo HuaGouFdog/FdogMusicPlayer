@@ -5,6 +5,7 @@
 #include<QtMultimedia/QMediaPlaylist>
 #include<QNetworkAccessManager>
 #include<QNetworkReply>
+#include<QVector>
 namespace Ui {
 class MainWindow;
 }
@@ -29,6 +30,7 @@ private:
     QPoint m_point;
     int M_Amount=0;   //总数
     int M_Value=0;  //当前
+    QVector<QString> m_Vectorlist;
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -39,6 +41,8 @@ public:
     void mouseReleaseEvent(QMouseEvent *event);
 
     void search(QString str);
+    void parseJson(QString json);
+    void parseJsonSongInfo(QString json);
 
 private slots:
     void on_pushButton_clicked();
@@ -65,6 +69,10 @@ private slots:
     void replyFinished2(QNetworkReply *reply);
 
     void on_pushButton_6_clicked();
+
+    void on_pushButton_7_clicked();
+
+    void on_tableWidget_cellDoubleClicked(int row, int column);
 
 private:
     Ui::MainWindow *ui;

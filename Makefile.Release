@@ -347,6 +347,10 @@ release\moc_mainwindow.cpp: ..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QMainW
 		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
 		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslpresharedkeyauthenticator.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QMetaType \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QNetworkReply \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qnetworkreply.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QIODevice \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QNetworkRequest \
 		mainwindow.h \
 		release\moc_predefs.h \
 		..\..\QT\5.10.0\msvc2015_64\bin\moc.exe
@@ -522,6 +526,10 @@ release\main.obj: main.cpp mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
 		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslpresharedkeyauthenticator.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QMetaType \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QNetworkReply \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qnetworkreply.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QIODevice \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QNetworkRequest \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QApplication \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qapplication.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qcoreapplication.h \
@@ -677,6 +685,10 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QSslPreSharedKeyAuthenticator \
 		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qsslpresharedkeyauthenticator.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QMetaType \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QNetworkReply \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\qnetworkreply.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QIODevice \
+		..\..\QT\5.10.0\msvc2015_64\include\QtNetwork\QNetworkRequest \
 		ui_mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QAction \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qaction.h \
@@ -752,7 +764,16 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qfileinfo.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\qdialog.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QDir \
-		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QPoint
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QPoint \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QByteArray \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QJsonParseError \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qjsondocument.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qjsonvalue.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QJsonDocument \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QJsonObject \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qjsonobject.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QJsonArray \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h
 
 release\qrc_lib.obj: release\qrc_lib.cpp 
 

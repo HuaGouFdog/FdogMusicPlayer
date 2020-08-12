@@ -7,6 +7,11 @@
 #include<QPoint>
 #include<QNetworkAccessManager>
 #include<QVariant>
+#include<QByteArray>
+#include<QJsonParseError>
+#include<QJsonDocument>
+#include<QJsonObject>
+#include<QJsonArray>
 #if _MSC_VER >= 1600
 #pragma execution_character_set("utf-8")
 #endif
@@ -31,13 +36,27 @@ MainWindow::MainWindow(QWidget *parent) :
 
     network_manager = new QNetworkAccessManager();
     network_request = new QNetworkRequest();
+
     network_manager2 = new QNetworkAccessManager();
     network_request2 = new QNetworkRequest();
 
+    connect(network_manager, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished);
     connect(network_manager2, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished2);
 
-    connect(network_manager, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished);
+    //整行选中的方式
+    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
 
+    //禁止编辑
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->setColumnWidth(0,240);
+    ui->tableWidget->setColumnWidth(1,190);
+    ui->tableWidget->setColumnWidth(2,210);
+    ui->tableWidget->setColumnWidth(3,140);
+    //ui->tableWidget->setColumnWidth(4,100);
+    //去除选中虚线框
+    ui->tableWidget->setFocusPolicy(Qt::NoFocus);
+    //不显示网格线
+    ui->tableWidget->setShowGrid(false);
 }
 
 MainWindow::~MainWindow()
@@ -60,7 +79,6 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
         move(event->pos() - m_point + pos());
     }
 }
-
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
@@ -70,18 +88,214 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 
 void MainWindow::search(QString str)
 {
-//    QString KGAPISTR1 = QString("https://complexsearch.kugou.com/v2/search/song?callback=callback123&keyword=%1"
-//         "&page=1&pagesize=30&bitrate=0&isfuzzy=0&tag=em&inputtype=0&platform=WebFilter&userid=-1"
-//         "&clientver=2000&iscorrection=1&privilege_filter=0&srcappid=2919&clienttime=1597134090150"
-//         "&mid=1597134090150&uuid=1597134090150&dfid=-&signature=F3F2D045B6F17C6D606353AD42E8C1FF").arg(ui->lineEdit_3->text());
-   QString KGAPISTR1 = QString("http://mobilecdn.kugou.com/api/v3/search/song?format=json"
-                               "&keyword=%1&page=1&pagesize=30").arg(str);
-    qDebug()<<KGAPISTR1;
+  // QString KGAPISTR1 = QString("http://mobilecdn.kugou.com/api/v3/search/song?format=json"
+  //                             "&keyword=%1&page=1&pagesize=18").arg(str);
+  // QString KGAPISTR1 =QString("http://www.kugou.com/yy/index.php?r=play/getdata"
+                             // "&hash=%1&album_id=%2&_=1497972864535").arg("37fb544283b501ddc7d9cee59fcc2b32").arg("38080072");
+
+
+
+   QString KGAPISTR1 =QString("https://wwwapi.kugou.com/yy/index.php?r=play/getdata&callback=jQuery19109651306672470551_1597246738149&hash=2E3547FA22130F979F6129B6F56B2A27&album_id=38770461&dfid=3duBtm1dPh7H0yHDiX2OD3mw&mid=a168b7359d24b7bc03957638c51d1cf9&platid=4&_=1597246738150");
+
+
+
+
+   qDebug()<<KGAPISTR1;
     network_request->setUrl(QUrl(KGAPISTR1));
     network_manager->get(*network_request);
 }
 
+void MainWindow::parseJson(QString json)
+{
+    QString songname_original; //歌曲名
+    QString singername;        //歌手
+    QString hashStr;           //hash
+    QString album_name;        //专辑
+    int duration;          //时间
+    QByteArray byte_array;
+    QJsonParseError json_error;
+    QJsonDocument parse_doucment = QJsonDocument::fromJson(byte_array.append(json), &json_error);
+    if (json_error.error == QJsonParseError::NoError)
+    {
+        if (parse_doucment.isObject())
+        {
+            QJsonObject rootObj = parse_doucment.object();
+            if (rootObj.contains("data"))
+            {
+                QJsonValue valuedata = rootObj.value("data");
+                if (valuedata.isObject())
+                {
+                    QJsonObject valuedataObject = valuedata.toObject();
+                    if (valuedataObject.contains("info"))
+                    {
+                        QJsonValue valueArray = valuedataObject.value("info");
+                        if (valueArray.isArray())
+                        {
+                            QJsonArray array = valueArray.toArray();
+                            int size = array.size();
+                            for (int i = 0; i < size; i++)
+                            {
+                                QJsonValue value = array.at(i);
+                                if (value.isObject())
+                                {
+                                    QJsonObject object = value.toObject();
+                                    if (object.contains("songname_original"))//歌曲名
+                                    {
+                                        QJsonValue AlbumID_value = object.take("songname_original");
+                                        if (AlbumID_value.isString())
+                                        {
+                                            songname_original = AlbumID_value.toString();
+                                        }
+                                    }
+                                    if (object.contains("singername"))//歌手
+                                    {
+                                        QJsonValue AlbumID_value = object.take("singername");
+                                        if (AlbumID_value.isString())
+                                        {
+                                            singername = AlbumID_value.toString();
+                                        }
+                                    }
+                                    if (object.contains("album_name"))//专辑
+                                    {
+                                        QJsonValue AlbumID_value = object.take("album_name");
+                                        if (AlbumID_value.isString())
+                                        {
+                                            album_name = AlbumID_value.toString();
+                                        }
+                                    }
+                                    if (object.contains("hash")) //hash
+                                    {
+                                        QJsonValue FileHash_value = object.take("hash");
+                                        if (FileHash_value.isString())
+                                        {
+                                            hashStr = FileHash_value.toString();
+                                            m_Vectorlist.append(FileHash_value.toString());
+                                        }
+                                    }
+                                    if (object.contains("duration"))//时长
+                                    {
+                                       QJsonValue AlbumID_value = object.take("duration").toInt();
+                                       duration = AlbumID_value.toInt();
+                                    }
+                                    //歌曲名+歌手+专辑+时间
+                                    QString str = songname_original+"  "+singername+"  "+album_name+"  "+QString::number(duration);
+                                    //qDebug() << str;
+                                    ui->tableWidget->setItem(i,0,new QTableWidgetItem(songname_original));
+                                    ui->tableWidget->item(i,0)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+                                    ui->tableWidget->setItem(i,1,new QTableWidgetItem(singername));
+                                    ui->tableWidget->item(i,1)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+                                    ui->tableWidget->setItem(i,2,new QTableWidgetItem(album_name));
+                                    ui->tableWidget->item(i,2)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+                                    int min = duration/60;
+                                    int sesc = duration%60;
+                                    QString time = QString("%1:%2").arg(min).arg(sesc);
+                                    ui->tableWidget->setItem(i,4,new QTableWidgetItem(time));
+                                    ui->tableWidget->item(i,4)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        qDebug() << json_error.errorString();
+    }
+}
 
+void MainWindow::parseJsonSongInfo(QString json)
+{
+    QString audio_name;//歌手-歌名
+    QString play_url;//播放地址
+    QString timelength; //时间
+    qDebug()<<json;
+    QByteArray byte_array;
+    QJsonParseError json_error;
+    QJsonDocument parse_doucment = QJsonDocument::fromJson(byte_array.append(json), &json_error);
+    if(json_error.error == QJsonParseError::NoError)
+       {
+           if(parse_doucment.isObject())
+           {
+               QJsonObject rootObj = parse_doucment.object();
+               if(rootObj.contains("data"))
+               {
+                   //通过
+                   QJsonValue valuedata = rootObj.value("data");
+                   if(valuedata.isArray())
+                   {
+                       qDebug()<<"数组";
+                   }
+                   if(valuedata.isObject())
+                   {
+                       qDebug()<<"Object";
+                   }
+//                   if(valuedata.isArray())
+//                   {
+//                       QJsonObject valuedataObject = valuedata.toObject();
+//                       QString play_urlStr("");
+//                       if(valuedataObject.contains("play_url"))
+//                       {
+//                           qDebug()<<"KGAPISTR   2";
+//                           QJsonValue play_url_value = valuedataObject.take("play_url");
+//                           if(play_url_value.isString())
+//                           {
+//                               play_url = play_url_value.toString();                    //歌曲的url
+//                            qDebug()<<"KGAPISTR   3";
+//                               if(play_urlStr!="")
+//                               {
+//                                   //播放
+//                                   //emit mediaAdd(play_urlStr);
+//                               }
+
+//                           }
+//                       }
+//                       if(valuedataObject.contains("audio_name"))
+//                       {
+//                           QJsonValue play_name_value = valuedataObject.take("audio_name");
+//                           if(play_name_value.isString())
+//                           {
+//                               QString audio_name = play_name_value.toString();                //歌曲名字
+//                               if(audio_name!="")
+//                               {
+//                                   //显示
+//                                   ui->label_3->setText(audio_name);
+//                                   //emit nameAdd(play_name);
+//                               }
+
+//                           }
+//                       }
+//                       if(valuedataObject.contains("lyrics")) //lrc
+//                       {
+//                           QJsonValue play_url_value = valuedataObject.take("lyrics");
+//                          if(play_url_value.isString())
+//                           {
+//                               QString play_lrcStr = play_url_value.toString();
+//                               if(play_urlStr!="")
+//                               {
+//                                   if(play_lrcStr != "")
+//                                   {
+//                                       emit lrcAdd(play_lrcStr);
+//                                   }
+//                                   else
+//                                   {
+//                                       emit lrcAdd("没有歌词");
+//                                   }
+//                               }
+
+//                           }
+//                       }
+//                   }
+//               else
+//                   {
+//                       qDebug()<<"出错";
+//                   }
+               }
+           }
+       }
+
+}
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -236,8 +450,8 @@ void MainWindow::replyFinished(QNetworkReply *reply)
     {
         QByteArray bytes = reply->readAll();  //获取字节
         QString result(bytes);  //转化为字符串
-        //parseJson_getAlbumID(result);  //自定义方法，解析歌曲数据
-        ui->lineEdit_3->setText(result);
+        qDebug()<<result;
+        parseJson(result);
     }
     else
     {
@@ -256,9 +470,9 @@ void MainWindow::replyFinished2(QNetworkReply *reply)
         {
             QByteArray bytes = reply->readAll();  //获取字节
             QString result(bytes);  //转化为字符串
-
-            //parseJson_getplay_url(result);  //自定义方法，解析歌曲数据
             ui->lineEdit_3->setText(result);
+            qDebug()<<result;
+            parseJsonSongInfo(result);
         }
         else
         {
@@ -270,4 +484,29 @@ void MainWindow::replyFinished2(QNetworkReply *reply)
 void MainWindow::on_pushButton_6_clicked()
 {
     search(ui->lineEdit_3->text());
+}
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    search(ui->lineEdit_2->text());
+}
+
+void MainWindow::on_tableWidget_cellDoubleClicked(int row, int column)
+{
+    //获得行和列
+    //找到该hash
+//    for(int i = 0;i<m_Vectorlist.size();i++)
+//    {
+//        //qDebug()<<m_Vectorlist.at(i);
+//    }
+      QString KGAPISTR1 = QString("http://wwwapi.kugou.com/yy/index.php?r=play/getdata"
+                              "&hash=%1").arg(m_Vectorlist.at(row));
+    //QString KGAPISTR1 =QString("http://www.kugou.com/yy/index.php?r=play/getdata"
+    //                           "&hash=%1&album_id=%2&_=1497972864535").arg("37fb544283b501ddc7d9cee59fcc2b32").arg("38080072");
+    qDebug()<<KGAPISTR1;
+    //qDebug()<<"QSslSocket="<<QSslSocket::sslLibraryBuildVersionString();
+    //qDebug() << "OpenSSL支持情况:" << QSslSocket::supportsSsl();
+    network_request2->setUrl(QUrl(KGAPISTR1));
+    network_manager2->get(*network_request2);
+
 }
