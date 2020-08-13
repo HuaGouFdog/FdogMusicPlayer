@@ -12,6 +12,11 @@
 #include<QJsonDocument>
 #include<QJsonObject>
 #include<QJsonArray>
+#include<QUrl>
+#include<QPixmap>
+#include<QFile>
+#include<QSize>
+
 #if _MSC_VER >= 1600
 #pragma execution_character_set("utf-8")
 #endif
@@ -40,8 +45,12 @@ MainWindow::MainWindow(QWidget *parent) :
     network_manager2 = new QNetworkAccessManager();
     network_request2 = new QNetworkRequest();
 
+    network_manager3 = new QNetworkAccessManager();
+    network_request3 = new QNetworkRequest();
+
     connect(network_manager, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished);
     connect(network_manager2, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished2);
+    connect(network_manager3, &QNetworkAccessManager::finished,this, &MainWindow::replyFinished3);
 
     //整行选中的方式
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -88,19 +97,8 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 
 void MainWindow::search(QString str)
 {
-  // QString KGAPISTR1 = QString("http://mobilecdn.kugou.com/api/v3/search/song?format=json"
-  //                             "&keyword=%1&page=1&pagesize=18").arg(str);
-  // QString KGAPISTR1 =QString("http://www.kugou.com/yy/index.php?r=play/getdata"
-                             // "&hash=%1&album_id=%2&_=1497972864535").arg("37fb544283b501ddc7d9cee59fcc2b32").arg("38080072");
-
-
-
-   QString KGAPISTR1 =QString("https://wwwapi.kugou.com/yy/index.php?r=play/getdata&callback=jQuery19109651306672470551_1597246738149&hash=2E3547FA22130F979F6129B6F56B2A27&album_id=38770461&dfid=3duBtm1dPh7H0yHDiX2OD3mw&mid=a168b7359d24b7bc03957638c51d1cf9&platid=4&_=1597246738150");
-
-
-
-
-   qDebug()<<KGAPISTR1;
+   QString KGAPISTR1 = QString("http://mobilecdn.kugou.com/api/v3/search/song?format=json"
+                               "&keyword=%1&page=1&pagesize=18").arg(str);
     network_request->setUrl(QUrl(KGAPISTR1));
     network_manager->get(*network_request);
 }
@@ -172,6 +170,15 @@ void MainWindow::parseJson(QString json)
                                             m_Vectorlist.append(FileHash_value.toString());
                                         }
                                     }
+                                    if (object.contains("album_id"))
+                                    {
+                                        QJsonValue FileHash_value = object.take("album_id");
+                                        if (FileHash_value.isString())
+                                        {
+                                            //hashStr = FileHash_value.toString();
+                                            m_ID.append(FileHash_value.toString());
+                                        }
+                                    }
                                     if (object.contains("duration"))//时长
                                     {
                                        QJsonValue AlbumID_value = object.take("duration").toInt();
@@ -210,7 +217,8 @@ void MainWindow::parseJsonSongInfo(QString json)
     QString audio_name;//歌手-歌名
     QString play_url;//播放地址
     QString timelength; //时间
-    qDebug()<<json;
+    QString img;
+    //qDebug()<<json;
     QByteArray byte_array;
     QJsonParseError json_error;
     QJsonDocument parse_doucment = QJsonDocument::fromJson(byte_array.append(json), &json_error);
@@ -221,76 +229,87 @@ void MainWindow::parseJsonSongInfo(QString json)
                QJsonObject rootObj = parse_doucment.object();
                if(rootObj.contains("data"))
                {
-                   //通过
                    QJsonValue valuedata = rootObj.value("data");
-                   if(valuedata.isArray())
-                   {
-                       qDebug()<<"数组";
-                   }
                    if(valuedata.isObject())
                    {
-                       qDebug()<<"Object";
+                       QJsonObject valuedataObject = valuedata.toObject();
+                       QString play_urlStr("");
+                       if(valuedataObject.contains("play_url"))
+                       {
+                           QJsonValue play_url_value = valuedataObject.take("play_url");
+                           if(play_url_value.isString())
+                           {
+                               play_urlStr = play_url_value.toString();                    //歌曲的url
+                               if(play_urlStr!="")
+                               {
+                                   qDebug()<<play_urlStr;
+                                   player->setMedia(QUrl(play_urlStr));
+                                   player->setVolume(50);
+                                   player->play();
+                               }
+
+                           }
+                       }
+                       if(valuedataObject.contains("audio_name"))
+                       {
+                           QJsonValue play_name_value = valuedataObject.take("audio_name");
+                           if(play_name_value.isString())
+                           {
+                               QString audio_name = play_name_value.toString();                //歌曲名字
+                               if(audio_name!="")
+                               {
+                                   //显示
+                                   qDebug()<<audio_name;
+                                   ui->label_2->setText(audio_name);
+                                   //emit nameAdd(play_name);
+                               }
+
+                           }
+                       }
+                       if(valuedataObject.contains("lyrics")) //lrc
+                       {
+                           QJsonValue play_url_value = valuedataObject.take("lyrics");
+                          if(play_url_value.isString())
+                           {
+                               QString play_lrcStr = play_url_value.toString();
+                               if(play_urlStr!="")
+                               {
+                                   if(play_lrcStr != "")
+                                   {
+                                       //emit lrcAdd(play_lrcStr);
+                                   }
+                                   else
+                                   {
+                                       //emit lrcAdd("没有歌词");
+                                   }
+                               }
+
+                           }
+                       }
+                       if(valuedataObject.contains("img"))
+                       {
+                           QJsonValue play_name_value = valuedataObject.take("img");
+                           if(play_name_value.isString())
+                           {
+                               QString audio_name = play_name_value.toString();                //歌曲名字
+                               if(audio_name!="")
+                               {
+                                   //显示
+                                   qDebug()<<"1  测试"<<audio_name;
+                                   m_Jpg.append(audio_name);
+                                   qDebug()<<"2  测试"<<m_Jpg.at(0);
+                                   network_request3->setUrl(QUrl(audio_name));
+                                   network_manager3->get(*network_request3);
+                               }
+
+                           }
+                       }
+
                    }
-//                   if(valuedata.isArray())
-//                   {
-//                       QJsonObject valuedataObject = valuedata.toObject();
-//                       QString play_urlStr("");
-//                       if(valuedataObject.contains("play_url"))
-//                       {
-//                           qDebug()<<"KGAPISTR   2";
-//                           QJsonValue play_url_value = valuedataObject.take("play_url");
-//                           if(play_url_value.isString())
-//                           {
-//                               play_url = play_url_value.toString();                    //歌曲的url
-//                            qDebug()<<"KGAPISTR   3";
-//                               if(play_urlStr!="")
-//                               {
-//                                   //播放
-//                                   //emit mediaAdd(play_urlStr);
-//                               }
-
-//                           }
-//                       }
-//                       if(valuedataObject.contains("audio_name"))
-//                       {
-//                           QJsonValue play_name_value = valuedataObject.take("audio_name");
-//                           if(play_name_value.isString())
-//                           {
-//                               QString audio_name = play_name_value.toString();                //歌曲名字
-//                               if(audio_name!="")
-//                               {
-//                                   //显示
-//                                   ui->label_3->setText(audio_name);
-//                                   //emit nameAdd(play_name);
-//                               }
-
-//                           }
-//                       }
-//                       if(valuedataObject.contains("lyrics")) //lrc
-//                       {
-//                           QJsonValue play_url_value = valuedataObject.take("lyrics");
-//                          if(play_url_value.isString())
-//                           {
-//                               QString play_lrcStr = play_url_value.toString();
-//                               if(play_urlStr!="")
-//                               {
-//                                   if(play_lrcStr != "")
-//                                   {
-//                                       emit lrcAdd(play_lrcStr);
-//                                   }
-//                                   else
-//                                   {
-//                                       emit lrcAdd("没有歌词");
-//                                   }
-//                               }
-
-//                           }
-//                       }
-//                   }
-//               else
-//                   {
-//                       qDebug()<<"出错";
-//                   }
+               else
+                   {
+                       qDebug()<<"出错";
+                   }
                }
            }
        }
@@ -470,14 +489,37 @@ void MainWindow::replyFinished2(QNetworkReply *reply)
         {
             QByteArray bytes = reply->readAll();  //获取字节
             QString result(bytes);  //转化为字符串
-            ui->lineEdit_3->setText(result);
-            qDebug()<<result;
             parseJsonSongInfo(result);
         }
         else
         {
             //处理错误
             qDebug()<<"处理错误2";
+        }
+}
+
+void MainWindow::replyFinished3(QNetworkReply *reply)
+{
+    //获取响应的信息，状态码为200表示正常
+    QVariant status_code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+
+        //无错误返回
+        if(reply->error() == QNetworkReply::NoError)
+        {
+            QByteArray bytes = reply->readAll();  //获取字节
+            QPixmap pixmap;
+            QSize picSize(45,45);
+            pixmap.loadFromData(bytes);
+            //pixmap.save(".pixmap//123456.jpg");
+            ui->label_10->setPixmap(pixmap.scaled(picSize));
+
+
+
+        }
+        else
+        {
+            //处理错误
+            qDebug()<<"处理错误3";
         }
 }
 
@@ -493,20 +535,15 @@ void MainWindow::on_pushButton_7_clicked()
 
 void MainWindow::on_tableWidget_cellDoubleClicked(int row, int column)
 {
-    //获得行和列
-    //找到该hash
-//    for(int i = 0;i<m_Vectorlist.size();i++)
-//    {
-//        //qDebug()<<m_Vectorlist.at(i);
-//    }
-      QString KGAPISTR1 = QString("http://wwwapi.kugou.com/yy/index.php?r=play/getdata"
-                              "&hash=%1").arg(m_Vectorlist.at(row));
-    //QString KGAPISTR1 =QString("http://www.kugou.com/yy/index.php?r=play/getdata"
-    //                           "&hash=%1&album_id=%2&_=1497972864535").arg("37fb544283b501ddc7d9cee59fcc2b32").arg("38080072");
-    qDebug()<<KGAPISTR1;
-    //qDebug()<<"QSslSocket="<<QSslSocket::sslLibraryBuildVersionString();
-    //qDebug() << "OpenSSL支持情况:" << QSslSocket::supportsSsl();
+    //歌曲请求
+    QString KGAPISTR1 =QString("http://www.kugou.com/yy/index.php?r=play/getdata"
+    "&hash=%1&album_id=%2&_=1497972864535").arg(m_Vectorlist.at(row)).arg(m_ID.at(row));
     network_request2->setUrl(QUrl(KGAPISTR1));
+    network_request2->setRawHeader("Cookie","kg_mid=2333");
+    network_request2->setHeader(QNetworkRequest::CookieHeader, 2333);
     network_manager2->get(*network_request2);
+
+    //图片请求
+    //qDebug()<<"测试"<<m_Vectorlist.at(row);
 
 }

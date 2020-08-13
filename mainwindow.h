@@ -23,6 +23,8 @@ private:
     QNetworkRequest * network_request;
     QNetworkAccessManager * network_manager2;
     QNetworkRequest * network_request2;
+    QNetworkAccessManager * network_manager3;
+    QNetworkRequest * network_request3;
 
     bool m_bIsWindowMoveable = false;
     bool m_IsPause = true;
@@ -31,7 +33,8 @@ private:
     int M_Amount=0;   //总数
     int M_Value=0;  //当前
     QVector<QString> m_Vectorlist;
-
+    QVector<QString> m_ID;
+    QVector<QString> m_Jpg;
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -67,6 +70,8 @@ private slots:
     void replyFinished(QNetworkReply *reply);
 
     void replyFinished2(QNetworkReply *reply);
+
+    void replyFinished3(QNetworkReply *reply);
 
     void on_pushButton_6_clicked();
 
