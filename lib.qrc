@@ -2,26 +2,20 @@
     <qresource prefix="/">
         <file>lib/shangyiqu.png</file>
         <file>lib/shezhi.png</file>
-        <file>lib/stop.png</file>
         <file>lib/xuanxiang.png</file>
-        <file>lib/zanting.png</file>
         <file>lib/zuidahua.png</file>
         <file>lib/zuixiao.png</file>
         <file>lib/shengyin.png</file>
         <file>lib/xunhuan.png</file>
         <file>lib/guanbi.png</file>
-        <file>lib/timg.jpg</file>
-        <file>lib/timg2.png</file>
         <file>C:/Users/fdog/Desktop/image-20200806113923681.png</file>
         <file>lib/timg (1).jpg</file>
         <file>lib/timg (6).jpg</file>
         <file>lib/b.png</file>
         <file>lib/bendi.png</file>
-        <file>lib/ci-copy.png</file>
         <file>lib/lishijilu.png</file>
         <file>lib/love.png</file>
         <file>lib/pifu.png</file>
-        <file>lib/shipin.png</file>
         <file>lib/sousuo.png</file>
         <file>lib/su.png</file>
         <file>lib/touxiang.png</file>
@@ -44,9 +38,11 @@
         <file>lib/paihangbang.png</file>
         <file>lib/shiting.png</file>
         <file>lib/xiazai.png</file>
-        <file>lib/yinyue_1.png</file>
         <file>lib/add.png</file>
         <file>lib/QQ图片20200810205923.png</file>
         <file>lib/yinyue.png</file>
+        <file>lib/xiayiqu.png</file>
+        <file>lib/ci.png</file>
+        <file>lib/zhankai.png</file>
     </qresource>
 </RCC>

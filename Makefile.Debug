@@ -154,20 +154,17 @@ debug\qrc_lib.cpp: lib.qrc \
 		lib\b.png \
 		lib\guanbi.png \
 		lib\sousuo.png \
-		lib\yinyue_1.png \
-		lib\shipin.png \
 		lib\xunhuan.png \
-		lib\timg.jpg \
 		lib\13.jpg \
-		lib\ci-copy.png \
+		lib\zhankai.png \
 		lib\1zantingtingzhi.png \
+		lib\xiayiqu.png \
 		lib\9.jpg \
 		lib\yinyue.png \
 		lib\zuidahua.png \
 		lib\shengyin.png \
 		lib\pifu.png \
 		lib\paihangbang.png \
-		lib\timg2.png \
 		lib\8.jpg \
 		lib\shangyiqu.png \
 		lib\11.jpg \
@@ -183,12 +180,11 @@ debug\qrc_lib.cpp: lib.qrc \
 		lib\xuanxiang1.png \
 		lib\5.jpg \
 		lib\gedan_1.png \
+		lib\ci.png \
 		lib\4.jpg \
 		lib\jingyin.png \
 		lib\bendi.png \
 		lib\xiazai.png \
-		lib\zanting.png \
-		lib\stop.png \
 		lib\shiting.png
 	D:\QT\5.10.0\msvc2015_64\bin\rcc.exe -name lib lib.qrc -o debug\qrc_lib.cpp
 
@@ -773,7 +769,9 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QJsonObject \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qjsonobject.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QJsonArray \
-		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtGui\QPixmap \
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QSize
 
 debug\qrc_lib.obj: debug\qrc_lib.cpp 
 

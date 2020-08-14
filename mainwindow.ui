@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1107</width>
+    <width>1109</width>
     <height>700</height>
    </rect>
   </property>
@@ -20,7 +20,7 @@
   <property name="styleSheet">
    <string notr="true">#centralWidget
 {
-border-image: url(:/lib/5.jpg);
+border-image: url(:/lib/timg (1).jpg);
 }</string>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -98,7 +98,7 @@ background-color: rgba(245, 245, 245, 80);
        <property name="minimumSize">
         <size>
          <width>20</width>
-         <height>20</height>
+         <height>22</height>
         </size>
        </property>
        <property name="styleSheet">
@@ -257,32 +257,11 @@ background-color: rgba(245, 245, 245, 80);
       <x>0</x>
       <y>0</y>
       <width>1111</width>
-      <height>51</height>
+      <height>701</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgba(0, 255, 255,70);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>-1</x>
-      <y>51</y>
-      <width>1111</width>
-      <height>651</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>9</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgba(0, 255, 255,70);</string>
+     <string notr="true">background-color: rgba(0, 170, 255, 80);</string>
     </property>
     <property name="text">
      <string/>
@@ -291,10 +270,10 @@ background-color: rgba(245, 245, 245, 80);
    <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
-      <x>339</x>
+      <x>349</x>
       <y>639</y>
       <width>521</width>
-      <height>55</height>
+      <height>57</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -398,7 +377,7 @@ background-color: rgba(245, 245, 245, 80);
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-image: url(:/lib/shangyiqu.png);</string>
+      <string notr="true">border-image: url(:/lib/xiayiqu.png);</string>
      </property>
      <property name="text">
       <string/>
@@ -433,10 +412,10 @@ background-color: rgba(245, 245, 245, 80);
     </property>
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>310</x>
       <y>627</y>
       <width>621</width>
-      <height>16</height>
+      <height>11</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -464,7 +443,7 @@ background-color: rgba(245, 245, 245, 80);
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>920</x>
+      <x>930</x>
       <y>630</y>
       <width>91</width>
       <height>21</height>
@@ -487,7 +466,7 @@ background-color: rgba(245, 245, 245, 80);
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>6:25/7:52</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -503,7 +482,7 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>22</x>
-      <y>12</y>
+      <y>6</y>
       <width>123</width>
       <height>38</height>
      </rect>
@@ -521,8 +500,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>638</y>
+      <x>102</x>
+      <y>633</y>
       <width>181</width>
       <height>20</height>
      </rect>
@@ -533,20 +512,20 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>阿悠悠 - 旧梦一场.mp3</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>922</x>
+      <x>932</x>
       <y>660</y>
-      <width>31</width>
-      <height>30</height>
+      <width>25</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image: url(:/lib/ci-copy.png);</string>
+     <string notr="true">border-image: url(:/lib/ci.png);</string>
     </property>
     <property name="text">
      <string/>
@@ -555,10 +534,10 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>969</x>
+      <x>979</x>
       <y>660</y>
-      <width>31</width>
-      <height>31</height>
+      <width>25</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -606,7 +585,8 @@ border-color:rgb(163, 163, 163);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image: url(:/lib/sousuo.png);</string>
+     <string notr="true">border-image: url(:/lib/sousuo.png);
+background-color: rgb(255, 170, 127);</string>
     </property>
     <property name="text">
      <string/>
@@ -652,10 +632,10 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>108</x>
-      <y>665</y>
+      <x>110</x>
+      <y>660</y>
       <width>20</width>
-      <height>20</height>
+      <height>18</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -669,9 +649,9 @@ border-image: url(:/lib/love.png);</string>
    <widget class="QSlider" name="verticalSlider">
     <property name="geometry">
      <rect>
-      <x>1012</x>
+      <x>1022</x>
       <y>630</y>
-      <width>16</width>
+      <width>10</width>
       <height>61</height>
      </rect>
     </property>
@@ -697,7 +677,7 @@ border-image: url(:/lib/love.png);</string>
     <property name="styleSheet">
      <string notr="true">
 font: 11pt;
-color: rgb(255, 255, 255);</string>
+color: rgb(234, 234, 234);</string>
     </property>
     <property name="text">
      <string>在线音乐</string>
@@ -718,7 +698,7 @@ color: rgb(255, 255, 255);</string>
     <property name="styleSheet">
      <string notr="true">
 font: 11pt;
-color: rgb(255, 255, 255);</string>
+color: rgb(234, 234, 234);</string>
     </property>
     <property name="text">
      <string>我的音乐</string>
@@ -744,7 +724,7 @@ color: rgb(255, 255, 255);</string>
     <property name="styleSheet">
      <string notr="true">
 font: 11pt;
-color: rgb(255, 255, 255);</string>
+color: rgb(234, 234, 234);</string>
     </property>
     <property name="text">
      <string>其他</string>
@@ -1153,14 +1133,14 @@ background-color: rgba(232, 232, 232, 100);
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>44</x>
-      <y>640</y>
+      <x>46</x>
+      <y>634</y>
       <width>45</width>
       <height>45</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image: url(:/lib/QQ图片20200810205923.png);
+     <string notr="true">
 border-radius:4px;</string>
     </property>
     <property name="text">
@@ -1170,10 +1150,10 @@ border-radius:4px;</string>
    <widget class="QLabel" name="label_15">
     <property name="geometry">
      <rect>
-      <x>142</x>
-      <y>665</y>
+      <x>144</x>
+      <y>660</y>
       <width>20</width>
-      <height>20</height>
+      <height>18</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1193,7 +1173,7 @@ border-radius:4px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+     <string notr="true">background-color: rgba(255, 255, 255, 200);</string>
     </property>
     <property name="currentIndex">
      <number>2</number>
@@ -1508,8 +1488,8 @@ border-left-width:0;
      <widget class="QLineEdit" name="lineEdit_4">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>240</y>
+        <x>70</x>
+        <y>50</y>
         <width>781</width>
         <height>171</height>
        </rect>
@@ -1540,8 +1520,40 @@ border-left-width:0;
      <string>PushButton</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_16">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>49</y>
+      <width>170</width>
+      <height>567</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(206, 206, 206, 80);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>650</y>
+      <width>21</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/lib/zhankai.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>label_3</zorder>
-   <zorder>label_6</zorder>
+   <zorder>label_16</zorder>
    <zorder>frame_4</zorder>
    <zorder>frame_2</zorder>
    <zorder>horizontalSlider</zorder>
@@ -1574,6 +1586,7 @@ border-left-width:0;
    <zorder>stackedWidget</zorder>
    <zorder>lineEdit_3</zorder>
    <zorder>pushButton_6</zorder>
+   <zorder>label_17</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

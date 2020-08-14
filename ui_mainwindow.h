@@ -47,7 +47,6 @@ public:
     QSpacerItem *horizontalSpacer_4;
     QToolButton *toolButton_4;
     QLabel *label_3;
-    QLabel *label_6;
     QFrame *frame_2;
     QPushButton *pushButton_4;
     QSlider *horizontalSlider_2;
@@ -95,18 +94,20 @@ public:
     QLineEdit *lineEdit_4;
     QLineEdit *lineEdit_3;
     QPushButton *pushButton_6;
+    QLabel *label_16;
+    QLabel *label_17;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1107, 700);
+        MainWindow->resize(1109, 700);
         QIcon icon;
         icon.addFile(QStringLiteral(":/lib/yinyue.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
         MainWindow->setStyleSheet(QLatin1String("#centralWidget\n"
 "{\n"
-"border-image: url(:/lib/5.jpg);\n"
+"border-image: url(:/lib/timg (1).jpg);\n"
 "}"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
@@ -145,7 +146,7 @@ public:
 
         toolButton_1 = new QToolButton(frame_4);
         toolButton_1->setObjectName(QStringLiteral("toolButton_1"));
-        toolButton_1->setMinimumSize(QSize(20, 20));
+        toolButton_1->setMinimumSize(QSize(20, 22));
         toolButton_1->setStyleSheet(QLatin1String("\n"
 "#toolButton_1\n"
 "{\n"
@@ -221,18 +222,11 @@ public:
 
         label_3 = new QLabel(centralWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(0, 0, 1111, 51));
-        label_3->setStyleSheet(QStringLiteral("background-color: rgba(0, 255, 255,70);"));
-        label_6 = new QLabel(centralWidget);
-        label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(-1, 51, 1111, 651));
-        QFont font;
-        font.setPointSize(9);
-        label_6->setFont(font);
-        label_6->setStyleSheet(QStringLiteral("background-color: rgba(0, 255, 255,70);"));
+        label_3->setGeometry(QRect(0, 0, 1111, 701));
+        label_3->setStyleSheet(QStringLiteral("background-color: rgba(0, 170, 255, 80);"));
         frame_2 = new QFrame(centralWidget);
         frame_2->setObjectName(QStringLiteral("frame_2"));
-        frame_2->setGeometry(QRect(339, 639, 521, 55));
+        frame_2->setGeometry(QRect(349, 639, 521, 57));
         frame_2->setFrameShape(QFrame::StyledPanel);
         frame_2->setFrameShadow(QFrame::Raised);
         pushButton_4 = new QPushButton(frame_2);
@@ -258,7 +252,7 @@ public:
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setGeometry(QRect(305, 10, 40, 40));
         pushButton_3->setMinimumSize(QSize(40, 40));
-        pushButton_3->setStyleSheet(QStringLiteral("border-image: url(:/lib/shangyiqu.png);"));
+        pushButton_3->setStyleSheet(QStringLiteral("border-image: url(:/lib/xiayiqu.png);"));
         pushButton_2 = new QPushButton(frame_2);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
         pushButton_2->setGeometry(QRect(210, 6, 50, 50));
@@ -267,7 +261,7 @@ public:
         horizontalSlider = new QSlider(centralWidget);
         horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
         horizontalSlider->setEnabled(true);
-        horizontalSlider->setGeometry(QRect(300, 627, 621, 16));
+        horizontalSlider->setGeometry(QRect(310, 627, 621, 11));
         horizontalSlider->setMinimumSize(QSize(153, 0));
         horizontalSlider->setSingleStep(0);
         horizontalSlider->setPageStep(16);
@@ -276,7 +270,7 @@ public:
         horizontalSlider->setTickInterval(0);
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(920, 630, 91, 21));
+        label->setGeometry(QRect(930, 630, 91, 21));
         label->setMinimumSize(QSize(0, 0));
         label->setMaximumSize(QSize(11111111, 16777215));
         label->setStyleSheet(QLatin1String("font: 75 11pt \"Adobe Gothic Std B\";\n"
@@ -286,22 +280,22 @@ public:
         label->setIndent(-1);
         label_4 = new QLabel(centralWidget);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(22, 12, 123, 38));
+        label_4->setGeometry(QRect(22, 6, 123, 38));
         label_4->setStyleSheet(QStringLiteral("border-image: url(:/lib/b.png);"));
         label_4->setAlignment(Qt::AlignCenter);
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(100, 638, 181, 20));
+        label_2->setGeometry(QRect(102, 633, 181, 20));
         label_2->setStyleSheet(QLatin1String("font:16px;\n"
 "\n"
 "color: rgb(255, 255, 255);"));
         label_5 = new QLabel(centralWidget);
         label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(922, 660, 31, 30));
-        label_5->setStyleSheet(QStringLiteral("border-image: url(:/lib/ci-copy.png);"));
+        label_5->setGeometry(QRect(932, 660, 25, 25));
+        label_5->setStyleSheet(QStringLiteral("border-image: url(:/lib/ci.png);"));
         label_7 = new QLabel(centralWidget);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(969, 660, 31, 31));
+        label_7->setGeometry(QRect(979, 660, 25, 25));
         label_7->setStyleSheet(QLatin1String("font: 75 12pt \"Adobe Gothic Std B\";\n"
 "border-image: url(:/lib/su.png);\n"
 "\n"
@@ -316,7 +310,8 @@ public:
         pushButton_7 = new QPushButton(centralWidget);
         pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
         pushButton_7->setGeometry(QRect(462, 15, 23, 23));
-        pushButton_7->setStyleSheet(QStringLiteral("border-image: url(:/lib/sousuo.png);"));
+        pushButton_7->setStyleSheet(QLatin1String("border-image: url(:/lib/sousuo.png);\n"
+"background-color: rgb(255, 170, 127);"));
         label_8 = new QLabel(centralWidget);
         label_8->setObjectName(QStringLiteral("label_8"));
         label_8->setGeometry(QRect(767, 14, 27, 27));
@@ -330,12 +325,12 @@ public:
         label_9->setAlignment(Qt::AlignCenter);
         label_11 = new QLabel(centralWidget);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setGeometry(QRect(108, 665, 20, 20));
+        label_11->setGeometry(QRect(110, 660, 20, 18));
         label_11->setStyleSheet(QLatin1String("\n"
 "border-image: url(:/lib/love.png);"));
         verticalSlider = new QSlider(centralWidget);
         verticalSlider->setObjectName(QStringLiteral("verticalSlider"));
-        verticalSlider->setGeometry(QRect(1012, 630, 16, 61));
+        verticalSlider->setGeometry(QRect(1022, 630, 10, 61));
         verticalSlider->setMinimum(1);
         verticalSlider->setMaximum(3);
         verticalSlider->setOrientation(Qt::Vertical);
@@ -344,32 +339,32 @@ public:
         label_12->setGeometry(QRect(10, 80, 81, 21));
         label_12->setStyleSheet(QLatin1String("\n"
 "font: 11pt;\n"
-"color: rgb(255, 255, 255);"));
+"color: rgb(234, 234, 234);"));
         label_13 = new QLabel(centralWidget);
         label_13->setObjectName(QStringLiteral("label_13"));
         label_13->setGeometry(QRect(10, 240, 81, 21));
         label_13->setLayoutDirection(Qt::LeftToRight);
         label_13->setStyleSheet(QLatin1String("\n"
 "font: 11pt;\n"
-"color: rgb(255, 255, 255);"));
+"color: rgb(234, 234, 234);"));
         label_14 = new QLabel(centralWidget);
         label_14->setObjectName(QStringLiteral("label_14"));
         label_14->setGeometry(QRect(10, 440, 81, 21));
-        QFont font1;
-        font1.setPointSize(11);
-        font1.setBold(false);
-        font1.setItalic(false);
-        font1.setWeight(50);
-        label_14->setFont(font1);
+        QFont font;
+        font.setPointSize(11);
+        font.setBold(false);
+        font.setItalic(false);
+        font.setWeight(50);
+        label_14->setFont(font);
         label_14->setStyleSheet(QLatin1String("\n"
 "font: 11pt;\n"
-"color: rgb(255, 255, 255);"));
+"color: rgb(234, 234, 234);"));
         pushButton_8 = new QPushButton(centralWidget);
         pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
         pushButton_8->setGeometry(QRect(10, 110, 151, 31));
-        QFont font2;
-        font2.setPointSize(12);
-        pushButton_8->setFont(font2);
+        QFont font1;
+        font1.setPointSize(12);
+        pushButton_8->setFont(font1);
         pushButton_8->setLayoutDirection(Qt::LeftToRight);
         pushButton_8->setStyleSheet(QLatin1String("#pushButton_8\n"
 "{\n"
@@ -392,9 +387,9 @@ public:
         pushButton_9 = new QPushButton(centralWidget);
         pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
         pushButton_9->setGeometry(QRect(10, 150, 151, 31));
-        QFont font3;
-        font3.setPointSize(11);
-        pushButton_9->setFont(font3);
+        QFont font2;
+        font2.setPointSize(11);
+        pushButton_9->setFont(font2);
         pushButton_9->setStyleSheet(QLatin1String("#pushButton_9\n"
 "{\n"
 "text-align:left;\n"
@@ -415,7 +410,7 @@ public:
         pushButton_10 = new QPushButton(centralWidget);
         pushButton_10->setObjectName(QStringLiteral("pushButton_10"));
         pushButton_10->setGeometry(QRect(10, 190, 151, 31));
-        pushButton_10->setFont(font2);
+        pushButton_10->setFont(font1);
         pushButton_10->setStyleSheet(QLatin1String("#pushButton_10\n"
 "{\n"
 "text-align:left;\n"
@@ -436,7 +431,7 @@ public:
         pushButton_11 = new QPushButton(centralWidget);
         pushButton_11->setObjectName(QStringLiteral("pushButton_11"));
         pushButton_11->setGeometry(QRect(10, 270, 151, 31));
-        pushButton_11->setFont(font2);
+        pushButton_11->setFont(font1);
         pushButton_11->setStyleSheet(QLatin1String("#pushButton_11\n"
 "{\n"
 "text-align:left;\n"
@@ -457,7 +452,7 @@ public:
         pushButton_12 = new QPushButton(centralWidget);
         pushButton_12->setObjectName(QStringLiteral("pushButton_12"));
         pushButton_12->setGeometry(QRect(10, 350, 151, 31));
-        pushButton_12->setFont(font2);
+        pushButton_12->setFont(font1);
         pushButton_12->setStyleSheet(QLatin1String("#pushButton_12\n"
 "{\n"
 "text-align:left;\n"
@@ -478,7 +473,7 @@ public:
         pushButton_13 = new QPushButton(centralWidget);
         pushButton_13->setObjectName(QStringLiteral("pushButton_13"));
         pushButton_13->setGeometry(QRect(10, 390, 151, 31));
-        pushButton_13->setFont(font2);
+        pushButton_13->setFont(font1);
         pushButton_13->setStyleSheet(QLatin1String("#pushButton_13\n"
 "{\n"
 "text-align:left;\n"
@@ -500,7 +495,7 @@ public:
         pushButton_14 = new QPushButton(centralWidget);
         pushButton_14->setObjectName(QStringLiteral("pushButton_14"));
         pushButton_14->setGeometry(QRect(10, 470, 151, 31));
-        pushButton_14->setFont(font2);
+        pushButton_14->setFont(font1);
         pushButton_14->setStyleSheet(QLatin1String("#pushButton_14\n"
 "{\n"
 "text-align:left;\n"
@@ -521,7 +516,7 @@ public:
         pushButton_15 = new QPushButton(centralWidget);
         pushButton_15->setObjectName(QStringLiteral("pushButton_15"));
         pushButton_15->setGeometry(QRect(10, 510, 151, 31));
-        pushButton_15->setFont(font2);
+        pushButton_15->setFont(font1);
         pushButton_15->setStyleSheet(QLatin1String("#pushButton_15\n"
 "{\n"
 "text-align:left;\n"
@@ -542,7 +537,7 @@ public:
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(10, 550, 151, 31));
-        pushButton->setFont(font2);
+        pushButton->setFont(font1);
         pushButton->setStyleSheet(QLatin1String("#pushButton\n"
 "{\n"
 "text-align:left;\n"
@@ -563,7 +558,7 @@ public:
         pushButton_16 = new QPushButton(centralWidget);
         pushButton_16->setObjectName(QStringLiteral("pushButton_16"));
         pushButton_16->setGeometry(QRect(10, 310, 151, 31));
-        pushButton_16->setFont(font2);
+        pushButton_16->setFont(font1);
         pushButton_16->setStyleSheet(QLatin1String("#pushButton_16\n"
 "{\n"
 "text-align:left;\n"
@@ -584,17 +579,17 @@ public:
         pushButton_16->setIconSize(QSize(16, 16));
         label_10 = new QLabel(centralWidget);
         label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setGeometry(QRect(44, 640, 45, 45));
-        label_10->setStyleSheet(QString::fromUtf8("border-image: url(:/lib/QQ\345\233\276\347\211\20720200810205923.png);\n"
+        label_10->setGeometry(QRect(46, 634, 45, 45));
+        label_10->setStyleSheet(QLatin1String("\n"
 "border-radius:4px;"));
         label_15 = new QLabel(centralWidget);
         label_15->setObjectName(QStringLiteral("label_15"));
-        label_15->setGeometry(QRect(142, 665, 20, 20));
+        label_15->setGeometry(QRect(144, 660, 20, 18));
         label_15->setStyleSheet(QStringLiteral("border-image: url(:/lib/xiazai.png);"));
         stackedWidget = new QStackedWidget(centralWidget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         stackedWidget->setGeometry(QRect(170, 49, 921, 567));
-        stackedWidget->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
+        stackedWidget->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 200);"));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
         frame = new QFrame(page);
@@ -624,13 +619,13 @@ public:
         listWidget = new QListWidget(page_2);
         listWidget->setObjectName(QStringLiteral("listWidget"));
         listWidget->setGeometry(QRect(10, 50, 581, 341));
-        QFont font4;
-        font4.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
-        font4.setPointSize(9);
-        font4.setBold(false);
-        font4.setItalic(false);
-        font4.setWeight(50);
-        listWidget->setFont(font4);
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
+        font3.setPointSize(9);
+        font3.setBold(false);
+        font3.setItalic(false);
+        font3.setWeight(50);
+        listWidget->setFont(font3);
         listWidget->setStyleSheet(QString::fromUtf8("font: 9pt \"\345\256\213\344\275\223\";"));
         listWidget->setFrameShape(QFrame::NoFrame);
         listWidget->setFrameShadow(QFrame::Plain);
@@ -694,10 +689,10 @@ public:
         tableWidget->setVerticalHeaderItem(14, __qtablewidgetitem19);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
         tableWidget->setGeometry(QRect(0, 0, 921, 581));
-        QFont font5;
-        font5.setBold(true);
-        font5.setWeight(75);
-        tableWidget->setFont(font5);
+        QFont font4;
+        font4.setBold(true);
+        font4.setWeight(75);
+        tableWidget->setFont(font4);
         tableWidget->setContextMenuPolicy(Qt::DefaultContextMenu);
         tableWidget->setStyleSheet(QString::fromUtf8("QTableWidget{\n"
 "background-color: rgb(116, 116, 116);\n"
@@ -742,7 +737,7 @@ public:
         page_4->setObjectName(QStringLiteral("page_4"));
         lineEdit_4 = new QLineEdit(page_4);
         lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
-        lineEdit_4->setGeometry(QRect(10, 240, 781, 171));
+        lineEdit_4->setGeometry(QRect(70, 50, 781, 171));
         stackedWidget->addWidget(page_4);
         lineEdit_3 = new QLineEdit(centralWidget);
         lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
@@ -750,9 +745,17 @@ public:
         pushButton_6 = new QPushButton(centralWidget);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
         pushButton_6->setGeometry(QRect(1110, 100, 75, 23));
+        label_16 = new QLabel(centralWidget);
+        label_16->setObjectName(QStringLiteral("label_16"));
+        label_16->setGeometry(QRect(0, 49, 170, 567));
+        label_16->setStyleSheet(QStringLiteral("background-color: rgba(206, 206, 206, 80);"));
+        label_17 = new QLabel(centralWidget);
+        label_17->setObjectName(QStringLiteral("label_17"));
+        label_17->setGeometry(QRect(20, 650, 21, 16));
+        label_17->setStyleSheet(QStringLiteral("border-image: url(:/lib/zhankai.png);"));
         MainWindow->setCentralWidget(centralWidget);
         label_3->raise();
-        label_6->raise();
+        label_16->raise();
         frame_4->raise();
         frame_2->raise();
         horizontalSlider->raise();
@@ -785,6 +788,7 @@ public:
         stackedWidget->raise();
         lineEdit_3->raise();
         pushButton_6->raise();
+        label_17->raise();
 
         retranslateUi(MainWindow);
         QObject::connect(toolButton_4, SIGNAL(clicked()), MainWindow, SLOT(close()));
@@ -806,15 +810,14 @@ public:
         toolButton_3->setText(QString());
         toolButton_4->setText(QString());
         label_3->setText(QString());
-        label_6->setText(QString());
         pushButton_4->setText(QString());
         pushButton_5->setText(QString());
         pushButton_1->setText(QString());
         pushButton_3->setText(QString());
         pushButton_2->setText(QString());
-        label->setText(QApplication::translate("MainWindow", "6:25/7:52", nullptr));
+        label->setText(QString());
         label_4->setText(QString());
-        label_2->setText(QApplication::translate("MainWindow", "\351\230\277\346\202\240\346\202\240 - \346\227\247\346\242\246\344\270\200\345\234\272.mp3", nullptr));
+        label_2->setText(QString());
         label_5->setText(QString());
         label_7->setText(QString());
         lineEdit_2->setInputMask(QString());
@@ -882,6 +885,8 @@ public:
         QTableWidgetItem *___qtablewidgetitem19 = tableWidget->verticalHeaderItem(14);
         ___qtablewidgetitem19->setText(QApplication::translate("MainWindow", "\346\226\260\345\273\272\350\241\214", nullptr));
         pushButton_6->setText(QApplication::translate("MainWindow", "PushButton", nullptr));
+        label_16->setText(QString());
+        label_17->setText(QString());
     } // retranslateUi
 
 };

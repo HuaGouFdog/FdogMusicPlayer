@@ -14,7 +14,6 @@
 #include<QJsonArray>
 #include<QUrl>
 #include<QPixmap>
-#include<QFile>
 #include<QSize>
 
 #if _MSC_VER >= 1600
@@ -216,9 +215,7 @@ void MainWindow::parseJsonSongInfo(QString json)
 {
     QString audio_name;//歌手-歌名
     QString play_url;//播放地址
-    QString timelength; //时间
     QString img;
-    //qDebug()<<json;
     QByteArray byte_array;
     QJsonParseError json_error;
     QJsonDocument parse_doucment = QJsonDocument::fromJson(byte_array.append(json), &json_error);
@@ -247,7 +244,6 @@ void MainWindow::parseJsonSongInfo(QString json)
                                    player->setVolume(50);
                                    player->play();
                                }
-
                            }
                        }
                        if(valuedataObject.contains("audio_name"))
@@ -255,15 +251,13 @@ void MainWindow::parseJsonSongInfo(QString json)
                            QJsonValue play_name_value = valuedataObject.take("audio_name");
                            if(play_name_value.isString())
                            {
-                               QString audio_name = play_name_value.toString();                //歌曲名字
+                               QString audio_name = play_name_value.toString();    //歌曲名字
                                if(audio_name!="")
                                {
                                    //显示
                                    qDebug()<<audio_name;
                                    ui->label_2->setText(audio_name);
-                                   //emit nameAdd(play_name);
                                }
-
                            }
                        }
                        if(valuedataObject.contains("lyrics")) //lrc
@@ -283,7 +277,6 @@ void MainWindow::parseJsonSongInfo(QString json)
                                        //emit lrcAdd("没有歌词");
                                    }
                                }
-
                            }
                        }
                        if(valuedataObject.contains("img"))
@@ -294,10 +287,7 @@ void MainWindow::parseJsonSongInfo(QString json)
                                QString audio_name = play_name_value.toString();                //歌曲名字
                                if(audio_name!="")
                                {
-                                   //显示
-                                   qDebug()<<"1  测试"<<audio_name;
                                    m_Jpg.append(audio_name);
-                                   qDebug()<<"2  测试"<<m_Jpg.at(0);
                                    network_request3->setUrl(QUrl(audio_name));
                                    network_manager3->get(*network_request3);
                                }
@@ -313,7 +303,6 @@ void MainWindow::parseJsonSongInfo(QString json)
                }
            }
        }
-
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -512,9 +501,6 @@ void MainWindow::replyFinished3(QNetworkReply *reply)
             pixmap.loadFromData(bytes);
             //pixmap.save(".pixmap//123456.jpg");
             ui->label_10->setPixmap(pixmap.scaled(picSize));
-
-
-
         }
         else
         {
@@ -542,8 +528,4 @@ void MainWindow::on_tableWidget_cellDoubleClicked(int row, int column)
     network_request2->setRawHeader("Cookie","kg_mid=2333");
     network_request2->setHeader(QNetworkRequest::CookieHeader, 2333);
     network_manager2->get(*network_request2);
-
-    //图片请求
-    //qDebug()<<"测试"<<m_Vectorlist.at(row);
-
 }
