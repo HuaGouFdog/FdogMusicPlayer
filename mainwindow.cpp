@@ -65,6 +65,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->setFocusPolicy(Qt::NoFocus);
     //不显示网格线
     ui->tableWidget->setShowGrid(false);
+
+    m_b_array[0] = true; //默认打开软件是歌词页面
+
+    //隐藏页面
+
 }
 
 MainWindow::~MainWindow()
@@ -270,7 +275,22 @@ void MainWindow::parseJsonSongInfo(QString json)
                                {
                                    if(play_lrcStr != "")
                                    {
-                                       //emit lrcAdd(play_lrcStr);
+                                       QString s = play_lrcStr;
+                                       QStringList s1 = s.split("\n");
+                                       for(int i =3;i<s1.size();i++)
+                                       {
+                                           //时间解析
+                                           QString s1 = s1.at(i);
+
+                                           QString s_1 = s1.mid(1,2);
+                                           QString s_2 = s1.mid(4,2);
+                                           QString s_3 = s1.mid(7,2);
+                                           QString s_4 = s1.mid(10);
+                                           int lrctime = QString(s_1+s_2+s_3).toInt();
+                                           QString lrcstr = s1.mid(10);
+                                           lrcMap.insert(lrctime,lrcstr);
+                                       }
+                                       //ui->lineEdit_5->setText(s1.at(0));
                                    }
                                    else
                                    {
@@ -302,7 +322,21 @@ void MainWindow::parseJsonSongInfo(QString json)
                    }
                }
            }
-       }
+    }
+}
+
+void MainWindow::hideAll()
+{
+    ui->pushButton_8->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+    ui->pushButton_9->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+    ui->pushButton_10->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+    ui->pushButton_11->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+    ui->pushButton_12->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+    ui->pushButton_13->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+    ui->pushButton_14->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+    ui->pushButton_15->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+    ui->pushButton_16->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -352,6 +386,20 @@ void MainWindow::onDurationChanged(qint64 duration)
     secs = secs % 60;
     durationTime = QString::asprintf("%d:%d",mins,secs);
     ui->label->setText(positionTime+"/"+durationTime);
+        //歌词显示
+        //上部分
+        ui->label_6->setText(lrcMap[3]);
+        ui->label_19->setText(lrcMap[4]);
+        ui->label_20->setText(lrcMap[5]);
+        ui->label_21->setText(lrcMap[6]);
+        //中间句
+        ui->label_22->setText(lrcMap[7]);
+        //下部分
+        ui->label_23->setText(lrcMap[8]);
+        ui->label_24->setText(lrcMap[9]);
+        ui->label_25->setText(lrcMap[10]);
+        ui->label_26->setText(lrcMap[11]);
+        ui->label_27->setText(lrcMap[12]);
 }
 
 void MainWindow::onPositionChanged(qint64 position)
@@ -364,6 +412,20 @@ void MainWindow::onPositionChanged(qint64 position)
     secs = secs % 60;
     positionTime = QString::asprintf("%d:%d",mins,secs);
     ui->label->setText(positionTime+"/"+durationTime);
+//    //歌词显示
+//    //上部分
+//    ui->label_6->setText();
+//    ui->label_19->setText();
+//    ui->label_20->setText();
+//    ui->label_21->setText();
+//    //中间句
+//    ui->label_22->setText();
+//    //下部分
+//    ui->label_23->setText();
+//    ui->label_24->setText();
+//    ui->label_25->setText();
+//    ui->label_26->setText();
+//    ui->label_27->setText();
 }
 void MainWindow::on_horizontalSlider_sliderReleased()
 {
@@ -481,8 +543,8 @@ void MainWindow::replyFinished2(QNetworkReply *reply)
             parseJsonSongInfo(result);
         }
         else
-        {
             //处理错误
+        {
             qDebug()<<"处理错误2";
         }
 }
@@ -517,6 +579,9 @@ void MainWindow::on_pushButton_6_clicked()
 void MainWindow::on_pushButton_7_clicked()
 {
     search(ui->lineEdit_2->text());
+    hideAll();
+    ui->stackedWidget->setCurrentIndex(1);
+    ui->pushButton_8->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
 }
 
 void MainWindow::on_tableWidget_cellDoubleClicked(int row, int column)
@@ -528,4 +593,73 @@ void MainWindow::on_tableWidget_cellDoubleClicked(int row, int column)
     network_request2->setRawHeader("Cookie","kg_mid=2333");
     network_request2->setHeader(QNetworkRequest::CookieHeader, 2333);
     network_manager2->get(*network_request2);
+}
+
+void MainWindow::on_pushButton_17_clicked()
+{
+    hideAll();
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_pushButton_8_clicked()
+{
+    hideAll();
+    ui->stackedWidget->setCurrentIndex(1);
+    ui->pushButton_8->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+}
+
+void MainWindow::on_pushButton_9_clicked()
+{
+    hideAll();
+    ui->stackedWidget->setCurrentIndex(2);
+    ui->pushButton_9->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+}
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    hideAll();
+   ui->stackedWidget->setCurrentIndex(3);
+   ui->pushButton_10->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+}
+
+void MainWindow::on_pushButton_11_clicked()
+{
+    hideAll();
+    ui->stackedWidget->setCurrentIndex(4);
+    ui->pushButton_11->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+}
+
+void MainWindow::on_pushButton_16_clicked()
+{
+    hideAll();
+    ui->stackedWidget->setCurrentIndex(5);
+    ui->pushButton_16->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+}
+
+void MainWindow::on_pushButton_12_clicked()
+{
+    hideAll();
+    ui->stackedWidget->setCurrentIndex(6);
+    ui->pushButton_12->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+}
+
+void MainWindow::on_pushButton_13_clicked()
+{
+    hideAll();
+    ui->stackedWidget->setCurrentIndex(7);
+    ui->pushButton_13->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+}
+
+void MainWindow::on_pushButton_14_clicked()
+{
+    hideAll();
+    ui->stackedWidget->setCurrentIndex(8);
+    ui->pushButton_14->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+}
+
+void MainWindow::on_pushButton_15_clicked()
+{
+    hideAll();
+    ui->stackedWidget->setCurrentIndex(9);
+    ui->pushButton_15->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
 }

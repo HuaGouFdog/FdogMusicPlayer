@@ -39,3 +39,5 @@ RESOURCES += \
 QT += multimedia
 
 QT += network
+
+DISTFILES +=
