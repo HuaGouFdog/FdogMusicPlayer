@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     playlist = new QMediaPlaylist(this);
     playlist->setPlaybackMode(QMediaPlaylist::Sequential);
     player->setPlaylist(playlist);
-    player->setNotifyInterval(1000);
+    player->setNotifyInterval(500);
     connect(player,SIGNAL(stateChanged(QMediaPlayer::State)),
             this,SLOT(onStateChanged(QMediaPlayer::State)));
     connect(player,SIGNAL(positionChanged(qint64)),
@@ -295,8 +295,8 @@ void MainWindow::parseJsonSongInfo(QString json)
                                            int s_count = (s_1*60+s_2)*100+s_3;   //规定写法
                                            //QString str = s_1+s_2+s_3;
                                            int lrctime = s_count;
-                                           qDebug()<<"规定格式："<<lrctime;
-                                           qDebug()<<"字符串："<<ss1;
+                                           //qDebug()<<"规定格式："<<lrctime;
+                                           //qDebug()<<"字符串："<<ss1;
                                            QString lrcstr = ss1.mid(10);
                                            lrcMap.insert(lrctime,lrcstr);
                                            }
@@ -408,67 +408,47 @@ void MainWindow::onPositionChanged(qint64 position)
     secs = secs % 60;
     positionTime = QString::asprintf("%d:%d",mins,secs);
     ui->label->setText(positionTime+"/"+durationTime);
-
-
-
-
-
-
     //position/1000/60 = 分
     //position/1000%60 = 秒
     //position/10-(分*60+秒)*100=厘秒
     //时间标签得法
     //(分*60+秒)*100+厘秒
-
-
-
-
-
-
-
-
-
-
-
-
-
-    int secs_lrc = position/10; // 1秒用100表示 100倍
-    int mins_lrc = secs/60;       //分
-
-    QString s_min = QString::number(mins_lrc);
-
-    secs_lrc = secs_lrc % 60;     //剩下的秒
-    if(secs_lrc<=10)
-    {
-        QString s_lrc = QString::number(secs_lrc);
-        QString s_str = "0"+s_lrc;
-    }
-
-    int shenxia_secs = position-mins_lrc*60-secs_lrc;
-
-
-
-
-
-
-
-
-
-
-
-
-    qDebug()<<"position"<<position<<endl;
+    int pos = position/10;
+    //qDebug()<<"pos"<<pos<<endl;
     QMap<int, QString>::iterator iter = lrcMap.begin();
         while (iter != lrcMap.end())
         {
-            //中间
-            if(position-500<=iter.key()&& position+500>=iter.key())
+            if(pos-50<=iter.key()&& pos+50>=iter.key())
             {
+                    int j=0;
+                    if(iter != lrcMap.begin())
+                    {
+                        iter--;
+                        ui->label_20->setText(iter.value());
+                        j++;
+                    }
+                    if(iter != lrcMap.begin())
+                    {
+                        iter--;
+                        ui->label_19->setText(iter.value());
+                        j++;
+                    }
+
+                    if(iter != lrcMap.begin())
+                    {
+                        iter--;
+                        ui->label_6->setText(iter.value());
+                        j++;
+                    }
+                    for(;j>0;j--)
+                    {
+                        iter++;
+                    }
+               //中间
                ui->label_21->setText(iter.value());
-               //未播放
-               if (iter != lrcMap.end())
+               iter++;
+               if(iter != lrcMap.end())
                {
-                   iter++;
                    ui->label_22->setText(iter.value());
                }
                else
@@ -476,10 +456,9 @@ void MainWindow::onPositionChanged(qint64 position)
                    ui->label_22->setText("");
                    return;
                }
-
-               if (iter != lrcMap.end())
+               iter++;
+               if(iter != lrcMap.end())
                {
-                   iter++;
                    ui->label_23->setText(iter.value());
                }
                else
@@ -487,10 +466,9 @@ void MainWindow::onPositionChanged(qint64 position)
                    ui->label_23->setText("");
                    return;
                }
-
-               if (iter != lrcMap.end())
+               iter++;
+               if(iter != lrcMap.end())
                {
-                   iter++;
                    ui->label_24->setText(iter.value());
                }
                else
@@ -498,10 +476,9 @@ void MainWindow::onPositionChanged(qint64 position)
                    ui->label_24->setText("");
                    return;
                }
-
-               if (iter != lrcMap.end())
+               iter++;
+               if(iter != lrcMap.end())
                {
-                   iter++;
                    ui->label_25->setText(iter.value());
                }
                else
@@ -509,10 +486,9 @@ void MainWindow::onPositionChanged(qint64 position)
                    ui->label_25->setText("");
                    return;
                }
-
-               if (iter != lrcMap.end())
+               iter++;
+               if(iter != lrcMap.end())
                {
-                   iter++;
                    ui->label_26->setText(iter.value());
                }
                else
@@ -520,10 +496,9 @@ void MainWindow::onPositionChanged(qint64 position)
                    ui->label_26->setText("");
                    return;
                }
-
-               if (iter != lrcMap.end())
+               iter++;
+               if(iter != lrcMap.end())
                {
-                   iter++;
                    ui->label_27->setText(iter.value());
                }
                else
@@ -532,7 +507,7 @@ void MainWindow::onPositionChanged(qint64 position)
                    return;
                }
             }
-               iter++;
+            iter++;
         }
 }
 void MainWindow::on_horizontalSlider_sliderReleased()

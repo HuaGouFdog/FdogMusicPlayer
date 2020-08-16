@@ -54,7 +54,6 @@ private:
     int isnull = 0;
 
     int sum = 0;
-    int sum_1 =0;
 
 
 public:
