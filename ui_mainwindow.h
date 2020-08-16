@@ -613,62 +613,79 @@ public:
         page->setObjectName(QStringLiteral("page"));
         frame = new QFrame(page);
         frame->setObjectName(QStringLiteral("frame"));
-        frame->setGeometry(QRect(0, 0, 921, 571));
+        frame->setGeometry(QRect(0, 0, 931, 571));
         frame->setStyleSheet(QLatin1String("#frame\n"
 "{\n"
-"border-image: url(:/lib/timg (6).jpg);\n"
+"border-image: url(:/lib/4.jpg);\n"
 "}"));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
         label_6 = new QLabel(frame);
         label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(270, 30, 361, 31));
-        label_6->setStyleSheet(QStringLiteral("font:18px;"));
+        label_6->setGeometry(QRect(260, 20, 361, 41));
+        QFont font3;
+        font3.setBold(false);
+        font3.setItalic(false);
+        font3.setWeight(50);
+        label_6->setFont(font3);
+        label_6->setStyleSheet(QLatin1String("font:22px;\n"
+"background-color: rgba(255, 255, 255, 00);"));
         label_6->setAlignment(Qt::AlignCenter);
         label_19 = new QLabel(frame);
         label_19->setObjectName(QStringLiteral("label_19"));
-        label_19->setGeometry(QRect(270, 80, 361, 31));
-        label_19->setStyleSheet(QStringLiteral("font:18px;"));
+        label_19->setGeometry(QRect(260, 70, 361, 41));
+        label_19->setStyleSheet(QLatin1String("background-color: rgba(255, 255, 255, 00);\n"
+"font:26px;"));
         label_19->setAlignment(Qt::AlignCenter);
         label_20 = new QLabel(frame);
         label_20->setObjectName(QStringLiteral("label_20"));
-        label_20->setGeometry(QRect(270, 130, 361, 31));
-        label_20->setStyleSheet(QStringLiteral("font:18px;"));
+        label_20->setGeometry(QRect(260, 120, 361, 41));
+        label_20->setStyleSheet(QLatin1String("\n"
+"background-color: rgba(255, 255, 255, 00);\n"
+"font:28px;"));
         label_20->setAlignment(Qt::AlignCenter);
         label_21 = new QLabel(frame);
         label_21->setObjectName(QStringLiteral("label_21"));
-        label_21->setGeometry(QRect(270, 180, 361, 31));
-        label_21->setStyleSheet(QStringLiteral("font:18px;"));
+        label_21->setGeometry(QRect(260, 180, 361, 41));
+        label_21->setStyleSheet(QLatin1String("font:32px;\n"
+"color: rgb(255, 85, 0);\n"
+"background-color: rgba(255, 255, 255, 00);"));
         label_21->setAlignment(Qt::AlignCenter);
         label_22 = new QLabel(frame);
         label_22->setObjectName(QStringLiteral("label_22"));
-        label_22->setGeometry(QRect(270, 230, 361, 31));
-        label_22->setStyleSheet(QStringLiteral("font:18px;"));
+        label_22->setGeometry(QRect(260, 240, 361, 41));
+        label_22->setStyleSheet(QLatin1String("font:30px;\n"
+"background-color: rgba(255, 255, 255, 00);"));
         label_22->setAlignment(Qt::AlignCenter);
         label_23 = new QLabel(frame);
         label_23->setObjectName(QStringLiteral("label_23"));
-        label_23->setGeometry(QRect(270, 270, 361, 31));
-        label_23->setStyleSheet(QStringLiteral("font:18px;"));
+        label_23->setGeometry(QRect(260, 300, 361, 41));
+        label_23->setStyleSheet(QLatin1String("font:28px;\n"
+"background-color: rgba(255, 255, 255, 00);"));
         label_23->setAlignment(Qt::AlignCenter);
         label_24 = new QLabel(frame);
         label_24->setObjectName(QStringLiteral("label_24"));
-        label_24->setGeometry(QRect(270, 320, 361, 31));
-        label_24->setStyleSheet(QStringLiteral("font:18px;"));
+        label_24->setGeometry(QRect(260, 360, 361, 41));
+        label_24->setStyleSheet(QLatin1String("font:26px;\n"
+"background-color: rgba(255, 255, 255, 00);"));
         label_24->setAlignment(Qt::AlignCenter);
         label_25 = new QLabel(frame);
         label_25->setObjectName(QStringLiteral("label_25"));
-        label_25->setGeometry(QRect(270, 370, 361, 31));
-        label_25->setStyleSheet(QStringLiteral("font:18px;"));
+        label_25->setGeometry(QRect(260, 410, 361, 41));
+        label_25->setStyleSheet(QLatin1String("font:24px;\n"
+"background-color: rgba(255, 255, 255, 00);"));
         label_25->setAlignment(Qt::AlignCenter);
         label_26 = new QLabel(frame);
         label_26->setObjectName(QStringLiteral("label_26"));
-        label_26->setGeometry(QRect(270, 420, 361, 31));
-        label_26->setStyleSheet(QStringLiteral("font:18px;"));
+        label_26->setGeometry(QRect(260, 460, 361, 41));
+        label_26->setStyleSheet(QLatin1String("font:22px;\n"
+"background-color: rgba(255, 255, 255, 00);"));
         label_26->setAlignment(Qt::AlignCenter);
         label_27 = new QLabel(frame);
         label_27->setObjectName(QStringLiteral("label_27"));
-        label_27->setGeometry(QRect(270, 470, 361, 31));
-        label_27->setStyleSheet(QStringLiteral("font:18px;"));
+        label_27->setGeometry(QRect(260, 510, 361, 41));
+        label_27->setStyleSheet(QLatin1String("font:20px;\n"
+"background-color: rgba(255, 255, 255, 00);"));
         label_27->setAlignment(Qt::AlignCenter);
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
@@ -720,10 +737,10 @@ public:
         tableWidget->setVerticalHeaderItem(14, __qtablewidgetitem19);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
         tableWidget->setGeometry(QRect(0, 0, 921, 581));
-        QFont font3;
-        font3.setBold(true);
-        font3.setWeight(75);
-        tableWidget->setFont(font3);
+        QFont font4;
+        font4.setBold(true);
+        font4.setWeight(75);
+        tableWidget->setFont(font4);
         tableWidget->setContextMenuPolicy(Qt::DefaultContextMenu);
         tableWidget->setStyleSheet(QString::fromUtf8("QTableWidget{\n"
 "background-color: rgb(116, 116, 116);\n"
@@ -781,13 +798,13 @@ public:
         listWidget = new QListWidget(page_4);
         listWidget->setObjectName(QStringLiteral("listWidget"));
         listWidget->setGeometry(QRect(40, 280, 581, 241));
-        QFont font4;
-        font4.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
-        font4.setPointSize(9);
-        font4.setBold(false);
-        font4.setItalic(false);
-        font4.setWeight(50);
-        listWidget->setFont(font4);
+        QFont font5;
+        font5.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
+        font5.setPointSize(9);
+        font5.setBold(false);
+        font5.setItalic(false);
+        font5.setWeight(50);
+        listWidget->setFont(font5);
         listWidget->setStyleSheet(QString::fromUtf8("font: 9pt \"\345\256\213\344\275\223\";"));
         listWidget->setFrameShape(QFrame::NoFrame);
         listWidget->setFrameShadow(QFrame::Plain);

@@ -51,6 +51,11 @@ private:
 
     QMap<int,QString> lrcMap;
 
+    int isnull = 0;
+
+    int sum = 0;
+    int sum_1 =0;
+
 
 public:
     explicit MainWindow(QWidget *parent = 0);

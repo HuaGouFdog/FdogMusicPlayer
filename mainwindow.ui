@@ -1185,14 +1185,14 @@ border-radius:4px;</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>921</width>
+        <width>931</width>
         <height>571</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">#frame
 {
-border-image: url(:/lib/timg (6).jpg);
+border-image: url(:/lib/4.jpg);
 }</string>
       </property>
       <property name="frameShape">
@@ -1204,14 +1204,23 @@ border-image: url(:/lib/timg (6).jpg);
       <widget class="QLabel" name="label_6">
        <property name="geometry">
         <rect>
-         <x>270</x>
-         <y>30</y>
+         <x>260</x>
+         <y>20</y>
          <width>361</width>
-         <height>31</height>
+         <height>41</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <weight>50</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font:18px;</string>
+        <string notr="true">font:22px;
+background-color: rgba(255, 255, 255, 00);</string>
        </property>
        <property name="text">
         <string/>
@@ -1223,14 +1232,15 @@ border-image: url(:/lib/timg (6).jpg);
       <widget class="QLabel" name="label_19">
        <property name="geometry">
         <rect>
-         <x>270</x>
-         <y>80</y>
+         <x>260</x>
+         <y>70</y>
          <width>361</width>
-         <height>31</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font:18px;</string>
+        <string notr="true">background-color: rgba(255, 255, 255, 00);
+font:26px;</string>
        </property>
        <property name="text">
         <string/>
@@ -1242,14 +1252,16 @@ border-image: url(:/lib/timg (6).jpg);
       <widget class="QLabel" name="label_20">
        <property name="geometry">
         <rect>
-         <x>270</x>
-         <y>130</y>
+         <x>260</x>
+         <y>120</y>
          <width>361</width>
-         <height>31</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font:18px;</string>
+        <string notr="true">
+background-color: rgba(255, 255, 255, 00);
+font:28px;</string>
        </property>
        <property name="text">
         <string/>
@@ -1261,14 +1273,16 @@ border-image: url(:/lib/timg (6).jpg);
       <widget class="QLabel" name="label_21">
        <property name="geometry">
         <rect>
-         <x>270</x>
+         <x>260</x>
          <y>180</y>
          <width>361</width>
-         <height>31</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font:18px;</string>
+        <string notr="true">font:32px;
+color: rgb(255, 85, 0);
+background-color: rgba(255, 255, 255, 00);</string>
        </property>
        <property name="text">
         <string/>
@@ -1280,14 +1294,15 @@ border-image: url(:/lib/timg (6).jpg);
       <widget class="QLabel" name="label_22">
        <property name="geometry">
         <rect>
-         <x>270</x>
-         <y>230</y>
+         <x>260</x>
+         <y>240</y>
          <width>361</width>
-         <height>31</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font:18px;</string>
+        <string notr="true">font:30px;
+background-color: rgba(255, 255, 255, 00);</string>
        </property>
        <property name="text">
         <string/>
@@ -1299,14 +1314,15 @@ border-image: url(:/lib/timg (6).jpg);
       <widget class="QLabel" name="label_23">
        <property name="geometry">
         <rect>
-         <x>270</x>
-         <y>270</y>
+         <x>260</x>
+         <y>300</y>
          <width>361</width>
-         <height>31</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font:18px;</string>
+        <string notr="true">font:28px;
+background-color: rgba(255, 255, 255, 00);</string>
        </property>
        <property name="text">
         <string/>
@@ -1318,14 +1334,15 @@ border-image: url(:/lib/timg (6).jpg);
       <widget class="QLabel" name="label_24">
        <property name="geometry">
         <rect>
-         <x>270</x>
-         <y>320</y>
+         <x>260</x>
+         <y>360</y>
          <width>361</width>
-         <height>31</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font:18px;</string>
+        <string notr="true">font:26px;
+background-color: rgba(255, 255, 255, 00);</string>
        </property>
        <property name="text">
         <string/>
@@ -1337,14 +1354,15 @@ border-image: url(:/lib/timg (6).jpg);
       <widget class="QLabel" name="label_25">
        <property name="geometry">
         <rect>
-         <x>270</x>
-         <y>370</y>
+         <x>260</x>
+         <y>410</y>
          <width>361</width>
-         <height>31</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font:18px;</string>
+        <string notr="true">font:24px;
+background-color: rgba(255, 255, 255, 00);</string>
        </property>
        <property name="text">
         <string/>
@@ -1356,14 +1374,15 @@ border-image: url(:/lib/timg (6).jpg);
       <widget class="QLabel" name="label_26">
        <property name="geometry">
         <rect>
-         <x>270</x>
-         <y>420</y>
+         <x>260</x>
+         <y>460</y>
          <width>361</width>
-         <height>31</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font:18px;</string>
+        <string notr="true">font:22px;
+background-color: rgba(255, 255, 255, 00);</string>
        </property>
        <property name="text">
         <string/>
@@ -1375,14 +1394,15 @@ border-image: url(:/lib/timg (6).jpg);
       <widget class="QLabel" name="label_27">
        <property name="geometry">
         <rect>
-         <x>270</x>
-         <y>470</y>
+         <x>260</x>
+         <y>510</y>
          <width>361</width>
-         <height>31</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font:18px;</string>
+        <string notr="true">font:20px;
+background-color: rgba(255, 255, 255, 00);</string>
        </property>
        <property name="text">
         <string/>

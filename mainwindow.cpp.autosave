@@ -295,8 +295,8 @@ void MainWindow::parseJsonSongInfo(QString json)
                                            int s_count = (s_1*60+s_2)*100+s_3;   //规定写法
                                            //QString str = s_1+s_2+s_3;
                                            int lrctime = s_count;
-                                           qDebug()<<"规定格式："<<lrctime;
-                                           qDebug()<<"字符串："<<ss1;
+                                           //qDebug()<<"规定格式："<<lrctime;
+                                           //qDebug()<<"字符串："<<ss1;
                                            QString lrcstr = ss1.mid(10);
                                            lrcMap.insert(lrctime,lrcstr);
                                            }
