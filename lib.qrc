@@ -47,5 +47,10 @@
         <file>lib/love2.png</file>
         <file>lib/xiazai2.png</file>
         <file>lib/sousuo2.png</file>
+        <file>lib/036428b265240e27035db396a284521a.gif</file>
+        <file>lib/zedian.png</file>
+        <file>lib/danquxunhuan.png</file>
+        <file>lib/danqu.png</file>
+        <file>lib/suiji.png</file>
     </qresource>
 </RCC>

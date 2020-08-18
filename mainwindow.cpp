@@ -14,9 +14,9 @@
 #include<QJsonArray>
 #include<QUrl>
 #include<QPixmap>
-#include<QSize>
 #include<QMapIterator>
 #include<QRegExp>
+#include"jsoninfo.h"
 #if _MSC_VER >= 1600
 #pragma execution_character_set("utf-8")
 #endif
@@ -25,97 +25,91 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->setWindowFlags(Qt::FramelessWindowHint);//去掉标题栏
+
     player = new QMediaPlayer(this);
     playlist = new QMediaPlaylist(this);
+    //播放模式 循环，单曲等等
     playlist->setPlaybackMode(QMediaPlaylist::Sequential);
     player->setPlaylist(playlist);
+    //设置positionChanged信号发送频率，毫秒级别
     player->setNotifyInterval(500);
-    connect(player,SIGNAL(stateChanged(QMediaPlayer::State)),
-            this,SLOT(onStateChanged(QMediaPlayer::State)));
-    connect(player,SIGNAL(positionChanged(qint64)),
-            this,SLOT(onPositionChanged(qint64)));
-    connect(player,SIGNAL(durationChanged(qint64)),
-            this,SLOT(onDurationChanged(qint64)));
-    connect(playlist,SIGNAL(currentIndexChanged(int)),
-            this,SLOT(onPlaylistChanged(int)));
+    connect(player,SIGNAL(positionChanged(qint64)),this,SLOT(onPositionChanged(qint64)));
+    connect(player,SIGNAL(durationChanged(qint64)),this,SLOT(onDurationChanged(qint64)));
+    connect(playlist,SIGNAL(currentIndexChanged(int)),this,SLOT(onPlaylistChanged(int)));
 
     network_manager = new QNetworkAccessManager();
     network_request = new QNetworkRequest();
-
     network_manager2 = new QNetworkAccessManager();
     network_request2 = new QNetworkRequest();
-
     network_manager3 = new QNetworkAccessManager();
     network_request3 = new QNetworkRequest();
-
     connect(network_manager, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished);
     connect(network_manager2, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished2);
     connect(network_manager3, &QNetworkAccessManager::finished,this, &MainWindow::replyFinished3);
 
-    //整行选中的方式
+    //去掉窗口标题栏
+    this->setWindowFlags(Qt::FramelessWindowHint);
+    //搜索表格整行选中的方式
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
-
-    //禁止编辑
+    //搜索表格禁止编辑
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //搜索表格每列宽度
     ui->tableWidget->setColumnWidth(0,240);
     ui->tableWidget->setColumnWidth(1,190);
     ui->tableWidget->setColumnWidth(2,210);
     ui->tableWidget->setColumnWidth(3,140);
-    //ui->tableWidget->setColumnWidth(4,100);
-    //去除选中虚线框
+    //ui->tableWidget->setColumnWidth(4,100);由于设置了自动填充，所以最后一列设置没有意义
+    //搜索表格去除选中虚线框
     ui->tableWidget->setFocusPolicy(Qt::NoFocus);
-    //不显示网格线
+    //搜索表格不显示网格线
     ui->tableWidget->setShowGrid(false);
-
-    m_b_array[0] = true; //默认打开软件是歌词页面
-
-    //隐藏页面
-
+    //加载动态图
+    m_movie = new QMovie(":/lib/036428b265240e27035db396a284521a.gif");
+    //设置动态图大小
+    m_si.setWidth(140);
+    m_si.setHeight(100);
+    m_movie->setScaledSize(m_si);
+    //标签加载动态图
+    ui->label_17->setMovie(m_movie);
+    //开始
+    m_movie->start();
 }
-
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
     {
-        m_bIsWindowMoveable = true;
         m_point = event->pos();
     }
 }
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
-    if (m_bIsWindowMoveable)
-    {
-        move(event->pos() - m_point + pos());
-    }
+    move(event->pos() - m_point + pos());
 }
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
-
-    m_bIsWindowMoveable = false;
 }
-
-void MainWindow::search(QString str)
+void MainWindow::search(QString str,int page = 1,int pagesize=30)
 {
    QString KGAPISTR1 = QString("http://mobilecdn.kugou.com/api/v3/search/song?format=json"
-                               "&keyword=%1&page=1&pagesize=18").arg(str);
+                               "&keyword=%1&page=%2&pagesize=%3").arg(str).arg(page).arg(pagesize);
     network_request->setUrl(QUrl(KGAPISTR1));
     network_manager->get(*network_request);
 }
 
-void MainWindow::parseJson(QString json)
+JsonInfo MainWindow::parseJson(QString json)
 {
-    QString songname_original; //歌曲名
-    QString singername;        //歌手
-    QString hashStr;           //hash
-    QString album_name;        //专辑
-    int duration;          //时间
+    JsonInfo JI;
+//    //QString songname_original; //歌曲名
+//    //QString singername;        //歌手
+//    QString hashStr;           //hash
+//    //QString album_name;        //专辑
+//    //int duration;          //时间
+//    JsonInfo JI;
     QByteArray byte_array;
     QJsonParseError json_error;
     QJsonDocument parse_doucment = QJsonDocument::fromJson(byte_array.append(json), &json_error);
@@ -137,73 +131,79 @@ void MainWindow::parseJson(QString json)
                         {
                             QJsonArray array = valueArray.toArray();
                             int size = array.size();
+                            ui->tableWidget->setRowCount(size);//设置列数
                             for (int i = 0; i < size; i++)
                             {
                                 QJsonValue value = array.at(i);
                                 if (value.isObject())
                                 {
                                     QJsonObject object = value.toObject();
-                                    if (object.contains("songname_original"))//歌曲名
-                                    {
-                                        QJsonValue AlbumID_value = object.take("songname_original");
-                                        if (AlbumID_value.isString())
-                                        {
-                                            songname_original = AlbumID_value.toString();
-                                        }
-                                    }
-                                    if (object.contains("singername"))//歌手
-                                    {
-                                        QJsonValue AlbumID_value = object.take("singername");
-                                        if (AlbumID_value.isString())
-                                        {
-                                            singername = AlbumID_value.toString();
-                                        }
-                                    }
-                                    if (object.contains("album_name"))//专辑
-                                    {
-                                        QJsonValue AlbumID_value = object.take("album_name");
-                                        if (AlbumID_value.isString())
-                                        {
-                                            album_name = AlbumID_value.toString();
-                                        }
-                                    }
-                                    if (object.contains("hash")) //hash
-                                    {
-                                        QJsonValue FileHash_value = object.take("hash");
-                                        if (FileHash_value.isString())
-                                        {
-                                            hashStr = FileHash_value.toString();
-                                            m_Vectorlist.append(FileHash_value.toString());
-                                        }
-                                    }
-                                    if (object.contains("album_id"))
-                                    {
-                                        QJsonValue FileHash_value = object.take("album_id");
-                                        if (FileHash_value.isString())
-                                        {
-                                            //hashStr = FileHash_value.toString();
-                                            m_ID.append(FileHash_value.toString());
-                                        }
-                                    }
+                                    JI.m_Songname_original.append(getcontains(object,"songname_original"));
+                                    JI.m_Singername.append(getcontains(object,"singername"));
+                                    JI.m_Album_name.append(getcontains(object,"album_name"));
+                                    JI.m_Hash.append(getcontains(object,"hash"));
+                                    JI.m_Album_id.append(getcontains(object,"album_id"));
+
+//                                    if (object.contains("songname_original"))//歌曲名
+//                                    {
+//                                        QJsonValue AlbumID_value = object.take("songname_original");
+//                                        if (AlbumID_value.isString())
+//                                        {
+//                                            songname_original = AlbumID_value.toString();
+//                                        }
+//                                    }
+//                                    if (object.contains("singername"))//歌手
+//                                    {
+//                                        QJsonValue AlbumID_value = object.take("singername");
+//                                        if (AlbumID_value.isString())
+//                                        {
+//                                            singername = AlbumID_value.toString();
+//                                        }
+//                                    }
+//                                    if (object.contains("album_name"))//专辑
+//                                    {
+//                                        QJsonValue AlbumID_value = object.take("album_name");
+//                                        if (AlbumID_value.isString())
+//                                        {
+//                                            album_name = AlbumID_value.toString();
+//                                        }
+//                                    }
+//                                    if (object.contains("hash")) //hash
+//                                    {
+//                                        QJsonValue FileHash_value = object.take("hash");
+//                                        if (FileHash_value.isString())
+//                                        {
+//                                            m_Vectorlist.append(FileHash_value.toString());
+//                                        }
+//                                    }
+//                                    if (object.contains("album_id"))
+//                                    {
+//                                        QJsonValue FileHash_value = object.take("album_id");
+//                                        if (FileHash_value.isString())
+//                                        {
+//                                            //hashStr = FileHash_value.toString();
+//                                            m_ID.append(FileHash_value.toString());
+//                                        }
+//                                    }
                                     if (object.contains("duration"))//时长
                                     {
                                        QJsonValue AlbumID_value = object.take("duration").toInt();
-                                       duration = AlbumID_value.toInt();
+                                       //duration = AlbumID_value.toInt();
+                                       JI.m_Duration.append(AlbumID_value.toInt());
                                     }
                                     //歌曲名+歌手+专辑+时间
-                                    QString str = songname_original+"  "+singername+"  "+album_name+"  "+QString::number(duration);
-                                    //qDebug() << str;
-                                    ui->tableWidget->setItem(i,0,new QTableWidgetItem(songname_original));
-                                    ui->tableWidget->item(i,0)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
-                                    ui->tableWidget->setItem(i,1,new QTableWidgetItem(singername));
-                                    ui->tableWidget->item(i,1)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
-                                    ui->tableWidget->setItem(i,2,new QTableWidgetItem(album_name));
-                                    ui->tableWidget->item(i,2)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
-                                    int min = duration/60;
-                                    int sesc = duration%60;
-                                    QString time = QString("%1:%2").arg(min).arg(sesc);
-                                    ui->tableWidget->setItem(i,4,new QTableWidgetItem(time));
-                                    ui->tableWidget->item(i,4)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+//                                    ui->tableWidget->setItem(i,0,new QTableWidgetItem(songname_original));
+//                                    ui->tableWidget->item(i,0)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+//                                    ui->tableWidget->setItem(i,1,new QTableWidgetItem(singername));
+//                                    ui->tableWidget->item(i,1)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+//                                    ui->tableWidget->setItem(i,2,new QTableWidgetItem(album_name));
+//                                    ui->tableWidget->item(i,2)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+//                                    int min = duration/60;
+//                                    int sesc = duration%60;
+//                                    QString time = QString("%1:%2").arg(min).arg(sesc);
+//                                    ui->tableWidget->setItem(i,4,new QTableWidgetItem(time));
+//                                    ui->tableWidget->item(i,4)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+
                                 }
                             }
                         }
@@ -216,6 +216,19 @@ void MainWindow::parseJson(QString json)
     {
         qDebug() << json_error.errorString();
     }
+    for(int i =0;i<JI.m_Songname_original.size();i++)
+    {
+        ui->tableWidget->setItem(i,0,new QTableWidgetItem(JI.m_Songname_original.at(i)));
+        ui->tableWidget->item(i,0)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+        ui->tableWidget->setItem(i,1,new QTableWidgetItem(JI.m_Singername.at(i)));
+        ui->tableWidget->item(i,1)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+        ui->tableWidget->setItem(i,2,new QTableWidgetItem(JI.m_Album_name.at(i)));
+        ui->tableWidget->item(i,2)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+        QString time = QString("%1:%2").arg(JI.m_Duration.at(i)/60).arg(JI.m_Duration.at(i)%60);
+        ui->tableWidget->setItem(i,4,new QTableWidgetItem(time));
+        ui->tableWidget->item(i,4)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+    }
+    return JI;
 }
 
 void MainWindow::parseJsonSongInfo(QString json)
@@ -304,7 +317,7 @@ void MainWindow::parseJsonSongInfo(QString json)
                                    }
                                    else
                                    {
-                                       //emit lrcAdd("没有歌词");
+                                       //没有歌词;
                                    }
                                }
                            }
@@ -337,7 +350,6 @@ void MainWindow::parseJsonSongInfo(QString json)
 
 void MainWindow::hideAll()
 {
-    ui->pushButton_8->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
     ui->pushButton_9->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
     ui->pushButton_10->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
     ui->pushButton_11->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
@@ -347,6 +359,25 @@ void MainWindow::hideAll()
     ui->pushButton_15->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
     ui->pushButton_16->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
 
+}
+
+void MainWindow::setPushButton(QPushButton *button, int index)
+{
+    hideAll();
+    ui->stackedWidget->setCurrentIndex(index);
+    button->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+}
+
+QString MainWindow::getcontains(QJsonObject Object, QString strInfo)
+{
+    if (Object.contains(strInfo))
+    {
+        QJsonValue value = Object.take(strInfo);
+        if (value.isString())
+        {
+            return value.toString();
+        }
+    }
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -368,15 +399,11 @@ void MainWindow::on_pushButton_clicked()
    }
    if(player->state()!=QMediaPlayer::PlayingState)
    {
-       playlist->setCurrentIndex(M_Value);
+       playlist->setCurrentIndex(m_Value);
    }
    player->play();
 }
 
-void MainWindow::onStateChanged(QMediaPlayer::State state)
-{
-
-}
 
 void MainWindow::onPlaylistChanged(int position)
 {
@@ -414,7 +441,6 @@ void MainWindow::onPositionChanged(qint64 position)
     //时间标签得法
     //(分*60+秒)*100+厘秒
     int pos = position/10;
-    //qDebug()<<"pos"<<pos<<endl;
     QMap<int, QString>::iterator iter = lrcMap.begin();
         while (iter != lrcMap.end())
         {
@@ -517,18 +543,18 @@ void MainWindow::on_horizontalSlider_sliderReleased()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    M_Amount = playlist->mediaCount();//总数
-    if(M_Value == M_Amount)
+    m_Amount = playlist->mediaCount();//总数
+    if(m_Value == m_Amount)
     {
-        M_Value =0;
-        playlist->setCurrentIndex(M_Value);
+        m_Value =0;
+        playlist->setCurrentIndex(m_Value);
         if(m_IsPause==true)
         {
             player->play();
         }
         return;
     }
-    playlist->setCurrentIndex(++M_Value);
+    playlist->setCurrentIndex(++m_Value);
     if(m_IsPause==true)
     {
         player->play();
@@ -537,18 +563,18 @@ void MainWindow::on_pushButton_3_clicked()
 
 void MainWindow::on_pushButton_1_clicked()
 {
-    M_Amount = playlist->mediaCount();
-    if(M_Value == 0)
+    m_Amount = playlist->mediaCount();
+    if(m_Value == 0)
     {
-        M_Value=M_Amount;
-        playlist->setCurrentIndex(M_Value);
+        m_Value=m_Amount;
+        playlist->setCurrentIndex(m_Value);
         if(m_IsPause==true)
         {
             player->play();
         }
         return;
     }
-    playlist->setCurrentIndex(--M_Value);
+    playlist->setCurrentIndex(--m_Value);
     if(m_IsPause==true)
     {
         player->play();
@@ -569,23 +595,51 @@ void MainWindow::on_pushButton_2_clicked()
     player->play();
 }
 
-void MainWindow::on_horizontalSlider_2_valueChanged(int value)
+void MainWindow::on_pushButton_4_clicked()
 {
-    player->setVolume(value);
+    if(m_IsMode == 0)//单曲
+    {
+        ui->pushButton_4->setStyleSheet("border-image: url(:/lib/danqu.png);");
+        m_IsMode++;
+        return;
+    }
+    if(m_IsMode == 1)//循环
+    {
+        ui->pushButton_4->setStyleSheet("border-image: url(:/lib/xunhuan.png);");
+        m_IsMode++;
+        return;
+    }
+    if(m_IsMode == 2)//单曲循环
+    {
+        ui->pushButton_4->setStyleSheet("border-image: url(:/lib/danquxunhuan.png);");
+        m_IsMode++;
+        return;
+    }
+    if(m_IsMode == 3)//随机
+    {
+        ui->pushButton_4->setStyleSheet("border-image: url(:/lib/suiji.png);");
+        m_IsMode =0;
+        return;
+    }
 }
 
 void MainWindow::on_pushButton_5_clicked()
 {
-    if(m_Volume ==true)
+    if(m_IsVolume ==true)
     {
-        m_Volume = false;
+        m_IsVolume = false;
         ui->pushButton_5->setStyleSheet("border-image: url(:/lib/shengyin.png);");
         player->setVolume(ui->horizontalSlider_2->value());
         return;
     }
-    m_Volume = true;
+    m_IsVolume = true;
     ui->pushButton_5->setStyleSheet("border-image: url(:/lib/jingyin.png);");
     player->setVolume(0);
+}
+
+void MainWindow::on_horizontalSlider_2_valueChanged(int value)
+{
+    player->setVolume(value);
 }
 
 void MainWindow::on_verticalSlider_valueChanged(int value)
@@ -603,7 +657,8 @@ void MainWindow::replyFinished(QNetworkReply *reply)
     {
         QByteArray bytes = reply->readAll();  //获取字节
         QString result(bytes);  //转化为字符串
-        parseJson(result);
+        JI = parseJson(result);
+        qDebug()<<JI.m_Songname_original.size();
     }
     else
     {
@@ -614,6 +669,8 @@ void MainWindow::replyFinished(QNetworkReply *reply)
 
 void MainWindow::replyFinished2(QNetworkReply *reply)
 {
+    //清空缓存
+    lrcMap.clear();
     //获取响应的信息，状态码为200表示正常
         QVariant status_code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
 
@@ -653,95 +710,81 @@ void MainWindow::replyFinished3(QNetworkReply *reply)
         }
 }
 
-void MainWindow::on_pushButton_6_clicked()
-{
-    search(ui->lineEdit_3->text());
-}
-
 void MainWindow::on_pushButton_7_clicked()
 {
-    search(ui->lineEdit_2->text());
     hideAll();
     ui->stackedWidget->setCurrentIndex(1);
-    ui->pushButton_8->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+    //放动画
+    ui->label_28->show();
+    ui->label_17->show();
+    //清空缓存
+    m_Vectorlist.clear();
+    m_ID.clear();
+    m_Jpg.clear();
+    search(ui->lineEdit_2->text());
+    ui->label_17->hide();
+    ui->label_28->hide();
 }
 
 void MainWindow::on_tableWidget_cellDoubleClicked(int row, int column)
 {
     //歌曲请求
     QString KGAPISTR1 =QString("http://www.kugou.com/yy/index.php?r=play/getdata"
-    "&hash=%1&album_id=%2&_=1497972864535").arg(m_Vectorlist.at(row)).arg(m_ID.at(row));
+    "&hash=%1&album_id=%2&_=1497972864535").arg(JI.m_Hash.at(row)).arg(JI.m_Album_id.at(row));
     network_request2->setUrl(QUrl(KGAPISTR1));
+    //不加头无法得到json，可能是为了防止机器爬取
     network_request2->setRawHeader("Cookie","kg_mid=2333");
     network_request2->setHeader(QNetworkRequest::CookieHeader, 2333);
     network_manager2->get(*network_request2);
 }
-
 void MainWindow::on_pushButton_17_clicked()
 {
     hideAll();
-    ui->stackedWidget->setCurrentIndex(0);
+    if(m_IsLyricsShow == false)
+    {
+        //获取当前页面的索引
+        m_StackedIndex = ui->stackedWidget->currentIndex();
+        ui->pushButton_17->setStyleSheet("border-radius:5px;border-image: url(:/lib/zhankai.png);background-color: rgba(225, 225, 225, 10);");
+        ui->stackedWidget->setCurrentIndex(0);
+        m_IsLyricsShow = true;
+    }
+    else
+    {
+        ui->stackedWidget->setCurrentIndex(m_StackedIndex);
+        ui->pushButton_17->setStyleSheet("border-radius:5px;border-image: url(:/lib/zedian.png);background-color: rgba(225, 225, 225, 10);");
+        m_IsLyricsShow = false;
+    }
 }
-
-void MainWindow::on_pushButton_8_clicked()
-{
-    hideAll();
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->pushButton_8->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
-}
-
 void MainWindow::on_pushButton_9_clicked()
 {
-    hideAll();
-    ui->stackedWidget->setCurrentIndex(2);
-    ui->pushButton_9->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+    setPushButton(ui->pushButton_9,2);
 }
-
 void MainWindow::on_pushButton_10_clicked()
 {
-    hideAll();
-   ui->stackedWidget->setCurrentIndex(3);
-   ui->pushButton_10->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+    setPushButton(ui->pushButton_10,3);
 }
-
 void MainWindow::on_pushButton_11_clicked()
 {
-    hideAll();
-    ui->stackedWidget->setCurrentIndex(4);
-    ui->pushButton_11->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+    setPushButton(ui->pushButton_11,4);
 }
-
 void MainWindow::on_pushButton_16_clicked()
 {
-    hideAll();
-    ui->stackedWidget->setCurrentIndex(5);
-    ui->pushButton_16->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+    setPushButton(ui->pushButton_16,5);
 }
-
 void MainWindow::on_pushButton_12_clicked()
 {
-    hideAll();
-    ui->stackedWidget->setCurrentIndex(6);
-    ui->pushButton_12->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+    setPushButton(ui->pushButton_12,6);
 }
-
 void MainWindow::on_pushButton_13_clicked()
 {
-    hideAll();
-    ui->stackedWidget->setCurrentIndex(7);
-    ui->pushButton_13->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+    setPushButton(ui->pushButton_13,7);
 }
-
 void MainWindow::on_pushButton_14_clicked()
 {
-    hideAll();
-    ui->stackedWidget->setCurrentIndex(8);
-    ui->pushButton_14->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+    setPushButton(ui->pushButton_14,8);
 }
-
 void MainWindow::on_pushButton_15_clicked()
 {
-    hideAll();
-    ui->stackedWidget->setCurrentIndex(9);
-    ui->pushButton_15->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+    setPushButton(ui->pushButton_15,9);
 }
+

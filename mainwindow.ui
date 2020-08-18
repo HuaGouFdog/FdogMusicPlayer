@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1109</width>
+    <width>1108</width>
     <height>699</height>
    </rect>
   </property>
@@ -298,7 +298,7 @@ background-color: rgba(245, 245, 245, 80);
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-image: url(:/lib/xunhuan.png);</string>
+      <string notr="true">border-image: url(:/lib/danqu.png);</string>
      </property>
      <property name="text">
       <string/>
@@ -312,6 +312,73 @@ background-color: rgba(245, 245, 245, 80);
        <width>100</width>
        <height>10</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSlider::groove:horizontal {
+    border: 1px solid #4A708B;
+    background: #C0C0C0;
+    height: 5px;
+    border-radius: 1px;
+    padding-left:-1px;
+    padding-right:-1px;
+}
+
+QSlider::sub-page:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0 #B1B1B1, stop:1 #c4c4c4);
+    background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+        stop: 0 #5DCCFF, stop: 1 #1874CD);
+    border: 1px solid #4A708B;
+    height: 10px;
+    border-radius: 2px;
+}
+
+QSlider::add-page:horizontal {
+    background: #575757;
+    border: 0px solid #777;
+    height: 10px;
+    border-radius: 2px;
+}
+
+QSlider::handle:horizontal
+{
+    background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0.6 #45ADED, stop:0.778409 rgba(255, 255, 255, 255));
+
+    width: 11px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal:hover {
+    background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.6 #2A8BDA,
+        stop:0.778409 rgba(255, 255, 255, 255));
+
+    width: 11px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+    border-radius: 5px;
+}
+
+QSlider::sub-page:horizontal:disabled {
+    background: #00009C;
+    border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+    background: #eee;
+    border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+    background: #eee;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}</string>
+     </property>
+     <property name="value">
+      <number>63</number>
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -414,8 +481,8 @@ background-color: rgba(245, 245, 245, 80);
      <rect>
       <x>310</x>
       <y>627</y>
-      <width>621</width>
-      <height>11</height>
+      <width>651</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -423,6 +490,70 @@ background-color: rgba(245, 245, 245, 80);
       <width>153</width>
       <height>0</height>
      </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSlider::groove:horizontal {
+    border: 1px solid #4A708B;
+    background: #C0C0C0;
+    height: 5px;
+    border-radius: 1px;
+    padding-left:-1px;
+    padding-right:-1px;
+}
+
+QSlider::sub-page:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0 #B1B1B1, stop:1 #c4c4c4);
+    background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+        stop: 0 #5DCCFF, stop: 1 #1874CD);
+    border: 1px solid #4A708B;
+    height: 10px;
+    border-radius: 2px;
+}
+
+QSlider::add-page:horizontal {
+    background: #575757;
+    border: 0px solid #777;
+    height: 10px;
+    border-radius: 2px;
+}
+
+QSlider::handle:horizontal
+{
+    background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,
+        stop:0.6 #45ADED, stop:0.778409 rgba(255, 255, 255, 255));
+
+    width: 11px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal:hover {
+    background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.6 #2A8BDA,
+        stop:0.778409 rgba(255, 255, 255, 255));
+
+    width: 11px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+    border-radius: 5px;
+}
+
+QSlider::sub-page:horizontal:disabled {
+    background: #00009C;
+    border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+    background: #eee;
+    border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+    background: #eee;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}</string>
     </property>
     <property name="singleStep">
      <number>0</number>
@@ -443,10 +574,10 @@ background-color: rgba(245, 245, 245, 80);
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>630</y>
+      <x>970</x>
+      <y>620</y>
       <width>91</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -500,10 +631,10 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>92</x>
-      <y>643</y>
-      <width>181</width>
-      <height>20</height>
+      <x>120</x>
+      <y>630</y>
+      <width>141</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -519,7 +650,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>932</x>
+      <x>990</x>
       <y>660</y>
       <width>25</width>
       <height>25</height>
@@ -535,7 +666,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>979</x>
+      <x>1037</x>
       <y>660</y>
       <width>25</width>
       <height>25</height>
@@ -564,7 +695,7 @@ color: rgb(255, 255, 255);</string>
      <string notr="true">border-radius:8px;
 border-width:2px;
 border-style:solid ;
-border-color:rgb(163, 163, 163);</string>
+border-color: rgba(102, 163, 255, 50);</string>
     </property>
     <property name="inputMask">
      <string/>
@@ -633,8 +764,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>670</y>
+      <x>128</x>
+      <y>668</y>
       <width>20</width>
       <height>18</height>
      </rect>
@@ -650,11 +781,66 @@ border-image: url(:/lib/love2.png);</string>
    <widget class="QSlider" name="verticalSlider">
     <property name="geometry">
      <rect>
-      <x>1022</x>
-      <y>630</y>
-      <width>10</width>
-      <height>61</height>
+      <x>1070</x>
+      <y>620</y>
+      <width>21</width>
+      <height>71</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSlider::groove:vertical {
+    border: 1px solid #4A708B;
+    background: #C0C0C0;
+    width: 5px;
+    border-radius: 1px;
+    padding-left:-1px;
+    padding-right:-1px;
+    padding-top:-1px;
+    padding-bottom:-1px;
+}
+
+QSlider::sub-page:vertical {
+    background: #575757;
+    border: 1px solid #4A708B;
+    border-radius: 2px;
+}
+
+QSlider::add-page:vertical {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0 #c4c4c4, stop:1 #B1B1B1);
+    background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+        stop: 0 #5DCCFF, stop: 1 #1874CD);
+    border: 0px solid #777;
+    width: 10px;
+    border-radius: 2px;
+}
+
+QSlider::handle:vertical
+{
+    background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.6 #45ADED,
+      stop:0.778409 rgba(255, 255, 255, 255));
+
+    height: 11px;
+    margin-left: -3px;
+    margin-right: -3px;
+    border-radius: 5px;
+}
+
+QSlider::sub-page:vertical:disabled {
+    background: #00009C;
+    border-color: #999;
+}
+
+QSlider::add-page:vertical:disabled {
+    background: #eee;
+    border-color: #999;
+}
+
+QSlider::handle:vertical:disabled {
+    background: #eee;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}</string>
     </property>
     <property name="minimum">
      <number>1</number>
@@ -688,7 +874,7 @@ color: rgb(234, 234, 234);</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>240</y>
+      <y>200</y>
       <width>81</width>
       <height>21</height>
      </rect>
@@ -709,7 +895,7 @@ color: rgb(234, 234, 234);</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>440</y>
+      <y>400</y>
       <width>81</width>
       <height>21</height>
      </rect>
@@ -731,57 +917,11 @@ color: rgb(234, 234, 234);</string>
      <string>其他</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_8">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>110</y>
-      <width>151</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#pushButton_8
-{
-text-align:left;
-color: rgb(255, 255, 255);
-border-radius:5px;
-}
-#pushButton_8::hover:pressed
-{
-border-width:1px;
-border-style:solid ;
-border-color: rgba(232, 232, 232, 10);
-background-color: rgba(232, 232, 232, 100);
-}</string>
-    </property>
-    <property name="text">
-     <string>搜索</string>
-    </property>
-    <property name="icon">
-     <iconset resource="lib.qrc">
-      <normaloff>:/lib/sousuo.png</normaloff>:/lib/sousuo.png</iconset>
-    </property>
-    <property name="autoRepeatDelay">
-     <number>300</number>
-    </property>
-    <property name="autoRepeatInterval">
-     <number>100</number>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_9">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>150</y>
+      <y>110</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -819,7 +959,7 @@ background-color: rgba(232, 232, 232, 100);
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>190</y>
+      <y>150</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -857,7 +997,7 @@ background-color: rgba(232, 232, 232, 100);
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>270</y>
+      <y>230</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -895,7 +1035,7 @@ background-color: rgba(232, 232, 232, 100);
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>350</y>
+      <y>310</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -933,7 +1073,7 @@ background-color: rgba(232, 232, 232, 100);
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>390</y>
+      <y>350</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -977,7 +1117,7 @@ background-color: rgba(232, 232, 232, 100);
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>470</y>
+      <y>430</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -1015,7 +1155,7 @@ background-color: rgba(232, 232, 232, 100);
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>510</y>
+      <y>470</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -1053,7 +1193,7 @@ background-color: rgba(232, 232, 232, 100);
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>550</y>
+      <y>510</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -1091,7 +1231,7 @@ background-color: rgba(232, 232, 232, 100);
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>310</y>
+      <y>270</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -1134,8 +1274,8 @@ background-color: rgba(232, 232, 232, 100);
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>36</x>
-      <y>644</y>
+      <x>67</x>
+      <y>635</y>
       <width>45</width>
       <height>45</height>
      </rect>
@@ -1151,8 +1291,8 @@ border-radius:4px;</string>
    <widget class="QLabel" name="label_15">
     <property name="geometry">
      <rect>
-      <x>134</x>
-      <y>670</y>
+      <x>162</x>
+      <y>668</y>
       <width>20</width>
       <height>18</height>
      </rect>
@@ -1177,7 +1317,7 @@ border-radius:4px;</string>
      <string notr="true">background-color: rgba(255, 255, 255, 200);</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QFrame" name="frame">
@@ -1185,7 +1325,7 @@ border-radius:4px;</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>931</width>
+        <width>921</width>
         <height>571</height>
        </rect>
       </property>
@@ -1204,9 +1344,9 @@ border-image: url(:/lib/4.jpg);
       <widget class="QLabel" name="label_6">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>170</x>
          <y>20</y>
-         <width>361</width>
+         <width>551</width>
          <height>41</height>
         </rect>
        </property>
@@ -1232,9 +1372,9 @@ background-color: rgba(255, 255, 255, 00);</string>
       <widget class="QLabel" name="label_19">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>170</x>
          <y>70</y>
-         <width>361</width>
+         <width>551</width>
          <height>41</height>
         </rect>
        </property>
@@ -1252,9 +1392,9 @@ font:26px;</string>
       <widget class="QLabel" name="label_20">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>170</x>
          <y>120</y>
-         <width>361</width>
+         <width>551</width>
          <height>41</height>
         </rect>
        </property>
@@ -1273,9 +1413,9 @@ font:28px;</string>
       <widget class="QLabel" name="label_21">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>170</x>
          <y>180</y>
-         <width>361</width>
+         <width>551</width>
          <height>41</height>
         </rect>
        </property>
@@ -1294,9 +1434,9 @@ background-color: rgba(255, 255, 255, 00);</string>
       <widget class="QLabel" name="label_22">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>170</x>
          <y>240</y>
-         <width>361</width>
+         <width>551</width>
          <height>41</height>
         </rect>
        </property>
@@ -1314,9 +1454,9 @@ background-color: rgba(255, 255, 255, 00);</string>
       <widget class="QLabel" name="label_23">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>170</x>
          <y>300</y>
-         <width>361</width>
+         <width>551</width>
          <height>41</height>
         </rect>
        </property>
@@ -1334,9 +1474,9 @@ background-color: rgba(255, 255, 255, 00);</string>
       <widget class="QLabel" name="label_24">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>170</x>
          <y>360</y>
-         <width>361</width>
+         <width>551</width>
          <height>41</height>
         </rect>
        </property>
@@ -1354,9 +1494,9 @@ background-color: rgba(255, 255, 255, 00);</string>
       <widget class="QLabel" name="label_25">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>170</x>
          <y>410</y>
-         <width>361</width>
+         <width>551</width>
          <height>41</height>
         </rect>
        </property>
@@ -1374,9 +1514,9 @@ background-color: rgba(255, 255, 255, 00);</string>
       <widget class="QLabel" name="label_26">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>170</x>
          <y>460</y>
-         <width>361</width>
+         <width>551</width>
          <height>41</height>
         </rect>
        </property>
@@ -1394,9 +1534,9 @@ background-color: rgba(255, 255, 255, 00);</string>
       <widget class="QLabel" name="label_27">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>170</x>
          <y>510</y>
-         <width>361</width>
+         <width>551</width>
          <height>41</height>
         </rect>
        </property>
@@ -1418,9 +1558,9 @@ background-color: rgba(255, 255, 255, 00);</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>25</y>
         <width>921</width>
-        <height>581</height>
+        <height>542</height>
        </rect>
       </property>
       <property name="font">
@@ -1437,7 +1577,7 @@ background-color: rgba(255, 255, 255, 00);</string>
 background-color: rgb(116, 116, 116);
 background:rgba(255, 255, 255, 255);
 border:1px solid rgb(53, 86, 195);
-
+color: rgb(103, 103, 103);
 }
 
 /*底面*/
@@ -1469,22 +1609,25 @@ border-left-width:0;
        <number>1</number>
       </property>
       <property name="rowCount">
-       <number>18</number>
+       <number>0</number>
       </property>
       <attribute name="horizontalHeaderVisible">
        <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>true</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
        <number>109</number>
       </attribute>
       <attribute name="horizontalHeaderHighlightSections">
-       <bool>false</bool>
+       <bool>true</bool>
       </attribute>
       <attribute name="horizontalHeaderMinimumSectionSize">
        <number>25</number>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-       <bool>false</bool>
+       <bool>true</bool>
       </attribute>
       <attribute name="horizontalHeaderStretchLastSection">
        <bool>true</bool>
@@ -1492,84 +1635,6 @@ border-left-width:0;
       <attribute name="verticalHeaderVisible">
        <bool>false</bool>
       </attribute>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>新建行</string>
-       </property>
-      </row>
-      <row/>
-      <row/>
-      <row/>
       <column>
        <property name="text">
         <string>歌曲</string>
@@ -1596,17 +1661,52 @@ border-left-width:0;
        </property>
       </column>
      </widget>
-     <widget class="QPushButton" name="pushButton_18">
+     <widget class="QLabel" name="label_29">
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>500</y>
-        <width>75</width>
-        <height>23</height>
+        <x>0</x>
+        <y>0</y>
+        <width>922</width>
+        <height>25</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(85, 170, 255);</string>
+      </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>                  歌曲                                歌手                             专辑                         操作                    时长</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_28">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>30</y>
+        <width>921</width>
+        <height>531</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_17">
+      <property name="geometry">
+       <rect>
+        <x>376</x>
+        <y>210</y>
+        <width>140</width>
+        <height>100</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>
@@ -1619,6 +1719,32 @@ border-left-width:0;
         <width>411</width>
         <height>281</height>
        </rect>
+      </property>
+      <property name="text">
+       <string>歌单</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_3">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>40</y>
+        <width>231</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_6">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>50</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
       </property>
      </widget>
     </widget>
@@ -1697,7 +1823,7 @@ border-left-width:0;
         <x>680</x>
         <y>240</y>
         <width>131</width>
-        <height>36</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1737,29 +1863,6 @@ border: 1px solid #999999;</string>
     <widget class="QWidget" name="page_9"/>
     <widget class="QWidget" name="page_10"/>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
-    <property name="geometry">
-     <rect>
-      <x>1110</x>
-      <y>50</y>
-      <width>81</width>
-      <height>41</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_6">
-    <property name="geometry">
-     <rect>
-      <x>1110</x>
-      <y>100</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_16">
     <property name="geometry">
      <rect>
@@ -1779,8 +1882,8 @@ border: 1px solid #999999;</string>
    <widget class="QPushButton" name="pushButton_17">
     <property name="geometry">
      <rect>
-      <x>37</x>
-      <y>643</y>
+      <x>68</x>
+      <y>635</y>
       <width>45</width>
       <height>45</height>
      </rect>
@@ -1794,8 +1897,8 @@ border-radius:5px;
 
 #pushButton_17::hover
 {
-border-image: url(:/lib/zhankai.png);
-	background-color: rgba(225, 225, 225, 30);
+border-image: url(:/lib/zedian.png);
+background-color: rgba(225, 225, 225, 10);
 }</string>
     </property>
     <property name="text">
@@ -1821,7 +1924,6 @@ border-image: url(:/lib/zhankai.png);
    <zorder>label_12</zorder>
    <zorder>label_13</zorder>
    <zorder>label_14</zorder>
-   <zorder>pushButton_8</zorder>
    <zorder>pushButton_9</zorder>
    <zorder>pushButton_10</zorder>
    <zorder>pushButton_11</zorder>
@@ -1834,8 +1936,6 @@ border-image: url(:/lib/zhankai.png);
    <zorder>label_10</zorder>
    <zorder>label_15</zorder>
    <zorder>stackedWidget</zorder>
-   <zorder>lineEdit_3</zorder>
-   <zorder>pushButton_6</zorder>
    <zorder>pushButton_17</zorder>
   </widget>
  </widget>

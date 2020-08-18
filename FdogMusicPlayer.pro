@@ -28,7 +28,8 @@ SOURCES += \
         mainwindow.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    jsoninfo.h
 
 FORMS += \
         mainwindow.ui

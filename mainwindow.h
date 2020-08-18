@@ -7,6 +7,11 @@
 #include<QNetworkReply>
 #include<QVector>
 #include<QMap>
+#include<QMovie>
+#include<QSize>
+#include<QPushButton>
+#include<QJsonObject>
+#include"jsoninfo.h"
 namespace Ui {
 class MainWindow;
 }
@@ -15,46 +20,45 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 private:
-    QMediaPlayer * player;
-    QMediaPlaylist * playlist;
-    QString durationTime;
-    QString positionTime;
+    QMediaPlayer * player;      //播放器
+    QMediaPlaylist * playlist;  //播放列表
+    QString durationTime;       //当前文件播放进度
+    QString positionTime;       //文件播放总进度
 
-    QNetworkAccessManager * network_manager;
-    QNetworkRequest * network_request;
-    QNetworkAccessManager * network_manager2;
-    QNetworkRequest * network_request2;
-    QNetworkAccessManager * network_manager3;
+    /*****************************************************************
+     * QNetworkAccessManager类用于协调网络操作，在QNetworkRequest类发起一个*
+     * 网络请求后，QNetworkAccessManager类负责发送网络，创建网络相应。       *
+     *                                                               *
+     * QNetworkRequest类通过一个URL地址发起网络协议请求，也保存网络请求的信息，*
+     * 目前支持HTTP，FTP，和局部文件URLs的下载或上传。                      *
+    *****************************************************************/
+
+    QNetworkRequest * network_request;      //用于歌曲搜索
+    QNetworkRequest * network_request2;     //用于歌曲播放
     QNetworkRequest * network_request3;
+    QNetworkAccessManager * network_manager;
+    QNetworkAccessManager * network_manager2;
+    QNetworkAccessManager * network_manager3;
 
-    bool m_bIsWindowMoveable = false;
-    bool m_IsPause = true;
-    bool m_Volume = false;
-    QPoint m_point;
-    int M_Amount=0;   //总数
-    int M_Value=0;  //当前
-    QVector<QString> m_Vectorlist;
-    QVector<QString> m_ID;
-    QVector<QString> m_Jpg;
-    //用于判断哪个功能被选中 ，默认显示歌词
-    //    0 歌词显示
-    //    1 搜索
-    //    2 歌单
-    //    3 排行榜
-    //    4 试听列表
-    //    5 历史播放
-    //    6 我的收藏
-    //    7 本地音乐
-    //    8 下载管理
-    //    9 设置
-    bool m_b_array[10]={false};
-
-    QMap<int,QString> lrcMap;
-
-    int isnull = 0;
-
-    int sum = 0;
-
+    QPoint m_point;                     //鼠标坐标
+    QMovie * m_movie;                   //添加动态图
+    QSize m_si;                         //动态图压缩大小
+    QVector<QString> songname_original; //歌曲名
+    QVector<QString> singername;        //歌手
+    QVector<QString> album_name;        //专辑
+    QVector<int> duration;              //时间
+    QVector<QString> m_Vectorlist;      //保存hash
+    QVector<QString> m_ID;              //保存album_id
+    QVector<QString> m_Jpg;             //保存img
+    QMap<int,QString> lrcMap;           //保存歌词
+    JsonInfo JI;
+    int m_Amount=0;                     //文件总索引
+    int m_Value=0;                      //当前索引
+    int m_StackedIndex =0;              //获取当前页面索引
+    bool m_IsPause = true;              //判断播放器状态
+    bool m_IsVolume = false;            //判断音量状态
+    bool m_IsLyricsShow = false;        //判断歌词显示状态
+    int m_IsMode=0;                     //判断播放模式0单曲1循环2单曲循环3随机播放
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -63,64 +67,44 @@ public:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
-
-    void search(QString str);
-    void parseJson(QString json);
+    void search(QString str,int page,int pagesize);
+    JsonInfo parseJson(QString json);
     void parseJsonSongInfo(QString json);
-
     void hideAll();
+    void setPushButton(QPushButton * button,int index);
+    QString getcontains(QJsonObject Object,QString strInfo);
+
 private slots:
-    void on_pushButton_clicked();
-    void onStateChanged(QMediaPlayer::State state);
+    void on_pushButton_1_clicked();     //上一曲
+    void on_pushButton_2_clicked();     //播放
+    void on_pushButton_3_clicked();     //下一曲
+    void on_pushButton_4_clicked();     //播放模式
+    void on_pushButton_5_clicked();     //音量
+    void on_pushButton_clicked();       //添加本地音乐
+    void on_pushButton_17_clicked();    //展开歌词
+    void on_pushButton_9_clicked();     //歌单
+    void on_pushButton_10_clicked();    //排行榜
+    void on_pushButton_11_clicked();    //试听列表
+    void on_pushButton_16_clicked();    //历史播放
+    void on_pushButton_12_clicked();    //我的收藏
+    void on_pushButton_13_clicked();    //本地音乐
+    void on_pushButton_14_clicked();    //下载管理
+    void on_pushButton_15_clicked();    //设置
+    void on_pushButton_7_clicked();     //搜索
+
+    void replyFinished(QNetworkReply *reply);
+    void replyFinished2(QNetworkReply *reply);
+    void replyFinished3(QNetworkReply *reply);
+
     void onPlaylistChanged(int position);
     void onDurationChanged(qint64 duration);
     void onPositionChanged(qint64 position);
-    void on_horizontalSlider_sliderReleased();
 
-    void on_pushButton_3_clicked();
+    void on_horizontalSlider_sliderReleased();              //播放进度
+    void on_horizontalSlider_2_valueChanged(int value);     //声音
+    void on_verticalSlider_valueChanged(int value);         //速度
 
-    void on_pushButton_1_clicked();
-
-    void on_pushButton_2_clicked();
-
-    void on_horizontalSlider_2_valueChanged(int value);
-
-    void on_pushButton_5_clicked();
-
-    void on_verticalSlider_valueChanged(int value);
-
-    void replyFinished(QNetworkReply *reply);
-
-    void replyFinished2(QNetworkReply *reply);
-
-    void replyFinished3(QNetworkReply *reply);
-
-    void on_pushButton_6_clicked();
-
-    void on_pushButton_7_clicked();
-
-    void on_tableWidget_cellDoubleClicked(int row, int column);
-
-
-    void on_pushButton_8_clicked();
-
-    void on_pushButton_17_clicked();
-
-    void on_pushButton_9_clicked();
-
-    void on_pushButton_10_clicked();
-
-    void on_pushButton_11_clicked();
-
-    void on_pushButton_16_clicked();
-
-    void on_pushButton_12_clicked();
-
-    void on_pushButton_13_clicked();
-
-    void on_pushButton_14_clicked();
-
-    void on_pushButton_15_clicked();
+    void on_tableWidget_cellDoubleClicked(int row, int column);//双击搜索列表歌曲
 
 private:
     Ui::MainWindow *ui;
