@@ -8,6 +8,9 @@ public:
     QVector<QString> m_Album_name;        //专辑
     QVector<int> m_Duration;              //时间
     QVector<QString> m_Hash;              //hash
-    QVector<QString> m_Album_id;                //album_id
+    QVector<QString> m_Album_id;          //album_id
+
+
+
 };
 #endif // JSONINFO_H

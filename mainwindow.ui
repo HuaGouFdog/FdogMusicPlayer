@@ -14,7 +14,7 @@
    <string>旭听音乐</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="lib.qrc">
+   <iconset>
     <normaloff>:/lib/yinyue.png</normaloff>:/lib/yinyue.png</iconset>
   </property>
   <property name="styleSheet">
@@ -378,7 +378,7 @@ QSlider::handle:horizontal:disabled {
 }</string>
      </property>
      <property name="value">
-      <number>63</number>
+      <number>50</number>
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -466,7 +466,7 @@ QSlider::handle:horizontal:disabled {
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-image: url(:/lib/1zantingtingzhi.png);</string>
+      <string notr="true">border-image: url(:/lib/1bofang.png);</string>
      </property>
      <property name="text">
       <string/>
@@ -666,7 +666,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>1037</x>
+      <x>1020</x>
       <y>660</y>
       <width>25</width>
       <height>25</height>
@@ -781,9 +781,9 @@ border-image: url(:/lib/love2.png);</string>
    <widget class="QSlider" name="verticalSlider">
     <property name="geometry">
      <rect>
-      <x>1070</x>
+      <x>1055</x>
       <y>620</y>
-      <width>21</width>
+      <width>16</width>
       <height>71</height>
      </rect>
     </property>
@@ -951,7 +951,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>歌单</string>
     </property>
     <property name="icon">
-     <iconset resource="lib.qrc">
+     <iconset>
       <normaloff>:/lib/gedan_1.png</normaloff>:/lib/gedan_1.png</iconset>
     </property>
    </widget>
@@ -989,7 +989,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>排行榜</string>
     </property>
     <property name="icon">
-     <iconset resource="lib.qrc">
+     <iconset>
       <normaloff>:/lib/paihangbang.png</normaloff>:/lib/paihangbang.png</iconset>
     </property>
    </widget>
@@ -1027,7 +1027,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>试听列表</string>
     </property>
     <property name="icon">
-     <iconset resource="lib.qrc">
+     <iconset>
       <normaloff>:/lib/gedan.png</normaloff>:/lib/gedan.png</iconset>
     </property>
    </widget>
@@ -1065,7 +1065,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>我的收藏</string>
     </property>
     <property name="icon">
-     <iconset resource="lib.qrc">
+     <iconset>
       <normaloff>:/lib/love.png</normaloff>:/lib/love.png</iconset>
     </property>
    </widget>
@@ -1103,7 +1103,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>本地音乐</string>
     </property>
     <property name="icon">
-     <iconset resource="lib.qrc">
+     <iconset>
       <normaloff>:/lib/bendi.png</normaloff>:/lib/bendi.png</iconset>
     </property>
     <property name="iconSize">
@@ -1147,7 +1147,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>下载管理</string>
     </property>
     <property name="icon">
-     <iconset resource="lib.qrc">
+     <iconset>
       <normaloff>:/lib/xiazai.png</normaloff>:/lib/xiazai.png</iconset>
     </property>
    </widget>
@@ -1185,7 +1185,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>设置</string>
     </property>
     <property name="icon">
-     <iconset resource="lib.qrc">
+     <iconset>
       <normaloff>:/lib/shezhi.png</normaloff>:/lib/shezhi.png</iconset>
     </property>
    </widget>
@@ -1223,7 +1223,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>添加音频</string>
     </property>
     <property name="icon">
-     <iconset resource="lib.qrc">
+     <iconset>
       <normaloff>:/lib/add.png</normaloff>:/lib/add.png</iconset>
     </property>
    </widget>
@@ -1261,7 +1261,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>历史播放</string>
     </property>
     <property name="icon">
-     <iconset resource="lib.qrc">
+     <iconset>
       <normaloff>:/lib/lishijilu.png</normaloff>:/lib/lishijilu.png</iconset>
     </property>
     <property name="iconSize">
@@ -1755,8 +1755,11 @@ border-left-width:0;
         <x>70</x>
         <y>50</y>
         <width>781</width>
-        <height>171</height>
+        <height>61</height>
        </rect>
+      </property>
+      <property name="text">
+       <string>排行榜</string>
       </property>
      </widget>
      <widget class="QListWidget" name="listWidget">
@@ -1842,10 +1845,10 @@ border: 1px solid #999999;</string>
      <widget class="QPlainTextEdit" name="plainTextEdit">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>240</y>
-        <width>151</width>
-        <height>20</height>
+        <x>60</x>
+        <y>129</y>
+        <width>571</width>
+        <height>131</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1857,7 +1860,37 @@ border: 1px solid #999999;</string>
      </widget>
     </widget>
     <widget class="QWidget" name="page_5"/>
-    <widget class="QWidget" name="page_6"/>
+    <widget class="QWidget" name="page_6">
+     <widget class="QTableWidget" name="tableWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>921</width>
+        <height>551</height>
+       </rect>
+      </property>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+     </widget>
+     <widget class="QLabel" name="label_30">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>922</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(85, 170, 255);</string>
+      </property>
+      <property name="text">
+       <string>                歌曲                              歌手                           专辑                       操作               时长           播放次数</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="page_7"/>
     <widget class="QWidget" name="page_8"/>
     <widget class="QWidget" name="page_9"/>
@@ -1905,6 +1938,22 @@ background-color: rgba(225, 225, 225, 10);
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_8">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>660</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/lib/jijianmoshi.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>label_3</zorder>
    <zorder>label_16</zorder>
    <zorder>frame_4</zorder>
@@ -1937,12 +1986,11 @@ background-color: rgba(225, 225, 225, 10);
    <zorder>label_15</zorder>
    <zorder>stackedWidget</zorder>
    <zorder>pushButton_17</zorder>
+   <zorder>pushButton_8</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="lib.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>toolButton_4</sender>

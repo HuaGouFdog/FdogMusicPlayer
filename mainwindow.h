@@ -12,6 +12,7 @@
 #include<QPushButton>
 #include<QJsonObject>
 #include"jsoninfo.h"
+#include"lenon.h"
 namespace Ui {
 class MainWindow;
 }
@@ -59,7 +60,8 @@ private:
     bool m_IsVolume = false;            //判断音量状态
     bool m_IsLyricsShow = false;        //判断歌词显示状态
     int m_IsMode=0;                     //判断播放模式0单曲1循环2单曲循环3随机播放
-
+    Lenon J;                            //极简
+    int IsExecute = 1;
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -105,6 +107,7 @@ private slots:
     void on_verticalSlider_valueChanged(int value);         //速度
 
     void on_tableWidget_cellDoubleClicked(int row, int column);//双击搜索列表歌曲
+
 
 private:
     Ui::MainWindow *ui;

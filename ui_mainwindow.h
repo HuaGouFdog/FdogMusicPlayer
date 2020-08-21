@@ -109,12 +109,15 @@ public:
     QPlainTextEdit *plainTextEdit;
     QWidget *page_5;
     QWidget *page_6;
+    QTableWidget *tableWidget_2;
+    QLabel *label_30;
     QWidget *page_7;
     QWidget *page_8;
     QWidget *page_9;
     QWidget *page_10;
     QLabel *label_16;
     QPushButton *pushButton_17;
+    QPushButton *pushButton_8;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -319,7 +322,7 @@ public:
 "    border: 1px solid #aaa;\n"
 "    border-radius: 4px;\n"
 "}"));
-        horizontalSlider_2->setValue(63);
+        horizontalSlider_2->setValue(50);
         horizontalSlider_2->setOrientation(Qt::Horizontal);
         pushButton_5 = new QPushButton(frame_2);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
@@ -340,7 +343,7 @@ public:
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
         pushButton_2->setGeometry(QRect(210, 6, 50, 50));
         pushButton_2->setMinimumSize(QSize(50, 50));
-        pushButton_2->setStyleSheet(QStringLiteral("border-image: url(:/lib/1zantingtingzhi.png);"));
+        pushButton_2->setStyleSheet(QStringLiteral("border-image: url(:/lib/1bofang.png);"));
         horizontalSlider = new QSlider(centralWidget);
         horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
         horizontalSlider->setEnabled(true);
@@ -442,7 +445,7 @@ public:
         label_5->setStyleSheet(QStringLiteral("border-image: url(:/lib/ci.png);"));
         label_7 = new QLabel(centralWidget);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(1037, 660, 25, 25));
+        label_7->setGeometry(QRect(1020, 660, 25, 25));
         label_7->setStyleSheet(QLatin1String("font: 75 12pt \"Adobe Gothic Std B\";\n"
 "border-image: url(:/lib/su.png);\n"
 "\n"
@@ -477,7 +480,7 @@ public:
 "border-image: url(:/lib/love2.png);"));
         verticalSlider = new QSlider(centralWidget);
         verticalSlider->setObjectName(QStringLiteral("verticalSlider"));
-        verticalSlider->setGeometry(QRect(1070, 620, 21, 71));
+        verticalSlider->setGeometry(QRect(1055, 620, 16, 71));
         verticalSlider->setStyleSheet(QLatin1String("QSlider::groove:vertical {\n"
 "    border: 1px solid #4A708B;\n"
 "    background: #C0C0C0;\n"
@@ -937,7 +940,7 @@ public:
         page_4->setObjectName(QStringLiteral("page_4"));
         lineEdit_4 = new QLineEdit(page_4);
         lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
-        lineEdit_4->setGeometry(QRect(70, 50, 781, 171));
+        lineEdit_4->setGeometry(QRect(70, 50, 781, 61));
         listWidget = new QListWidget(page_4);
         listWidget->setObjectName(QStringLiteral("listWidget"));
         listWidget->setGeometry(QRect(40, 280, 581, 241));
@@ -971,7 +974,7 @@ public:
         lineEdit->setAlignment(Qt::AlignCenter);
         plainTextEdit = new QPlainTextEdit(page_4);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
-        plainTextEdit->setGeometry(QRect(480, 240, 151, 20));
+        plainTextEdit->setGeometry(QRect(60, 129, 571, 131));
         plainTextEdit->setStyleSheet(QStringLiteral("background-color: rgba(255, 255, 255, 0);"));
         stackedWidget->addWidget(page_4);
         page_5 = new QWidget();
@@ -979,6 +982,14 @@ public:
         stackedWidget->addWidget(page_5);
         page_6 = new QWidget();
         page_6->setObjectName(QStringLiteral("page_6"));
+        tableWidget_2 = new QTableWidget(page_6);
+        tableWidget_2->setObjectName(QStringLiteral("tableWidget_2"));
+        tableWidget_2->setGeometry(QRect(0, 20, 921, 551));
+        tableWidget_2->horizontalHeader()->setStretchLastSection(true);
+        label_30 = new QLabel(page_6);
+        label_30->setObjectName(QStringLiteral("label_30"));
+        label_30->setGeometry(QRect(0, 0, 922, 25));
+        label_30->setStyleSheet(QStringLiteral("background-color: rgb(85, 170, 255);"));
         stackedWidget->addWidget(page_6);
         page_7 = new QWidget();
         page_7->setObjectName(QStringLiteral("page_7"));
@@ -1010,6 +1021,10 @@ public:
 "border-image: url(:/lib/zedian.png);\n"
 "background-color: rgba(225, 225, 225, 10);\n"
 "}"));
+        pushButton_8 = new QPushButton(centralWidget);
+        pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
+        pushButton_8->setGeometry(QRect(960, 660, 25, 25));
+        pushButton_8->setStyleSheet(QStringLiteral("border-image: url(:/lib/jijianmoshi.png);"));
         MainWindow->setCentralWidget(centralWidget);
         label_3->raise();
         label_16->raise();
@@ -1043,6 +1058,7 @@ public:
         label_15->raise();
         stackedWidget->raise();
         pushButton_17->raise();
+        pushButton_8->raise();
 
         retranslateUi(MainWindow);
         QObject::connect(toolButton_4, SIGNAL(clicked()), MainWindow, SLOT(close()));
@@ -1120,10 +1136,13 @@ public:
         label_17->setText(QString());
         lineEdit_5->setText(QApplication::translate("MainWindow", "\346\255\214\345\215\225", nullptr));
         pushButton_6->setText(QApplication::translate("MainWindow", "PushButton", nullptr));
+        lineEdit_4->setText(QApplication::translate("MainWindow", "\346\216\222\350\241\214\346\246\234", nullptr));
         lineEdit->setText(QApplication::translate("MainWindow", "2506897252", nullptr));
         plainTextEdit->setPlainText(QString());
+        label_30->setText(QApplication::translate("MainWindow", "                \346\255\214\346\233\262                              \346\255\214\346\211\213                           \344\270\223\350\276\221                       \346\223\215\344\275\234               \346\227\266\351\225\277           \346\222\255\346\224\276\346\254\241\346\225\260", nullptr));
         label_16->setText(QString());
         pushButton_17->setText(QString());
+        pushButton_8->setText(QString());
     } // retranslateUi
 
 };

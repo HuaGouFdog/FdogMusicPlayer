@@ -52,5 +52,20 @@
         <file>lib/danquxunhuan.png</file>
         <file>lib/danqu.png</file>
         <file>lib/suiji.png</file>
+        <file>lib/jijianmoshi.png</file>
+        <file>lib2/67.JPG</file>
+        <file>lib2/63.JPG</file>
+        <file>lib2/870.JPG</file>
+        <file>lib2/bofangzanting.png</file>
+        <file>lib2/shangyiqu.png</file>
+        <file>lib2/xiayiqu.png</file>
+        <file>lib2/zhanting.png</file>
+        <file>lib2/jijianmoshi.png</file>
+        <file>lib2/danqu.png</file>
+        <file>lib2/danquxunhuan.png</file>
+        <file>lib2/jingyin.png</file>
+        <file>lib2/shengyin.png</file>
+        <file>lib2/suiji.png</file>
+        <file>lib2/ci.png</file>
     </qresource>
 </RCC>
