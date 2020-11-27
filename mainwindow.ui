@@ -14,7 +14,7 @@
    <string>旭听音乐</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="lib.qrc">
     <normaloff>:/lib/yinyue.png</normaloff>:/lib/yinyue.png</iconset>
   </property>
   <property name="styleSheet">
@@ -723,6 +723,9 @@ border-color: rgba(102, 163, 255, 50);</string>
     <property name="text">
      <string/>
     </property>
+    <property name="shortcut">
+     <string>Return</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
@@ -951,7 +954,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>歌单</string>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="lib.qrc">
       <normaloff>:/lib/gedan_1.png</normaloff>:/lib/gedan_1.png</iconset>
     </property>
    </widget>
@@ -989,7 +992,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>排行榜</string>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="lib.qrc">
       <normaloff>:/lib/paihangbang.png</normaloff>:/lib/paihangbang.png</iconset>
     </property>
    </widget>
@@ -1027,7 +1030,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>试听列表</string>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="lib.qrc">
       <normaloff>:/lib/gedan.png</normaloff>:/lib/gedan.png</iconset>
     </property>
    </widget>
@@ -1065,7 +1068,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>我的收藏</string>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="lib.qrc">
       <normaloff>:/lib/love.png</normaloff>:/lib/love.png</iconset>
     </property>
    </widget>
@@ -1103,7 +1106,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>本地音乐</string>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="lib.qrc">
       <normaloff>:/lib/bendi.png</normaloff>:/lib/bendi.png</iconset>
     </property>
     <property name="iconSize">
@@ -1147,7 +1150,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>下载管理</string>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="lib.qrc">
       <normaloff>:/lib/xiazai.png</normaloff>:/lib/xiazai.png</iconset>
     </property>
    </widget>
@@ -1185,7 +1188,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>设置</string>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="lib.qrc">
       <normaloff>:/lib/shezhi.png</normaloff>:/lib/shezhi.png</iconset>
     </property>
    </widget>
@@ -1223,7 +1226,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>添加音频</string>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="lib.qrc">
       <normaloff>:/lib/add.png</normaloff>:/lib/add.png</iconset>
     </property>
    </widget>
@@ -1261,7 +1264,7 @@ background-color: rgba(232, 232, 232, 100);
      <string>历史播放</string>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="lib.qrc">
       <normaloff>:/lib/lishijilu.png</normaloff>:/lib/lishijilu.png</iconset>
     </property>
     <property name="iconSize">
@@ -1317,7 +1320,7 @@ border-radius:4px;</string>
      <string notr="true">background-color: rgba(255, 255, 255, 200);</string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QFrame" name="frame">
@@ -1440,6 +1443,14 @@ background-color: rgba(255, 255, 255, 00);</string>
          <height>41</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <weight>50</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
        <property name="styleSheet">
         <string notr="true">font:30px;
 background-color: rgba(255, 255, 255, 00);</string>
@@ -1454,8 +1465,8 @@ background-color: rgba(255, 255, 255, 00);</string>
       <widget class="QLabel" name="label_23">
        <property name="geometry">
         <rect>
-         <x>170</x>
-         <y>300</y>
+         <x>160</x>
+         <y>310</y>
          <width>551</width>
          <height>41</height>
         </rect>
@@ -1747,14 +1758,27 @@ border-left-width:0;
        <string>PushButton</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label_36">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>30</y>
+        <width>54</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="page_4">
      <widget class="QLineEdit" name="lineEdit_4">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>50</y>
-        <width>781</width>
+        <x>360</x>
+        <y>170</y>
+        <width>161</width>
         <height>61</height>
        </rect>
       </property>
@@ -1765,10 +1789,10 @@ border-left-width:0;
      <widget class="QListWidget" name="listWidget">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>280</y>
-        <width>581</width>
-        <height>241</height>
+        <x>70</x>
+        <y>110</y>
+        <width>241</width>
+        <height>361</height>
        </rect>
       </property>
       <property name="font">
@@ -1823,8 +1847,8 @@ border-left-width:0;
      <widget class="QLineEdit" name="lineEdit">
       <property name="geometry">
        <rect>
-        <x>680</x>
-        <y>240</y>
+        <x>390</x>
+        <y>270</y>
         <width>131</width>
         <height>41</height>
        </rect>
@@ -1845,10 +1869,10 @@ border: 1px solid #999999;</string>
      <widget class="QPlainTextEdit" name="plainTextEdit">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>129</y>
-        <width>571</width>
-        <height>131</height>
+        <x>560</x>
+        <y>110</y>
+        <width>261</width>
+        <height>361</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1858,8 +1882,76 @@ border: 1px solid #999999;</string>
        <string/>
       </property>
      </widget>
+     <widget class="QLabel" name="label_37">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>30</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>新歌榜</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_38">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>30</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>排行榜</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_39">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>80</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>分类</string>
+      </property>
+     </widget>
     </widget>
-    <widget class="QWidget" name="page_5"/>
+    <widget class="QWidget" name="page_5">
+     <widget class="QLabel" name="label_18">
+      <property name="geometry">
+       <rect>
+        <x>333</x>
+        <y>181</y>
+        <width>181</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>试听列表</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="page_6">
      <widget class="QTableWidget" name="tableWidget_2">
       <property name="geometry">
@@ -1891,10 +1983,66 @@ border: 1px solid #999999;</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_7"/>
-    <widget class="QWidget" name="page_8"/>
-    <widget class="QWidget" name="page_9"/>
-    <widget class="QWidget" name="page_10"/>
+    <widget class="QWidget" name="page_7">
+     <widget class="QLabel" name="label_32">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>280</y>
+        <width>54</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>我的收藏</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_8">
+     <widget class="QLabel" name="label_33">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>300</y>
+        <width>54</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>本地音乐</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_9">
+     <widget class="QLabel" name="label_34">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>290</y>
+        <width>54</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>下载管理</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_10">
+     <widget class="QLabel" name="label_35">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>290</y>
+        <width>54</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>设置</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <widget class="QLabel" name="label_16">
     <property name="geometry">
@@ -1990,7 +2138,9 @@ background-color: rgba(225, 225, 225, 10);
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="lib.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>toolButton_4</sender>
@@ -1999,8 +2149,8 @@ background-color: rgba(225, 225, 225, 10);
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>392</x>
-     <y>13</y>
+     <x>1080</x>
+     <y>23</y>
     </hint>
     <hint type="destinationlabel">
      <x>206</x>
@@ -2031,8 +2181,8 @@ background-color: rgba(225, 225, 225, 10);
    <slot>showMaximized()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1039</x>
-     <y>25</y>
+     <x>1059</x>
+     <y>34</y>
     </hint>
     <hint type="destinationlabel">
      <x>549</x>

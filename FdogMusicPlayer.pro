@@ -45,3 +45,5 @@ QT += multimedia
 QT += network
 
 DISTFILES +=
+
+QT +=sql

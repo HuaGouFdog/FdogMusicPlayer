@@ -16,6 +16,10 @@
 #include<QPixmap>
 #include<QMapIterator>
 #include<QRegExp>
+#include <qdebug.h>
+#include <QSqlDatabase>
+#include <QSqlError>
+#include <QSqlQuery>
 #include"jsoninfo.h"
 #include"lenon.h"
 #if _MSC_VER >= 1600
@@ -25,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
 
     player = new QMediaPlayer(this);
@@ -106,10 +111,10 @@ void MainWindow::search(QString str,int page = 1,int pagesize=30)
 {
    QString KGAPISTR1 = QString("http://mobilecdn.kugou.com/api/v3/search/song?format=json"
                                "&keyword=%1&page=%2&pagesize=%3").arg(str).arg(page).arg(pagesize);
-    qDebug()<<"老三1先出来";
+    //qDebug()<<"老三1先出来";
     network_request->setUrl(QUrl(KGAPISTR1));
     network_manager->get(*network_request);
-    qDebug()<<"老三2先出来";
+    //qDebug()<<"老三2先出来";
 }
 
 JsonInfo MainWindow::parseJson(QString json)
@@ -143,6 +148,7 @@ JsonInfo MainWindow::parseJson(QString json)
                                 if (value.isObject())
                                 {
                                     QJsonObject object = value.toObject();
+                                    //收集数据
                                     JI.m_Songname_original.append(getcontains(object,"songname_original"));
                                     JI.m_Singername.append(getcontains(object,"singername"));
                                     JI.m_Album_name.append(getcontains(object,"album_name"));
@@ -167,24 +173,29 @@ JsonInfo MainWindow::parseJson(QString json)
     }
     for(int i =0;i<JI.m_Songname_original.size();i++)
     {
+            //歌曲
             ui->tableWidget->setItem(i,0,new QTableWidgetItem(JI.m_Songname_original.at(i)));
             ui->tableWidget->item(i,0)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+            //歌手
             ui->tableWidget->setItem(i,1,new QTableWidgetItem(JI.m_Singername.at(i)));
             ui->tableWidget->item(i,1)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+            //专辑
             ui->tableWidget->setItem(i,2,new QTableWidgetItem(JI.m_Album_name.at(i)));
             ui->tableWidget->item(i,2)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+            //时长
             QString time = QString("%1:%2").arg(JI.m_Duration.at(i)/60).arg(JI.m_Duration.at(i)%60);
             ui->tableWidget->setItem(i,4,new QTableWidgetItem(time));
             ui->tableWidget->item(i,4)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
     }
     ui->label_17->hide();
     ui->label_28->hide();
-    qDebug()<<"老大先出来";
+    //qDebug()<<"老大先出来";
     return JI;
 }
 
 void MainWindow::parseJsonSongInfo(QString json)
 {
+    //qDebug()<<json;
     QByteArray byte_array;
     QJsonParseError json_error;
     QJsonDocument parse_doucment = QJsonDocument::fromJson(byte_array.append(json), &json_error);
@@ -208,10 +219,14 @@ void MainWindow::parseJsonSongInfo(QString json)
                        ui->pushButton_2->setStyleSheet("border-image: url(:/lib/1zantingtingzhi.png);");
                        player->play();
                        //歌名显示
-                       QString name = getcontains(valuedataObject,"audio_name");
-                       ui->label_2->setText(name);
+                       QString albumid = getcontains(valuedataObject,"album_id");
+                       QString songname = getcontains(valuedataObject,"song_name");
+                       QString authorname = getcontains(valuedataObject,"author_name");
+                       QString albumname = getcontains(valuedataObject,"album_name");
+                       QString time = getcontains(valuedataObject,"timelength");
+                       ui->label_2->setText(songname);
                        //QFileInfo fileInfo(name);
-                       ui->listWidget->addItem(name);
+                       ui->listWidget->addItem(songname);
                        //歌词获取
                        QString lrc = getcontains(valuedataObject,"lyrics");
                        QStringList lrclist = lrc.split("\n");
@@ -234,6 +249,59 @@ void MainWindow::parseJsonSongInfo(QString json)
                        //图片显示
                        network_request3->setUrl(QUrl(getcontains(valuedataObject,"img")));
                        network_manager3->get(*network_request3);
+                       //将播放记录添加到历史记录
+                       //如果无，则创建数据库，如果有，则追加。
+                       //建立并打开数据库
+                       QSqlDatabase database;
+                       database = QSqlDatabase::addDatabase("QSQLITE");
+                       database.setDatabaseName("MusicDataBase.db");
+                       if (!database.open())
+                       {
+                           qDebug() << "创建失败" << database.lastError();
+                       }
+                       else
+                       {
+                           qDebug() << "创建成功" ;
+                       }
+                       //创建表格
+                       QSqlQuery sql_query;
+                       if(!sql_query.exec("create table music(album_id int primary key, songname text, authorname text, albumname text,time int, playnumber int)"))
+                       {
+                           qDebug() << "表格成功创建"<< sql_query.lastError();
+                       }
+                       else
+                       {
+                           qDebug() << "表格创建失败";
+                       }
+                       QString strdb = QString("INSERT INTO music VALUES(\"%1\", \"%2\", \"%3\", \"%4\", \"%5\", \"%6\")").arg(albumid,songname,authorname,albumname,time,"0");
+                       if(!sql_query.exec(strdb))
+                       {
+                           qDebug() << sql_query.lastError();
+                       }
+                       else
+                       {
+                           qDebug() << "inserted Wang!";
+                       }
+
+                       sql_query.exec("select * from music");
+                       if(!sql_query.exec())
+                       {
+                           qDebug()<<sql_query.lastError();
+                       }
+                       else
+                       {
+                           while(sql_query.next())
+                           {
+                               QString albumid =sql_query.value(0).toString();
+                               QString songname = sql_query.value(1).toString();
+                               QString singname = sql_query.value(2).toString();
+                               QString albumname = sql_query.value(3).toString();
+                               QString time = sql_query.value(4).toString();
+                               qDebug()<<QString("album_id:%1    song_name:%2    sing_name:%3    album_name:%4   time:%5   playnumber:%6").arg(albumid,songname,authorname,albumname,time,"2");
+                           }
+                       }
+                       //关闭数据库
+                       database.close();
                    }
                else
                    {
@@ -543,7 +611,7 @@ void MainWindow::on_verticalSlider_valueChanged(int value)
 
 void MainWindow::replyFinished(QNetworkReply *reply)
 {
-    qDebug()<<"老二1先出来";
+    //qDebug()<<"老二1先出来";
     //获取响应的信息，状态码为200表示正常
     QVariant status_code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
 
@@ -557,7 +625,7 @@ void MainWindow::replyFinished(QNetworkReply *reply)
     {
         qDebug()<<"搜索信息处理错误";
     }
-    qDebug()<<"老二2先出来";
+    //qDebug()<<"老二2先出来";
     IsExecute = 0;
 }
 
@@ -619,7 +687,7 @@ void MainWindow::on_pushButton_7_clicked()
     //得到数据，然后再进行操作
     search(ui->lineEdit_2->text());
     //列表显示在这里进行
-    qDebug()<<"老四先出来";
+    //qDebug()<<"老四先出来";
 }
 
 void MainWindow::on_tableWidget_cellDoubleClicked(int row, int column)
@@ -628,6 +696,7 @@ void MainWindow::on_tableWidget_cellDoubleClicked(int row, int column)
     QString KGAPISTR1 =QString("http://www.kugou.com/yy/index.php?r=play/getdata"
     "&hash=%1&album_id=%2&_=1497972864535").arg(JI.m_Hash.at(row)).arg(JI.m_Album_id.at(row));
     network_request2->setUrl(QUrl(KGAPISTR1));
+    qDebug()<<KGAPISTR1;
     //不加头无法得到json，可能是为了防止机器爬取
     network_request2->setRawHeader("Cookie","kg_mid=2333");
     network_request2->setHeader(QNetworkRequest::CookieHeader, 2333);

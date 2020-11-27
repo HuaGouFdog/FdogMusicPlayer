@@ -240,6 +240,7 @@ Makefile: FdogMusicPlayer.pro ..\..\QT\5.10.0\msvc2015_64\mkspecs\win32-msvc\qma
 		..\..\QT\5.10.0\msvc2015_64\lib\Qt5Multimedia.prl \
 		..\..\QT\5.10.0\msvc2015_64\lib\Qt5Gui.prl \
 		..\..\QT\5.10.0\msvc2015_64\lib\Qt5Network.prl \
+		..\..\QT\5.10.0\msvc2015_64\lib\Qt5Sql.prl \
 		..\..\QT\5.10.0\msvc2015_64\lib\Qt5Core.prl
 	$(QMAKE) -o Makefile FdogMusicPlayer.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
 ..\..\QT\5.10.0\msvc2015_64\mkspecs\features\spec_pre.prf:
@@ -407,6 +408,7 @@ FdogMusicPlayer.pro:
 ..\..\QT\5.10.0\msvc2015_64\lib\Qt5Multimedia.prl:
 ..\..\QT\5.10.0\msvc2015_64\lib\Qt5Gui.prl:
 ..\..\QT\5.10.0\msvc2015_64\lib\Qt5Network.prl:
+..\..\QT\5.10.0\msvc2015_64\lib\Qt5Sql.prl:
 ..\..\QT\5.10.0\msvc2015_64\lib\Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile FdogMusicPlayer.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
