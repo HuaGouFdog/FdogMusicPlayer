@@ -1962,9 +1962,53 @@ border: 1px solid #999999;</string>
         <height>551</height>
        </rect>
       </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+       <bool>true</bool>
+      </attribute>
       <attribute name="horizontalHeaderStretchLastSection">
        <bool>true</bool>
       </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <row>
+       <property name="text">
+        <string>新建行</string>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>歌曲</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>歌手</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>专辑</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>操作</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>时长</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>播放次数</string>
+       </property>
+      </column>
      </widget>
      <widget class="QLabel" name="label_30">
       <property name="geometry">

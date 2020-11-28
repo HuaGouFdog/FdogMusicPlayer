@@ -962,7 +962,14 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\qjsonarray.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtGui\QPixmap \
 		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QMapIterator \
-		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QRegExp
+		..\..\QT\5.10.0\msvc2015_64\include\QtCore\QRegExp \
+		..\..\QT\5.10.0\msvc2015_64\include\QtSql\QSqlDatabase \
+		..\..\QT\5.10.0\msvc2015_64\include\QtSql\qsqldatabase.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtSql\qtsqlglobal.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtSql\QSqlError \
+		..\..\QT\5.10.0\msvc2015_64\include\QtSql\qsqlerror.h \
+		..\..\QT\5.10.0\msvc2015_64\include\QtSql\QSqlQuery \
+		..\..\QT\5.10.0\msvc2015_64\include\QtSql\qsqlquery.h
 
 release\lenon.obj: lenon.cpp lenon.h \
 		..\..\QT\5.10.0\msvc2015_64\include\QtWidgets\QWidget \

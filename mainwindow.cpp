@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
-
+    createDate();
     player = new QMediaPlayer(this);
     playlist = new QMediaPlaylist(this);
     //播放模式 循环，单曲等等
@@ -59,8 +59,10 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setWindowFlags(Qt::FramelessWindowHint);
     //搜索表格整行选中的方式
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_2->setSelectionBehavior(QAbstractItemView::SelectRows);
     //搜索表格禁止编辑
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
     //搜索表格每列宽度
     ui->tableWidget->setColumnWidth(0,240);
     ui->tableWidget->setColumnWidth(1,190);
@@ -70,9 +72,10 @@ MainWindow::MainWindow(QWidget *parent) :
     //ui->tableWidget->setColumnWidth(4,100);由于设置了自动填充，所以最后一列设置没有意义
     //搜索表格去除选中虚线框
     ui->tableWidget->setFocusPolicy(Qt::NoFocus);
+    ui->tableWidget_2->setFocusPolicy(Qt::NoFocus);
     //搜索表格不显示网格线
     ui->tableWidget->setShowGrid(false);
-
+    ui->tableWidget_2->setShowGrid(false);
     ui->tableWidget_2->setColumnWidth(0,240);
     ui->tableWidget_2->setColumnWidth(1,190);
     ui->tableWidget_2->setColumnWidth(2,210);
@@ -176,6 +179,7 @@ JsonInfo MainWindow::parseJson(QString json)
             //歌曲
             ui->tableWidget->setItem(i,0,new QTableWidgetItem(JI.m_Songname_original.at(i)));
             ui->tableWidget->item(i,0)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+            //qDebug()<<JI.m_Songname_original.at(i);
             //歌手
             ui->tableWidget->setItem(i,1,new QTableWidgetItem(JI.m_Singername.at(i)));
             ui->tableWidget->item(i,1)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
@@ -250,37 +254,16 @@ void MainWindow::parseJsonSongInfo(QString json)
                        network_request3->setUrl(QUrl(getcontains(valuedataObject,"img")));
                        network_manager3->get(*network_request3);
                        //将播放记录添加到历史记录
-                       //如果无，则创建数据库，如果有，则追加。
-                       //建立并打开数据库
-                       QSqlDatabase database;
-                       database = QSqlDatabase::addDatabase("QSQLITE");
-                       database.setDatabaseName("MusicDataBase.db");
-                       if (!database.open())
-                       {
-                           qDebug() << "创建失败" << database.lastError();
-                       }
-                       else
-                       {
-                           qDebug() << "创建成功" ;
-                       }
-                       //创建表格
+                       //如果无，则创建数据库，如果有，则追加
                        QSqlQuery sql_query;
-                       if(!sql_query.exec("create table music(album_id int primary key, songname text, authorname text, albumname text,time int, playnumber int)"))
-                       {
-                           qDebug() << "表格成功创建"<< sql_query.lastError();
-                       }
-                       else
-                       {
-                           qDebug() << "表格创建失败";
-                       }
                        QString strdb = QString("INSERT INTO music VALUES(\"%1\", \"%2\", \"%3\", \"%4\", \"%5\", \"%6\")").arg(albumid,songname,authorname,albumname,time,"0");
                        if(!sql_query.exec(strdb))
                        {
-                           qDebug() << sql_query.lastError();
+                           //qDebug() << sql_query.lastError();
                        }
                        else
                        {
-                           qDebug() << "inserted Wang!";
+                           //qDebug() << "inserted Wang!";
                        }
 
                        sql_query.exec("select * from music");
@@ -290,18 +273,35 @@ void MainWindow::parseJsonSongInfo(QString json)
                        }
                        else
                        {
+                           int i = 0;
                            while(sql_query.next())
                            {
                                QString albumid =sql_query.value(0).toString();
                                QString songname = sql_query.value(1).toString();
-                               QString singname = sql_query.value(2).toString();
+                               QString authorname = sql_query.value(2).toString();
                                QString albumname = sql_query.value(3).toString();
                                QString time = sql_query.value(4).toString();
-                               qDebug()<<QString("album_id:%1    song_name:%2    sing_name:%3    album_name:%4   time:%5   playnumber:%6").arg(albumid,songname,authorname,albumname,time,"2");
+                               //歌曲
+                               ui->tableWidget_2->setRowCount(20);
+                               ui->tableWidget_2->setItem(i,0,new QTableWidgetItem(songname));
+                               //qDebug()<<songname;
+                               ui->tableWidget_2->item(i,0)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+                               //歌手
+                               ui->tableWidget_2->setItem(i,1,new QTableWidgetItem(authorname));
+                               ui->tableWidget_2->item(i,1)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+                               //专辑
+                               ui->tableWidget_2->setItem(i,2,new QTableWidgetItem(albumname));
+                               ui->tableWidget_2->item(i,2)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+                               //时长
+                               //QString time = QString("%1:%2").arg(time/60).arg(time%60);
+                               ui->tableWidget_2->setItem(i,4,new QTableWidgetItem(time));
+                               ui->tableWidget_2->item(i,4)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+                               qDebug()<<QString("album_id:%1    song_name:%2    sing_name:%3    album_name:%4  ").arg(albumid,songname,authorname,albumname);
+                               i++;
                            }
                        }
                        //关闭数据库
-                       database.close();
+                       //database.close();
                    }
                else
                    {
@@ -696,11 +696,49 @@ void MainWindow::on_tableWidget_cellDoubleClicked(int row, int column)
     QString KGAPISTR1 =QString("http://www.kugou.com/yy/index.php?r=play/getdata"
     "&hash=%1&album_id=%2&_=1497972864535").arg(JI.m_Hash.at(row)).arg(JI.m_Album_id.at(row));
     network_request2->setUrl(QUrl(KGAPISTR1));
-    qDebug()<<KGAPISTR1;
+    //qDebug()<<KGAPISTR1;
     //不加头无法得到json，可能是为了防止机器爬取
     network_request2->setRawHeader("Cookie","kg_mid=2333");
     network_request2->setHeader(QNetworkRequest::CookieHeader, 2333);
     network_manager2->get(*network_request2);
+}
+
+void MainWindow::on_tableWidget_2_cellDoubleClicked(int row, int column)
+{
+    //歌曲请求
+    QString KGAPISTR1 =QString("http://www.kugou.com/yy/index.php?r=play/getdata"
+    "&hash=%1&album_id=%2&_=1497972864535").arg(JI.m_Hash.at(row)).arg(JI.m_Album_id.at(row));
+    network_request2->setUrl(QUrl(KGAPISTR1));
+    //qDebug()<<KGAPISTR1;
+    //不加头无法得到json，可能是为了防止机器爬取
+    network_request2->setRawHeader("Cookie","kg_mid=2333");
+    network_request2->setHeader(QNetworkRequest::CookieHeader, 2333);
+    network_manager2->get(*network_request2);
+}
+
+void MainWindow::createDate()
+{
+    QSqlDatabase database;
+    database = QSqlDatabase::addDatabase("QSQLITE");
+    database.setDatabaseName("MusicDataBase.db");
+    if (!database.open())
+    {
+        qDebug() << "创建失败" << database.lastError();
+    }
+    else
+    {
+        qDebug() << "创建成功" ;
+    }
+    //创建表格
+    QSqlQuery sql_query;
+    if(!sql_query.exec("create table music(album_id int primary key, songname text, authorname text, albumname text,time int, playnumber int)"))
+    {
+        qDebug() << "表格成功创建"<< sql_query.lastError();
+    }
+    else
+    {
+        qDebug() << "表格创建失败";
+    }
 }
 void MainWindow::on_pushButton_17_clicked()
 {
@@ -734,6 +772,10 @@ void MainWindow::on_pushButton_11_clicked()
 }
 void MainWindow::on_pushButton_16_clicked()
 {
+    //历史记录
+    //创建表格
+    //读取数据库
+    //显示
     setPushButton(ui->pushButton_16,5);
 }
 void MainWindow::on_pushButton_12_clicked()
@@ -752,3 +794,4 @@ void MainWindow::on_pushButton_15_clicked()
 {
     setPushButton(ui->pushButton_15,9);
 }
+
