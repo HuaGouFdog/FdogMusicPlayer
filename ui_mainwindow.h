@@ -267,7 +267,7 @@ public:
         pushButton_4->setStyleSheet(QStringLiteral("border-image: url(:/lib/danqu.png);"));
         horizontalSlider_2 = new QSlider(frame_2);
         horizontalSlider_2->setObjectName(QStringLiteral("horizontalSlider_2"));
-        horizontalSlider_2->setGeometry(QRect(400, 23, 100, 10));
+        horizontalSlider_2->setGeometry(QRect(400, 23, 100, 12));
         horizontalSlider_2->setStyleSheet(QLatin1String("QSlider::groove:horizontal {\n"
 "    border: 1px solid #4A708B;\n"
 "    background: #C0C0C0;\n"
@@ -1107,7 +1107,7 @@ public:
         QObject::connect(toolButton_2, SIGNAL(clicked()), MainWindow, SLOT(showMinimized()));
         QObject::connect(toolButton_3, SIGNAL(clicked()), MainWindow, SLOT(showMaximized()));
 
-        stackedWidget->setCurrentIndex(5);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

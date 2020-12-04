@@ -310,7 +310,7 @@ background-color: rgba(245, 245, 245, 80);
        <x>400</x>
        <y>23</y>
        <width>100</width>
-       <height>10</height>
+       <height>12</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1320,7 +1320,7 @@ border-radius:4px;</string>
      <string notr="true">background-color: rgba(255, 255, 255, 200);</string>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QFrame" name="frame">

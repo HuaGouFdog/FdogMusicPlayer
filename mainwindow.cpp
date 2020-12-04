@@ -29,22 +29,21 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
-
     player = new QMediaPlayer(this);
     playlist = new QMediaPlaylist(this);
     //播放模式 循环，单曲等等
     playlist->setPlaybackMode(QMediaPlaylist::Sequential);
-    //播放音量
+    //播放音量 默认50
     player->setVolume(50);
     player->setPlaylist(playlist);
     //设置positionChanged信号发送频率，毫秒级别
     player->setNotifyInterval(500);
+    //信号绑定
     connect(player,SIGNAL(positionChanged(qint64)),this,SLOT(onPositionChanged(qint64)));
     connect(player,SIGNAL(durationChanged(qint64)),this,SLOT(onDurationChanged(qint64)));
     connect(playlist,SIGNAL(currentIndexChanged(int)),this,SLOT(onPlaylistChanged(int)));
-
+    //访问 信号绑定不可指定数组类型
     network_manager = new QNetworkAccessManager();
     network_request = new QNetworkRequest();
     network_manager2 = new QNetworkAccessManager();
@@ -54,29 +53,50 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(network_manager, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished,Qt::DirectConnection);
     connect(network_manager2, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished2);
     connect(network_manager3, &QNetworkAccessManager::finished,this, &MainWindow::replyFinished3);
+    myMapper = new QSignalMapper(this);
+    QPushButton * button[8]={ui->pushButton_9,ui->pushButton_10,ui->pushButton_11,ui->pushButton_16,ui->pushButton_12,
+                          ui->pushButton_13,ui->pushButton_14,ui->pushButton_15};
+   for(int i = 0,j = 2;i<8;i++)
+   {
+        connect(button[i], SIGNAL(clicked(bool)), myMapper, SLOT(map()));
+        myMapper->setMapping(button[i], i);
+        j++;
+    }
+    connect(myMapper, SIGNAL(mapped(int)), this, SLOT(setPushButton(int)));
+
+//    connect(ui->pushButton_9,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_9,2)));        //歌单
+//    connect(ui->pushButton_10,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_10,3)));      //排行榜
+//    connect(ui->pushButton_11,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_11,4)));      //试听列表
+//    connect(ui->pushButton_16,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_16,5)));      //历史播放
+//    connect(ui->pushButton_12,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_12,7)));      //我的收藏
+//    connect(ui->pushButton_13,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_13,8)));      //本地音乐
+//    connect(ui->pushButton_14,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_14,6)));      //下载管理
+//    connect(ui->pushButton_15,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_15,9)));      //历史播放
 
     //去掉窗口标题栏
     this->setWindowFlags(Qt::FramelessWindowHint);
     //搜索表格整行选中的方式
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_2->setSelectionBehavior(QAbstractItemView::SelectRows);
     //搜索表格禁止编辑
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
     //搜索表格每列宽度
     ui->tableWidget->setColumnWidth(0,240);
     ui->tableWidget->setColumnWidth(1,190);
     ui->tableWidget->setColumnWidth(2,210);
     ui->tableWidget->setColumnWidth(3,140);
-
-    //ui->tableWidget->setColumnWidth(4,100);由于设置了自动填充，所以最后一列设置没有意义
-    //搜索表格去除选中虚线框
-    ui->tableWidget->setFocusPolicy(Qt::NoFocus);
-    //搜索表格不显示网格线
-    ui->tableWidget->setShowGrid(false);
-
     ui->tableWidget_2->setColumnWidth(0,240);
     ui->tableWidget_2->setColumnWidth(1,190);
     ui->tableWidget_2->setColumnWidth(2,210);
     ui->tableWidget_2->setColumnWidth(3,140);
+    //ui->tableWidget->setColumnWidth(4,100);由于设置了自动填充，所以最后一列设置没有意义
+    //搜索表格去除选中虚线框
+    ui->tableWidget->setFocusPolicy(Qt::NoFocus);
+    ui->tableWidget_2->setFocusPolicy(Qt::NoFocus);
+    //搜索表格不显示网格线
+    ui->tableWidget->setShowGrid(false);
+    ui->tableWidget_2->setShowGrid(false);
     //加载动态图
     m_movie = new QMovie(":/lib/036428b265240e27035db396a284521a.gif");
     //设置动态图大小
@@ -85,7 +105,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_movie->setScaledSize(m_si);
     //标签加载动态图
     ui->label_17->setMovie(m_movie);
-    //开始
+    //动态图开始
     m_movie->start();
 }
 MainWindow::~MainWindow()
@@ -111,10 +131,8 @@ void MainWindow::search(QString str,int page = 1,int pagesize=30)
 {
    QString KGAPISTR1 = QString("http://mobilecdn.kugou.com/api/v3/search/song?format=json"
                                "&keyword=%1&page=%2&pagesize=%3").arg(str).arg(page).arg(pagesize);
-    //qDebug()<<"老三1先出来";
     network_request->setUrl(QUrl(KGAPISTR1));
     network_manager->get(*network_request);
-    //qDebug()<<"老三2先出来";
 }
 
 JsonInfo MainWindow::parseJson(QString json)
@@ -195,7 +213,7 @@ JsonInfo MainWindow::parseJson(QString json)
 
 void MainWindow::parseJsonSongInfo(QString json)
 {
-    //qDebug()<<json;
+    qDebug()<<"数据:"<<json;
     QByteArray byte_array;
     QJsonParseError json_error;
     QJsonDocument parse_doucment = QJsonDocument::fromJson(byte_array.append(json), &json_error);
@@ -218,6 +236,7 @@ void MainWindow::parseJsonSongInfo(QString json)
                        m_IsPause = true;
                        ui->pushButton_2->setStyleSheet("border-image: url(:/lib/1zantingtingzhi.png);");
                        player->play();
+                       qDebug()<<"地址"<<url;
                        //歌名显示
                        QString albumid = getcontains(valuedataObject,"album_id");
                        QString songname = getcontains(valuedataObject,"song_name");
@@ -247,6 +266,8 @@ void MainWindow::parseJsonSongInfo(QString json)
                            }
                        }
                        //图片显示
+                       //network_request3->setRawHeader("Cookie","kg_mid=23334");
+                       //network_request3->setHeader(QNetworkRequest::CookieHeader, 23334);
                        network_request3->setUrl(QUrl(getcontains(valuedataObject,"img")));
                        network_manager3->get(*network_request3);
                        //将播放记录添加到历史记录
@@ -314,22 +335,30 @@ void MainWindow::parseJsonSongInfo(QString json)
 
 void MainWindow::hideAll()
 {
-    ui->pushButton_9->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
-    ui->pushButton_10->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
-    ui->pushButton_11->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
-    ui->pushButton_12->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
-    ui->pushButton_13->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
-    ui->pushButton_14->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
-    ui->pushButton_15->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
-    ui->pushButton_16->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
-
+    QPushButton * button[8]={ui->pushButton_9,ui->pushButton_10,ui->pushButton_11,ui->pushButton_16,ui->pushButton_12,
+                          ui->pushButton_13,ui->pushButton_14,ui->pushButton_15};
+    for(int i = 0;i<8;i++)
+    {
+    button[i]->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+    }
+//    ui->pushButton_9->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+//    ui->pushButton_10->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+//    ui->pushButton_11->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+//    ui->pushButton_12->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+//    ui->pushButton_13->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+//    ui->pushButton_14->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+//    ui->pushButton_15->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
+//    ui->pushButton_16->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
 }
 
-void MainWindow::setPushButton(QPushButton *button, int index)
+void MainWindow::setPushButton(int index)
 {
+    qDebug()<<"  序号："<<index;
     hideAll();
     ui->stackedWidget->setCurrentIndex(index);
-    button->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
+    QPushButton * button[8]={ui->pushButton_9,ui->pushButton_10,ui->pushButton_11,ui->pushButton_16,ui->pushButton_12,
+                          ui->pushButton_13,ui->pushButton_14,ui->pushButton_15};
+    button[index]->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
 }
 
 QString MainWindow::getcontains(QJsonObject Object, QString strInfo)
@@ -693,15 +722,40 @@ void MainWindow::on_pushButton_7_clicked()
 void MainWindow::on_tableWidget_cellDoubleClicked(int row, int column)
 {
     //歌曲请求
-    QString KGAPISTR1 =QString("http://www.kugou.com/yy/index.php?r=play/getdata"
+    QString KGAPISTR1 =QString("https://www.kugou.com/yy/index.php?r=play/getdata"
     "&hash=%1&album_id=%2&_=1497972864535").arg(JI.m_Hash.at(row)).arg(JI.m_Album_id.at(row));
+    //QString KGAPISTR1 =QString("https://www.kugou.com/yy/index.php?r=play/getdata&hash=1112A64F5B265256186A306753951217&album_id=522097&_=1497972864535");
     network_request2->setUrl(QUrl(KGAPISTR1));
-    qDebug()<<KGAPISTR1;
+    qDebug()<<"歌曲详细列表"<<KGAPISTR1;
     //不加头无法得到json，可能是为了防止机器爬取
-    network_request2->setRawHeader("Cookie","kg_mid=2333");
+    network_request2->setRawHeader("Cookie","kg_mid=233");
     network_request2->setHeader(QNetworkRequest::CookieHeader, 2333);
     network_manager2->get(*network_request2);
 }
+
+//void MainWindow::musicData()
+//{
+//    QSqlDatabase database;
+//    QSqlQuery sql_query;
+//    database = QSqlDatabase::addDatabase("QSQLITE");
+//    database.setDatabaseName("MusicDataBase.db");
+//    if (!database.open())
+//    {
+//        qDebug() << "创建失败" << database.lastError();
+//    }
+//    else
+//    {
+//        if(!sql_query.exec("create table music(album_id int primary key, songname text, authorname text, albumname text,time int, playnumber int)"))
+//        {
+//            qDebug() << "表格成功创建"<< sql_query.lastError();
+//        }
+//        else
+//        {
+//            qDebug() << "表格创建失败";
+//        }
+//    }
+//    //创建表格
+//}
 void MainWindow::on_pushButton_17_clicked()
 {
     hideAll();
@@ -720,35 +774,35 @@ void MainWindow::on_pushButton_17_clicked()
         m_IsLyricsShow = false;
     }
 }
-void MainWindow::on_pushButton_9_clicked()
-{
-    setPushButton(ui->pushButton_9,2);
-}
-void MainWindow::on_pushButton_10_clicked()
-{
-    setPushButton(ui->pushButton_10,3);
-}
-void MainWindow::on_pushButton_11_clicked()
-{
-    setPushButton(ui->pushButton_11,4);
-}
-void MainWindow::on_pushButton_16_clicked()
-{
-    setPushButton(ui->pushButton_16,5);
-}
-void MainWindow::on_pushButton_12_clicked()
-{
-    setPushButton(ui->pushButton_12,6);
-}
-void MainWindow::on_pushButton_13_clicked()
-{
-    setPushButton(ui->pushButton_13,7);
-}
-void MainWindow::on_pushButton_14_clicked()
-{
-    setPushButton(ui->pushButton_14,8);
-}
-void MainWindow::on_pushButton_15_clicked()
-{
-    setPushButton(ui->pushButton_15,9);
-}
+//void MainWindow::on_pushButton_9_clicked()
+//{
+//    setPushButton(ui->pushButton_9,2);
+//}
+//void MainWindow::on_pushButton_10_clicked()
+//{
+//    setPushButton(ui->pushButton_10,3);
+//}
+//void MainWindow::on_pushButton_11_clicked()
+//{
+//    setPushButton(ui->pushButton_11,4);
+//}
+//void MainWindow::on_pushButton_16_clicked()
+//{
+//    setPushButton(ui->pushButton_16,5);
+//}
+//void MainWindow::on_pushButton_12_clicked()
+//{
+//    setPushButton(ui->pushButton_12,6);
+//}
+//void MainWindow::on_pushButton_13_clicked()
+//{
+//    setPushButton(ui->pushButton_13,7);
+//}
+//void MainWindow::on_pushButton_14_clicked()
+//{
+//    setPushButton(ui->pushButton_14,8);
+//}
+//void MainWindow::on_pushButton_15_clicked()
+//{
+//    setPushButton(ui->pushButton_15,9);
+//}

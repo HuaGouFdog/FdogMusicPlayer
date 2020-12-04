@@ -26,12 +26,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    lenon.cpp
+    lenon.cpp \
+    historydata.cpp
 
 HEADERS += \
         mainwindow.h \
     jsoninfo.h \
-    lenon.h
+    lenon.h \
+    historydata.h
 
 FORMS += \
         mainwindow.ui \

@@ -11,6 +11,7 @@
 #include<QSize>
 #include<QPushButton>
 #include<QJsonObject>
+#include <QSignalMapper>
 #include"jsoninfo.h"
 #include"lenon.h"
 namespace Ui {
@@ -61,22 +62,23 @@ private:
     bool m_IsLyricsShow = false;        //判断歌词显示状态
     int m_IsMode=0;                     //判断播放模式0单曲1循环2单曲循环3随机播放
     Lenon J;                            //极简
+    QSignalMapper * myMapper;
     int IsExecute = 1;
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void mousePressEvent(QMouseEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
-    void search(QString str,int page,int pagesize);
-    JsonInfo parseJson(QString json);
+    void mousePressEvent(QMouseEvent *event);    //鼠标点击
+    void mouseMoveEvent(QMouseEvent *event);     //鼠标移动
+    void mouseReleaseEvent(QMouseEvent *event);  //鼠标释放
+    void search(QString str,int page,int pagesize); //搜索
+
     void parseJsonSongInfo(QString json);
     void hideAll();
-    void setPushButton(QPushButton * button,int index);
     QString getcontains(QJsonObject Object,QString strInfo);
-
+    JsonInfo parseJson(QString json);
 private slots:
+    void setPushButton(int index);//列表效果
     void on_pushButton_1_clicked();     //上一曲
     void on_pushButton_2_clicked();     //播放
     void on_pushButton_3_clicked();     //下一曲
@@ -84,30 +86,26 @@ private slots:
     void on_pushButton_5_clicked();     //音量
     void on_pushButton_clicked();       //添加本地音乐
     void on_pushButton_17_clicked();    //展开歌词
-    void on_pushButton_9_clicked();     //歌单
-    void on_pushButton_10_clicked();    //排行榜
-    void on_pushButton_11_clicked();    //试听列表
-    void on_pushButton_16_clicked();    //历史播放
-    void on_pushButton_12_clicked();    //我的收藏
-    void on_pushButton_13_clicked();    //本地音乐
-    void on_pushButton_14_clicked();    //下载管理
-    void on_pushButton_15_clicked();    //设置
+//    void on_pushButton_9_clicked();     //歌单
+//    void on_pushButton_10_clicked();    //排行榜
+//    void on_pushButton_11_clicked();    //试听列表
+//    void on_pushButton_16_clicked();    //历史播放
+//    void on_pushButton_12_clicked();    //我的收藏
+//    void on_pushButton_13_clicked();    //本地音乐
+//    void on_pushButton_14_clicked();    //下载管理
+    //void on_pushButton_15_clicked();    //设置
     void on_pushButton_7_clicked();     //搜索
-
     void replyFinished(QNetworkReply *reply);
     void replyFinished2(QNetworkReply *reply);
     void replyFinished3(QNetworkReply *reply);
-
     void onPlaylistChanged(int position);
     void onDurationChanged(qint64 duration);
     void onPositionChanged(qint64 position);
-
     void on_horizontalSlider_sliderReleased();              //播放进度
     void on_horizontalSlider_2_valueChanged(int value);     //声音
     void on_verticalSlider_valueChanged(int value);         //速度
-
     void on_tableWidget_cellDoubleClicked(int row, int column);//双击搜索列表歌曲
-
+    //void musicData();
 
 private:
     Ui::MainWindow *ui;

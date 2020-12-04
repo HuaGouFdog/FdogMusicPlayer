@@ -1,4 +1,4 @@
-#ifndef LENON_H
+﻿#ifndef LENON_H
 #define LENON_H
 
 #include <QWidget>
