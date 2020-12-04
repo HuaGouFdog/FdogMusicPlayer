@@ -14,6 +14,7 @@
 #include <QSignalMapper>
 #include"jsoninfo.h"
 #include"lenon.h"
+#include"historydata.h"
 namespace Ui {
 class MainWindow;
 }
@@ -63,6 +64,7 @@ private:
     int m_IsMode=0;                     //判断播放模式0单曲1循环2单曲循环3随机播放
     Lenon J;                            //极简
     QSignalMapper * myMapper;
+    HistoryData  music;
     int IsExecute = 1;
 public:
     explicit MainWindow(QWidget *parent = 0);

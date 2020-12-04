@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    //music.createData();
     player = new QMediaPlayer(this);
     playlist = new QMediaPlaylist(this);
     //播放模式 循环，单曲等等
@@ -63,16 +64,6 @@ MainWindow::MainWindow(QWidget *parent) :
         j++;
     }
     connect(myMapper, SIGNAL(mapped(int)), this, SLOT(setPushButton(int)));
-
-//    connect(ui->pushButton_9,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_9,2)));        //歌单
-//    connect(ui->pushButton_10,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_10,3)));      //排行榜
-//    connect(ui->pushButton_11,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_11,4)));      //试听列表
-//    connect(ui->pushButton_16,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_16,5)));      //历史播放
-//    connect(ui->pushButton_12,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_12,7)));      //我的收藏
-//    connect(ui->pushButton_13,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_13,8)));      //本地音乐
-//    connect(ui->pushButton_14,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_14,6)));      //下载管理
-//    connect(ui->pushButton_15,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_15,9)));      //历史播放
-
     //去掉窗口标题栏
     this->setWindowFlags(Qt::FramelessWindowHint);
     //搜索表格整行选中的方式
@@ -213,7 +204,7 @@ JsonInfo MainWindow::parseJson(QString json)
 
 void MainWindow::parseJsonSongInfo(QString json)
 {
-    qDebug()<<"数据:"<<json;
+    //qDebug()<<"数据:"<<json;
     QByteArray byte_array;
     QJsonParseError json_error;
     QJsonDocument parse_doucment = QJsonDocument::fromJson(byte_array.append(json), &json_error);
@@ -236,16 +227,16 @@ void MainWindow::parseJsonSongInfo(QString json)
                        m_IsPause = true;
                        ui->pushButton_2->setStyleSheet("border-image: url(:/lib/1zantingtingzhi.png);");
                        player->play();
-                       qDebug()<<"地址"<<url;
+                       //qDebug()<<"地址"<<url;
                        //歌名显示
-                       QString albumid = getcontains(valuedataObject,"album_id");
-                       QString songname = getcontains(valuedataObject,"song_name");
-                       QString authorname = getcontains(valuedataObject,"author_name");
-                       QString albumname = getcontains(valuedataObject,"album_name");
-                       QString time = getcontains(valuedataObject,"timelength");
-                       ui->label_2->setText(songname);
+                       music.albumid = getcontains(valuedataObject,"album_id");
+                       music.songname = getcontains(valuedataObject,"song_name");
+                       music.authorname = getcontains(valuedataObject,"author_name");
+                       music.albumname = getcontains(valuedataObject,"album_name");
+                       music.time = getcontains(valuedataObject,"timelength");
+                       ui->label_2->setText(music.songname);
                        //QFileInfo fileInfo(name);
-                       ui->listWidget->addItem(songname);
+                       ui->listWidget->addItem(music.songname);
                        //歌词获取
                        QString lrc = getcontains(valuedataObject,"lyrics");
                        QStringList lrclist = lrc.split("\n");
@@ -266,63 +257,15 @@ void MainWindow::parseJsonSongInfo(QString json)
                            }
                        }
                        //图片显示
-                       //network_request3->setRawHeader("Cookie","kg_mid=23334");
-                       //network_request3->setHeader(QNetworkRequest::CookieHeader, 23334);
                        network_request3->setUrl(QUrl(getcontains(valuedataObject,"img")));
                        network_manager3->get(*network_request3);
                        //将播放记录添加到历史记录
                        //如果无，则创建数据库，如果有，则追加。
                        //建立并打开数据库
-                       QSqlDatabase database;
-                       database = QSqlDatabase::addDatabase("QSQLITE");
-                       database.setDatabaseName("MusicDataBase.db");
-                       if (!database.open())
-                       {
-                           qDebug() << "创建失败" << database.lastError();
-                       }
-                       else
-                       {
-                           qDebug() << "创建成功" ;
-                       }
-                       //创建表格
-                       QSqlQuery sql_query;
-                       if(!sql_query.exec("create table music(album_id int primary key, songname text, authorname text, albumname text,time int, playnumber int)"))
-                       {
-                           qDebug() << "表格成功创建"<< sql_query.lastError();
-                       }
-                       else
-                       {
-                           qDebug() << "表格创建失败";
-                       }
-                       QString strdb = QString("INSERT INTO music VALUES(\"%1\", \"%2\", \"%3\", \"%4\", \"%5\", \"%6\")").arg(albumid,songname,authorname,albumname,time,"0");
-                       if(!sql_query.exec(strdb))
-                       {
-                           qDebug() << sql_query.lastError();
-                       }
-                       else
-                       {
-                           qDebug() << "inserted Wang!";
-                       }
-
-                       sql_query.exec("select * from music");
-                       if(!sql_query.exec())
-                       {
-                           qDebug()<<sql_query.lastError();
-                       }
-                       else
-                       {
-                           while(sql_query.next())
-                           {
-                               QString albumid =sql_query.value(0).toString();
-                               QString songname = sql_query.value(1).toString();
-                               QString singname = sql_query.value(2).toString();
-                               QString albumname = sql_query.value(3).toString();
-                               QString time = sql_query.value(4).toString();
-                               qDebug()<<QString("album_id:%1    song_name:%2    sing_name:%3    album_name:%4   time:%5   playnumber:%6").arg(albumid,songname,authorname,albumname,time,"2");
-                           }
-                       }
+                       QSqlQuery sql_query = music.createData();
+                       music.getData(sql_query,ui->tableWidget_2);
                        //关闭数据库
-                       database.close();
+                       //database.close();
                    }
                else
                    {
@@ -341,21 +284,13 @@ void MainWindow::hideAll()
     {
     button[i]->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
     }
-//    ui->pushButton_9->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
-//    ui->pushButton_10->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
-//    ui->pushButton_11->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
-//    ui->pushButton_12->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
-//    ui->pushButton_13->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
-//    ui->pushButton_14->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
-//    ui->pushButton_15->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
-//    ui->pushButton_16->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;");
 }
 
 void MainWindow::setPushButton(int index)
 {
-    qDebug()<<"  序号："<<index;
+    //qDebug()<<"  序号："<<index+2;
     hideAll();
-    ui->stackedWidget->setCurrentIndex(index);
+    ui->stackedWidget->setCurrentIndex(index+2);
     QPushButton * button[8]={ui->pushButton_9,ui->pushButton_10,ui->pushButton_11,ui->pushButton_16,ui->pushButton_12,
                           ui->pushButton_13,ui->pushButton_14,ui->pushButton_15};
     button[index]->setStyleSheet("text-align:left;color: rgb(255, 255, 255);border-radius:5px;border-width:1px;border-style:solid;border-color: rgba(232, 232, 232, 10);background-color: rgba(232, 232, 232, 100);");
@@ -726,36 +661,12 @@ void MainWindow::on_tableWidget_cellDoubleClicked(int row, int column)
     "&hash=%1&album_id=%2&_=1497972864535").arg(JI.m_Hash.at(row)).arg(JI.m_Album_id.at(row));
     //QString KGAPISTR1 =QString("https://www.kugou.com/yy/index.php?r=play/getdata&hash=1112A64F5B265256186A306753951217&album_id=522097&_=1497972864535");
     network_request2->setUrl(QUrl(KGAPISTR1));
-    qDebug()<<"歌曲详细列表"<<KGAPISTR1;
+    //qDebug()<<"歌曲详细列表"<<KGAPISTR1;
     //不加头无法得到json，可能是为了防止机器爬取
     network_request2->setRawHeader("Cookie","kg_mid=233");
     network_request2->setHeader(QNetworkRequest::CookieHeader, 2333);
     network_manager2->get(*network_request2);
 }
-
-//void MainWindow::musicData()
-//{
-//    QSqlDatabase database;
-//    QSqlQuery sql_query;
-//    database = QSqlDatabase::addDatabase("QSQLITE");
-//    database.setDatabaseName("MusicDataBase.db");
-//    if (!database.open())
-//    {
-//        qDebug() << "创建失败" << database.lastError();
-//    }
-//    else
-//    {
-//        if(!sql_query.exec("create table music(album_id int primary key, songname text, authorname text, albumname text,time int, playnumber int)"))
-//        {
-//            qDebug() << "表格成功创建"<< sql_query.lastError();
-//        }
-//        else
-//        {
-//            qDebug() << "表格创建失败";
-//        }
-//    }
-//    //创建表格
-//}
 void MainWindow::on_pushButton_17_clicked()
 {
     hideAll();
@@ -774,35 +685,3 @@ void MainWindow::on_pushButton_17_clicked()
         m_IsLyricsShow = false;
     }
 }
-//void MainWindow::on_pushButton_9_clicked()
-//{
-//    setPushButton(ui->pushButton_9,2);
-//}
-//void MainWindow::on_pushButton_10_clicked()
-//{
-//    setPushButton(ui->pushButton_10,3);
-//}
-//void MainWindow::on_pushButton_11_clicked()
-//{
-//    setPushButton(ui->pushButton_11,4);
-//}
-//void MainWindow::on_pushButton_16_clicked()
-//{
-//    setPushButton(ui->pushButton_16,5);
-//}
-//void MainWindow::on_pushButton_12_clicked()
-//{
-//    setPushButton(ui->pushButton_12,6);
-//}
-//void MainWindow::on_pushButton_13_clicked()
-//{
-//    setPushButton(ui->pushButton_13,7);
-//}
-//void MainWindow::on_pushButton_14_clicked()
-//{
-//    setPushButton(ui->pushButton_14,8);
-//}
-//void MainWindow::on_pushButton_15_clicked()
-//{
-//    setPushButton(ui->pushButton_15,9);
-//}
