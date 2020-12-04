@@ -62,7 +62,6 @@ MainWindow::MainWindow(QWidget *parent) :
         myMapper->setMapping(button[i], i);
         j++;
     }
-
     connect(myMapper, SIGNAL(mapped(int)), this, SLOT(setPushButton(int)));
 
 //    connect(ui->pushButton_9,SIGNAL(clicked(bool)),this,SLOT(setPushButton(ui->pushButton_9,2)));        //歌单

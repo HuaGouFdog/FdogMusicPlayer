@@ -107,6 +107,9 @@ private slots:
     void on_tableWidget_cellDoubleClicked(int row, int column);//双击搜索列表歌曲
     //void musicData();
 
+    //void createDate();
+    //void on_tableWidget_2_cellDoubleClicked(int row, int column);
+
 private:
     Ui::MainWindow *ui;
 };

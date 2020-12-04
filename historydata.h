@@ -6,7 +6,7 @@ class HistoryData
 {
 public:
     HistoryData();
-    void createData();
+   // void createData();
 };
 
 #endif // HISTORYDATA_H
