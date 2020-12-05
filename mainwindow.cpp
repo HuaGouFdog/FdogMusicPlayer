@@ -77,8 +77,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->setColumnWidth(1,190);
     ui->tableWidget->setColumnWidth(2,210);
     ui->tableWidget->setColumnWidth(3,140);
-    ui->tableWidget_2->setColumnWidth(0,240);
-    ui->tableWidget_2->setColumnWidth(1,190);
+    ui->tableWidget_2->setColumnWidth(0,210);
+    ui->tableWidget_2->setColumnWidth(1,150);
     ui->tableWidget_2->setColumnWidth(2,210);
     ui->tableWidget_2->setColumnWidth(3,140);
     //ui->tableWidget->setColumnWidth(4,100);由于设置了自动填充，所以最后一列设置没有意义
@@ -204,7 +204,7 @@ JsonInfo MainWindow::parseJson(QString json)
 
 void MainWindow::parseJsonSongInfo(QString json)
 {
-    //qDebug()<<"数据:"<<json;
+    qDebug()<<"数据:"<<json;
     QByteArray byte_array;
     QJsonParseError json_error;
     QJsonDocument parse_doucment = QJsonDocument::fromJson(byte_array.append(json), &json_error);
@@ -233,7 +233,13 @@ void MainWindow::parseJsonSongInfo(QString json)
                        music.songname = getcontains(valuedataObject,"song_name");
                        music.authorname = getcontains(valuedataObject,"author_name");
                        music.albumname = getcontains(valuedataObject,"album_name");
-                       music.time = getcontains(valuedataObject,"timelength");
+                       //music.time = getcontains(valuedataObject,"timelength").toInt();
+                       if (valuedataObject.contains("timelength"))//时长
+                       {
+                          QJsonValue timejson = valuedataObject.take("timelength").toInt()/1000;
+                          music.time = QString("%1:%2").arg(timejson.toInt()/60).arg(timejson.toInt()%60);
+                          //qDebug()<<"时间"<<timestr;
+                       }
                        ui->label_2->setText(music.songname);
                        //QFileInfo fileInfo(name);
                        ui->listWidget->addItem(music.songname);
@@ -262,10 +268,53 @@ void MainWindow::parseJsonSongInfo(QString json)
                        //将播放记录添加到历史记录
                        //如果无，则创建数据库，如果有，则追加。
                        //建立并打开数据库
-                       QSqlQuery sql_query = music.createData();
-                       music.getData(sql_query,ui->tableWidget_2);
-                       //关闭数据库
-                       //database.close();
+                       QSqlQuery sql_query = music.createData();//创建数据库，数据表
+                       //将播放写入记录
+                       //导入数据
+                       QString strdb = QString("INSERT INTO music VALUES(\"%1\", \"%2\", \"%3\", \"%4\", \"%5\", \"%6\")").arg(music.albumid,music.songname,music.authorname,music.albumname,music.time,"0");
+                       if(!sql_query.exec(strdb))
+                       {
+                           qDebug() << sql_query.lastError();
+                       }
+                       else
+                       {
+                           qDebug() << "inserted Wang!";
+                       }
+                       //读取数据
+                       //查询数据
+                       sql_query.exec("select * from music");
+                       if(!sql_query.exec())
+                       {
+                           qDebug()<<sql_query.lastError();
+                       }
+                       else
+                       {
+                           int i = 0;
+                           ui->tableWidget_2->setRowCount(10);
+                           while(sql_query.next())
+                           {
+                               QString albumid_d =sql_query.value(0).toString();
+                               QString songname_d = sql_query.value(1).toString();
+                               QString singname_d = sql_query.value(2).toString();
+                               QString albumname_d = sql_query.value(3).toString();
+                               QString time_d = sql_query.value(4).toString();
+                               //歌曲
+                               qDebug()<<QString("album_id:%1    song_name:%2    sing_name:%3    album_name:%4   time:%5   playnumber:%6").arg(albumid_d,songname_d,singname_d,albumname_d,time_d,"2");
+                               //歌曲
+                               ui->tableWidget_2->setItem(i,0,new QTableWidgetItem(sql_query.value(1).toString()));
+                               ui->tableWidget_2->item(i,0)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+                               //歌手
+                               ui->tableWidget_2->setItem(i,1,new QTableWidgetItem(sql_query.value(2).toString()));
+                               ui->tableWidget_2->item(i,1)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+                               //专辑
+                               ui->tableWidget_2->setItem(i,2,new QTableWidgetItem(sql_query.value(3).toString()));
+                               ui->tableWidget_2->item(i,2)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+                               //时长
+                               ui->tableWidget_2->setItem(i,4,new QTableWidgetItem(sql_query.value(4).toString()));
+                               ui->tableWidget_2->item(i,4)->setTextAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+                               i++;
+                           }
+                       }
                    }
                else
                    {

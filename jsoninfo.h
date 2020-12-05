@@ -9,5 +9,6 @@ public:
     QVector<int>     m_Duration;          //时间
     QVector<QString> m_Hash;              //哈希值
     QVector<QString> m_Album_id;          //歌曲id
+    QVector<int>     m_play;              //次数
 };
 #endif // JSONINFO_H

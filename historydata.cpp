@@ -11,12 +11,12 @@ HistoryData::HistoryData()
 
 HistoryData::~HistoryData()
 {
-    //database.close();
+    this->database.close();
 }
 QSqlQuery HistoryData::createData()
 {
     //建立并打开数据库
-    QSqlDatabase database;
+    this->database;
     database = QSqlDatabase::addDatabase("QSQLITE");
     database.setDatabaseName("MusicDataBase.db");
     if (!database.open())
@@ -37,23 +37,12 @@ QSqlQuery HistoryData::createData()
     {
         qDebug() << "表格创建失败";
     }
-    //关闭数据库
-    //database.close();
     return sql_query;
 }
 
-void HistoryData::getData(QSqlQuery sql_query, QTableWidget * Table)
+void HistoryData::getData(QSqlQuery sql_query)
 {
-    //导入数据
-    QString strdb = QString("INSERT INTO music VALUES(\"%1\", \"%2\", \"%3\", \"%4\", \"%5\", \"%6\")").arg(albumid,songname,authorname,albumname,time,"0");
-    if(!sql_query.exec(strdb))
-    {
-        qDebug() << sql_query.lastError();
-    }
-    else
-    {
-        qDebug() << "inserted Wang!";
-    }
+    //查询数据
     sql_query.exec("select * from music");
     if(!sql_query.exec())
     {

@@ -7,6 +7,7 @@
 class HistoryData
 {
 public:
+    QSqlDatabase database;
     QString albumid;
     QString songname;
     QString authorname;
@@ -15,7 +16,7 @@ public:
     HistoryData();
     ~HistoryData();
     QSqlQuery createData();
-    void getData(QSqlQuery sql_query, QTableWidget *Table);
+    void getData(QSqlQuery sql_query);
 };
 
 #endif // HISTORYDATA_H
